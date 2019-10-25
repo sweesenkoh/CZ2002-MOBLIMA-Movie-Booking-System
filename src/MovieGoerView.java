@@ -35,7 +35,7 @@ public class MovieGoerView extends View {
 
 	@Override
 	protected void printViewContent() {
-		System.out.println("Welcome to Moblima! Are you the admin or the user?");
+		System.out.println("Welcome to Moblima! This is the Movie Goer View. Please select the options below");
 	}
 	
 
