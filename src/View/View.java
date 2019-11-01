@@ -22,9 +22,13 @@ public abstract class View{
 	
 	
 
-    public abstract void activate();
-    public abstract void processUserInput(int input);
+    public void activate() {
+    	printViewTitle();
+    	printViewContent();
+    	printOptions();
+    }
     
+    protected abstract void processUserInput(int input);
     
     
     public void printViewTitle() {

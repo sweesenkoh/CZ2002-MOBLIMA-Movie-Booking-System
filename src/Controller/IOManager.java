@@ -8,7 +8,7 @@ public class IOManager {
 	
 	public static void printMenuTitle(String title) {
 		System.out.println("\n\n");
-		String upperBorderLine = "_________________________________________________________";
+		String upperBorderLine = "______________________________________________________________________________";
 		System.out.println(upperBorderLine);
 		
 		int borderLengthHalf = (upperBorderLine.length()) / 2;
@@ -21,7 +21,7 @@ public class IOManager {
 			System.out.printf(" ");
 		}
 		System.out.println(title);
-		System.out.println(upperBorderLine);
+		System.out.println(upperBorderLine + "\n");
 	}
 	
 	
@@ -29,7 +29,7 @@ public class IOManager {
 	public static void printMenuOptions(String[] options) {
 		int counter = 1;
 		for (String option : options) {
-			System.out.println(counter + ") " + option);
+			System.out.println("  " + counter + ") " + option);
 			counter++;
 		}
 	}

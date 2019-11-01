@@ -17,6 +17,7 @@ public class ViewNavigator {
 	public static void pushView(View view) {
 		views.add(view);
 		view.activate();
+
 	}
 	
 	public static void popView() {

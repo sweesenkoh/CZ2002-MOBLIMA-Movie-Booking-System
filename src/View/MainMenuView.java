@@ -9,7 +9,7 @@ public class MainMenuView extends View {
 			"Admin","Movie-Goer"
 	};
 	private String title = "Moblima Movie Booking System";
-	private String viewContent = "\nWelcome To Moblima Movie Booking System! Are you a staff or a movie-goer?\n";
+	private String viewContent = "Welcome To Moblima Movie Booking System! Are you a staff or a movie-goer?\n";
 	
 	
 	@Override
@@ -18,9 +18,7 @@ public class MainMenuView extends View {
 		super.setOptions(this.options);
 		super.setTitle(this.title);
 		super.setViewContent(this.viewContent);
-		super.printViewTitle();
-		super.printViewContent();
-		super.printOptions();
+		super.activate();
 		
 		int userInput = IOManager.getUserInputInt("\nPlease input a choice",1,options.length);
 		processUserInput(userInput);
@@ -28,7 +26,7 @@ public class MainMenuView extends View {
 	
 
 	@Override
-	public void processUserInput(int input) {
+	protected void processUserInput(int input) {
 		switch (input) {
 		case 1:
 			System.out.println("going to admin view...");

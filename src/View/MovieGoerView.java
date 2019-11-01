@@ -17,21 +17,24 @@ public class MovieGoerView extends View {
 		super.setOptions(this.options);
 		super.setTitle(this.title);
 		super.setViewContent(this.viewContent);
-		super.printViewTitle();
-		super.printViewContent();
-		super.printOptions();
 		
-		int userInput = IOManager.getUserInputInt("Please input your choice",1,options.length);
+		super.activate();
+		
+		int userInput = IOManager.getUserInputInt("\nPlease input your choice",1,options.length);
 		processUserInput(userInput);
 	}
 
 
 	@Override
-	public void processUserInput(int input) {
+	protected void processUserInput(int input) {
 		
 		switch (input) {
 			case 1:
-				ViewNavigator.pushView(new MovieGoerView());
+				ViewNavigator.pushView(new MovieBrowseOptionsView());
+				break;
+			case 2:
+				System.out.println("\nThis view is not built out yet....\n");
+				this.activate();
 				break;
 			case 3:
 				ViewNavigator.popView();
