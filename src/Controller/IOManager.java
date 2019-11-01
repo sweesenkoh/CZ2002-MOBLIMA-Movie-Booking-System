@@ -1,8 +1,28 @@
+package Controller;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
 public class IOManager {
+	
+	
+	public static void printMenuTitle(String title) {
+		System.out.println("\n\n");
+		String upperBorderLine = "_________________________________________________________";
+		System.out.println(upperBorderLine);
+		
+		int borderLengthHalf = (upperBorderLine.length()) / 2;
+		for (int x = 0 ; x < borderLengthHalf ; x++) {
+			System.out.printf("- ");
+		}
+		System.out.printf("\n");
+		int frontSpacing = (upperBorderLine.length() - title.length()) / 2;
+		for (int y = 0 ; y < frontSpacing ; y++) {
+			System.out.printf(" ");
+		}
+		System.out.println(title);
+		System.out.println(upperBorderLine);
+	}
 	
 	
 	
