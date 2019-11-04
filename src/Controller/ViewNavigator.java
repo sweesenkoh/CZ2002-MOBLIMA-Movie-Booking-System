@@ -10,7 +10,7 @@ public class ViewNavigator {
 	
 	
 	//this line make the initializer private. 
-	//not supposed to be instantiated
+	//this class is not supposed to be instantiated
 	
 	private ViewNavigator() {} 
 	
