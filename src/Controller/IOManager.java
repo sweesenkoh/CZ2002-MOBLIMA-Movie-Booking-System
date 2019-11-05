@@ -1,4 +1,5 @@
 package Controller;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -26,7 +27,7 @@ public class IOManager {
 	
 	
 	
-	public static void printMenuOptions(String[] options) {
+	public static void printMenuOptions(ArrayList<String> options) {
 		int counter = 1;
 		for (String option : options) {
 			System.out.println("  " + counter + ") " + option);
