@@ -9,6 +9,41 @@ public class Cinema {
 	
 	public Cinema(Cineplex cineplex, CinemaClass cinemaClass, int code, double price, SeatLayout seatLayout) {
 		this.cineplex = cineplex;
-		this.
+		this.cinemaClass = cinemaClass;
+		this.code = code;
+		this.price = price;
+		this.seatLayout = seatLayout;
+	}
+	
+	public CinemaClass getClass() {
+		return cinemaClass;
+	}
+	
+	public void setClass(CinemaClass c) {
+		cinemaClass = c;
+	}
+	
+	public int getCode() {
+		return code;
+	}
+	
+	public void setCode(int code) {
+		this.code = code;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public void setPrice(double p) {
+		price = p;
+	}
+	
+	public Seatlayout getLayout() {
+		return seatLayout;
+	}
+	
+	public void setLayout(Seatlayout s) {
+		seatLayout = s;
 	}
 }

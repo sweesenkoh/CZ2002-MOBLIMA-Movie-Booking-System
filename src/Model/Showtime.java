@@ -4,12 +4,18 @@ public class Showtime {
 	private Movie movie;
 	private Cinema cinema;
 	private Ticket[] tickets;
+	//should the price attribute be here instead of cinema?
+	private double price;
 	
 	public Showtime(Date showtime, Movie movie, Cinema cinema, Ticket[] tickets) {
 		this.showtime = showtime;
 		this.movie = movie;
 		this.cinema = cinema;
 		this.tickets = tickets;
+		if (cinema.getClass() == NORMAL)
+			price = 5;
+		else
+			price = 10;
 	}
 	
 	public Date getShowtime() {
@@ -43,6 +49,11 @@ public class Showtime {
 	public void setTickets(Ticket[] t) {
 		tickets = t;
 	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
 	
 	
 
