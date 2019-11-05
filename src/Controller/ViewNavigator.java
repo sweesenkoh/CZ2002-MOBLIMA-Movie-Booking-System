@@ -14,10 +14,9 @@ public class ViewNavigator {
 	
 	private ViewNavigator() {} 
 	
-	public static void pushView(View view) {
+	public static void pushView(View view) {	
 		views.add(view);
 		view.activate();
-
 	}
 	
 	public static void popView() {

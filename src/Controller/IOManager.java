@@ -1,6 +1,8 @@
 package Controller;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 
 public class IOManager {
@@ -26,12 +28,33 @@ public class IOManager {
 	
 	
 	
-	public static void printMenuOptions(String[] options) {
+	public static void printMenuOptions(ArrayList<String> options) {
 		int counter = 1;
+		System.out.println("\n");
 		for (String option : options) {
 			System.out.println("  " + counter + ") " + option);
 			counter++;
 		}
+		System.out.println("\n");
+	}
+	
+	public static void printMenuContent(String input) {
+		String upperBorderLine = "______________________________________________________________________________";
+		int viewLength = upperBorderLine.length();
+		StringTokenizer tok = new StringTokenizer(input, " ");
+	    StringBuilder output = new StringBuilder(input.length());
+	    int lineLen = 0;
+	    while (tok.hasMoreTokens()) {
+	        String word = tok.nextToken() + " ";
+
+	        if (lineLen + word.length() > viewLength) {
+	            output.append("\n");
+	            lineLen = 0;
+	        }
+	        output.append(word);
+	        lineLen += word.length();
+	    }
+		System.out.println(output);
 	}
 	
 	

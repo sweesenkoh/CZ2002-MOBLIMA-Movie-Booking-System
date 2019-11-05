@@ -1,47 +1,41 @@
 package View;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import Controller.IOManager;
 import Controller.ViewNavigator;
+import Model.Movie;
 
-public class MovieGoerView extends View {
+public class MovieDetailView extends View {
 	
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
-			"List Movie",
-			"Check Booking History",
 			"Back to Previous Page"
 	)); 
 	
-	private String title = "Movie-Goer Menu";
-	private String viewContent = "What yould you like to do?";
+	private String title;
+	private String viewContent;
 
+	public MovieDetailView(Movie movie) {
+		this.title = movie.getTitle();
+		this.viewContent = movie.toString();
+	}
+	
 	public void activate() {
 		super.setOptions(this.options);
 		super.setTitle(this.title);
 		super.setViewContent(this.viewContent);
-		
 		super.activate();
 		
 		int userInput = IOManager.getUserInputInt("Please input your choice",1,options.size());
 		processUserInput(userInput);
 	}
-
-
+	
 	@Override
 	protected void processUserInput(int input) {
-		
-		switch (input) {
-			case 1:
-				ViewNavigator.pushView(new MovieBrowseOptionsView());
-				break;
-			case 2:
-				System.out.println("\nThis view is not built out yet....\n");
-				this.activate();
-				break;
-			case 3:
-				ViewNavigator.popView();
-			}
+		if (input == options.size()) {
+			ViewNavigator.popView();
+		}
 	}
 
 }

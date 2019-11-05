@@ -1,12 +1,14 @@
 package View;
 
+import java.util.ArrayList;
+
 import Controller.IOManager;
 
 public abstract class View{
 	
 	private String viewContent = " ";
 	private String title = " ";
-	private String[] options = new String[] {};
+	private ArrayList<String> options = new ArrayList<String>();
 	
 	public void setViewContent(String content) {
 		this.viewContent = content;
@@ -16,7 +18,7 @@ public abstract class View{
 		this.title = title;
 	}
 	
-	public void setOptions(String[] options) {
+	public void setOptions(ArrayList<String> options) {
 		this.options = options;
 	}
 	
@@ -40,7 +42,8 @@ public abstract class View{
     }
     
     public void printViewContent() {
-		System.out.println(viewContent);
+//		System.out.println(viewContent);
+    	IOManager.printMenuContent(viewContent);
     }
 
 }
