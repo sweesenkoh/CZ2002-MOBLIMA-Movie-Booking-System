@@ -15,7 +15,7 @@ public class MainMenuView extends View {
 	
 	
 	private String title = "Moblima Movie Booking System";
-	private String viewContent = "Welcome To Moblima Movie Booking System! Are you a staff or a movie-goer?\n";
+	private String viewContent = "Welcome To Moblima Movie Booking System! Are you a staff or a movie-goer?";
 	
 	
 	@Override
@@ -26,7 +26,7 @@ public class MainMenuView extends View {
 		super.setViewContent(this.viewContent);
 		super.activate();
 		
-		int userInput = IOManager.getUserInputInt("\nPlease input a choice",1,options.size());
+		int userInput = IOManager.getUserInputInt("Please input a choice",1,options.size());
 		processUserInput(userInput);
 	}
 	

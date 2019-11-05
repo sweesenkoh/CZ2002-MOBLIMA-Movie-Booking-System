@@ -10,7 +10,7 @@ public class MovieViewingView extends View {
 	
 	private ArrayList<String> options = new ArrayList<>();
 	private String title;
-	private String viewContent = "You have chosen this movie, please choose one of the following options: \n";
+	private String viewContent = "You have chosen this movie, please choose one of the following options: ";
 	private Movie movie;
 	
 	public MovieViewingView(Movie movie) {
@@ -25,7 +25,7 @@ public class MovieViewingView extends View {
 			options.add("Leave Review");
 		}
 		options.add("Back to Previous Page");
-		this.title = "Movie: " + movie.getTitle();
+		this.title = "Movie: " + movie.getTitle() + " [ " + movie.getStatus().displayName() + " ] ";
 	}
 	
 	public void activate() {
@@ -34,7 +34,7 @@ public class MovieViewingView extends View {
 		super.setViewContent(this.viewContent);
 		super.activate();
 		
-		int userInput = IOManager.getUserInputInt("\nPlease input your choice",1,options.size());
+		int userInput = IOManager.getUserInputInt("Please input your choice",1,options.size());
 		processUserInput(userInput);
 	}
 	

@@ -42,7 +42,8 @@ public abstract class View{
     }
     
     public void printViewContent() {
-		System.out.println(viewContent);
+//		System.out.println(viewContent);
+    	IOManager.printMenuContent(viewContent);
     }
 
 }

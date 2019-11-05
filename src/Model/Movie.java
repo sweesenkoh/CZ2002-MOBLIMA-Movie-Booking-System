@@ -3,7 +3,20 @@ package Model;
 
 public class Movie {
 	
-	public enum MovieStatus{COMINGSOON,ENDED,NOWSHOWING};
+	public enum MovieStatus{
+		
+		COMINGSOON("Coming Soon"),
+		ENDED("Ended"),
+		NOWSHOWING("Now Showing");
+
+	    private String displayName;
+
+	    MovieStatus(String displayName) {
+	        this.displayName = displayName;
+	    }
+
+	    public String displayName() { return displayName; }
+	}
 
 	private String title;
 	private MovieStatus status;

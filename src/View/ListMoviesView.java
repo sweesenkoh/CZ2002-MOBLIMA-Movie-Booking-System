@@ -10,7 +10,7 @@ public class ListMoviesView extends View {
 	
 	private ArrayList<String> options = new ArrayList<>();
 	private String title = "Movies List";
-	private String viewContent = "Here are the list of movies: \n";
+	private String viewContent = "Here are the list of movies:";
 	
 	private ArrayList<Movie> movies = new ArrayList<>();
 	
@@ -29,7 +29,7 @@ public class ListMoviesView extends View {
 		super.setViewContent(this.viewContent);
 		super.activate();
 		
-		int userInput = IOManager.getUserInputInt("\nPlease input a choice",1,options.size());
+		int userInput = IOManager.getUserInputInt("Please input a choice",1,options.size());
 		processUserInput(userInput);
 	}
 

@@ -14,7 +14,7 @@ public class MovieGoerView extends View {
 	)); 
 	
 	private String title = "Movie-Goer Menu";
-	private String viewContent = "What yould you like to do?\n";
+	private String viewContent = "What yould you like to do?";
 
 	public void activate() {
 		super.setOptions(this.options);
@@ -23,7 +23,7 @@ public class MovieGoerView extends View {
 		
 		super.activate();
 		
-		int userInput = IOManager.getUserInputInt("\nPlease input your choice",1,options.size());
+		int userInput = IOManager.getUserInputInt("Please input your choice",1,options.size());
 		processUserInput(userInput);
 	}
 

@@ -27,7 +27,7 @@ public class MovieDetailView extends View {
 		super.setViewContent(this.viewContent);
 		super.activate();
 		
-		int userInput = IOManager.getUserInputInt("\nPlease input your choice",1,options.size());
+		int userInput = IOManager.getUserInputInt("Please input your choice",1,options.size());
 		processUserInput(userInput);
 	}
 	

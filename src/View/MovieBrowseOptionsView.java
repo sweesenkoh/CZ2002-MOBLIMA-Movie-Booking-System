@@ -18,14 +18,14 @@ public class MovieBrowseOptionsView extends View {
 	)); 
 	
 	private String title = "Browse Movie by Options";
-	private String viewContent = "Please choose the mode by which you want to search for movies\n";
+	private String viewContent = "Please choose the mode by which you want to search for movies";
 	
 	public void activate() {
 		super.setOptions(this.options);
 		super.setTitle(this.title);
 		super.setViewContent(this.viewContent);
 		super.activate();
-		int userInput = IOManager.getUserInputInt("\nPlease input your choice",1,options.size());
+		int userInput = IOManager.getUserInputInt("Please input your choice",1,options.size());
 		processUserInput(userInput);
 	}
 
