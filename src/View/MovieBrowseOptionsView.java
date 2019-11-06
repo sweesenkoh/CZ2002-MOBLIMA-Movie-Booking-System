@@ -69,7 +69,7 @@ public class MovieBrowseOptionsView extends View {
 		String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
 		System.out.println("Today's Date: " + timeStamp + " " + dayOfWeek);
 		System.out.println(" ");
-		Calendar userInputDate = IOManager.getUserInputDate("Please input the date that you want to watch the movie at: \n Format : dd/MM/yyyy");
+		Calendar userInputDate = IOManager.getUserInputDate("Please input the date that you want to watch the movie at: \nFormat : dd/MM/yyyy");
 		
 		//filter the movies by this date
 		//then append the movies into this array 

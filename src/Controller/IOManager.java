@@ -100,6 +100,14 @@ public class IOManager {
 			return getUserInputDate(message);
 		}
 		Calendar cal = sdf.getCalendar();
+		
+		Date date = cal.getTime();             
+		SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");          
+		String inActiveDate = format1.format(date);
+		if (!userInput.equals(inActiveDate)) {
+			System.out.println("You have input a date that does not exist or in wrong format, try again ");
+			return getUserInputDate(message);
+		}
 		return cal;
 	}
 	
