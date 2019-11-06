@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
@@ -59,7 +61,10 @@ public class MovieBrowseOptionsView extends View {
 	private void handleOptionSearchMovie(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
-		ViewNavigator.pushView(new ListMoviesView(movies));
+		String userInput = IOManager.getUserInputString("Please write the name of the movie: ");
+		
+		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getTitle().matches("(?i).*" + userInput + ".*")).collect(Collectors.toList());
+		ViewNavigator.pushView(new ListMoviesView(filteredMovieList));
 	}
 	
 	private void handleOptionListMovieOnDate() {
