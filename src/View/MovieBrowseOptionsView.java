@@ -1,6 +1,9 @@
 package View;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 import Controller.IOManager;
 import Controller.ViewNavigator;
@@ -61,8 +64,20 @@ public class MovieBrowseOptionsView extends View {
 	}
 	
 	private void handleOptionListMovieOnDate() {
-		System.out.println("\nThis view is not built out yet....\n");
-		this.activate();
+		Calendar calendar = Calendar.getInstance();
+		String dayOfWeek = new SimpleDateFormat("EE").format(calendar.getTime());
+		String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+		System.out.println("Today's Date: " + timeStamp + " " + dayOfWeek);
+		System.out.println(" ");
+		Calendar userInputDate = IOManager.getUserInputDate("Please input the date that you want to watch the movie at: \n Format : dd/MM/yyyy");
+		
+		//filter the movies by this date
+		//then append the movies into this array 
+		ArrayList<Movie> movies = new ArrayList<>();
+		movies.add(new Movie("Avatar",Movie.MovieStatus.COMINGSOON));
+		movies.add(new Movie("Movie 2",Movie.MovieStatus.ENDED));
+		movies.add(new Movie("Movie 3",Movie.MovieStatus.NOWSHOWING));
+		ViewNavigator.pushView(new ListMoviesView(movies));
 	}
 
 	private void handleListAllMoviesOption(){

@@ -1,5 +1,9 @@
 package Controller;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -82,6 +86,22 @@ public class IOManager {
 		return userInput;
 	}
 	
+	public static Calendar getUserInputDate(String message) {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		System.out.println(message);
+		String userInput;
+		Scanner sc = new Scanner(System.in);
+		userInput = sc.nextLine();
+		try {
+			Date date = sdf.parse(userInput);
+		} catch (ParseException e) {
+			System.out.println("You have input the wrong format, try again ");
+			return getUserInputDate(message);
+		}
+		Calendar cal = sdf.getCalendar();
+		return cal;
+	}
 	
 	
 	
