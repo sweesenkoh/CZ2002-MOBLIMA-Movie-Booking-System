@@ -7,7 +7,11 @@ import Model.Movie;
 
 public class ListMoviesView extends View {
 	
-	
+	//filtering array
+	//will be useful to want to list movies in order of their status
+//	List<Article> articleList = new ArrayList<Article>();
+//	List<Article> filteredArticleList= articleList.stream().filter(article -> article.getDesArt().contains("test")).collect(Collectors.toList());
+//	
 	private ArrayList<String> options = new ArrayList<>();
 	private String title = "Movies List";
 	private String viewContent = "Here are the list of movies:";
