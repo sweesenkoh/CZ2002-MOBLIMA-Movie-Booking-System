@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
+import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Movie;
@@ -57,9 +58,7 @@ public class MovieBrowseOptionsView extends View {
 
 	private void handleOptionSearchMovie(){
 		ArrayList<Movie> movies = new ArrayList<>();
-		movies.add(new Movie("Avatar",Movie.MovieStatus.COMINGSOON));
-		movies.add(new Movie("Movie 2",Movie.MovieStatus.ENDED));
-		movies.add(new Movie("Movie 3",Movie.MovieStatus.NOWSHOWING));
+		movies = DatabaseManager.retrieveAllMovies();
 		ViewNavigator.pushView(new ListMoviesView(movies));
 	}
 	
@@ -74,9 +73,7 @@ public class MovieBrowseOptionsView extends View {
 		//filter the movies by this date
 		//then append the movies into this array 
 		ArrayList<Movie> movies = new ArrayList<>();
-		movies.add(new Movie("Avatar",Movie.MovieStatus.COMINGSOON));
-		movies.add(new Movie("Movie 2",Movie.MovieStatus.ENDED));
-		movies.add(new Movie("Movie 3",Movie.MovieStatus.NOWSHOWING));
+		movies = DatabaseManager.retrieveAllMovies();
 		ViewNavigator.pushView(new ListMoviesView(movies));
 	}
 
