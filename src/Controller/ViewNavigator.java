@@ -6,9 +6,7 @@ import View.View;
 public class ViewNavigator {
 	
 	private static ArrayList<View> views = new ArrayList<View>();
-//	private static ViewNavigator viewNavigatorInstance = null;
-	
-	
+
 	//this line make the initializer private. 
 	//this class is not supposed to be instantiated
 	

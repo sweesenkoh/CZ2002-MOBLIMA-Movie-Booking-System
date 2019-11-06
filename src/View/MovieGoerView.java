@@ -36,8 +36,8 @@ public class MovieGoerView extends View {
 				ViewNavigator.pushView(new MovieBrowseOptionsView());
 				break;
 			case 2:
-				System.out.println("\nThis view is not built out yet....\n");
-				this.activate();
+				String username = IOManager.getUserInputString("Please input your username: ");
+				ViewNavigator.pushView(new BookingHistoryView(username));
 				break;
 			case 3:
 				ViewNavigator.popView();
