@@ -14,7 +14,7 @@ public class DatabaseManager {
 	
 	//probably need to handle the case where if file is not found, we need to create file automatically
 	
-	public static void insertMovieToDataBase(Movie movie){
+	public static void insertMovieIntoDataBase(Movie movie){
 		try {
 			ArrayList<Movie> movies = retrieveAllMovies();
 			movies.add(movie);
@@ -35,7 +35,6 @@ public class DatabaseManager {
 			System.out.println("Error occured while trying to retrieve movies from database, try again later");
 			return (new ArrayList<Movie>());
 		}
-		
 	}
 
 }
