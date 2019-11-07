@@ -16,7 +16,7 @@ public class ListMoviesView extends View {
 	private String title = "Movies List";
 	private String viewContent = "Here are the list of movies:";
 	
-	private ArrayList<Movie> movies = new ArrayList<>();
+	protected ArrayList<Movie> movies = new ArrayList<>();
 	
 	
 	public ListMoviesView(ArrayList<Movie> movies) {
@@ -24,23 +24,24 @@ public class ListMoviesView extends View {
 			this.options.add(movie.getTitle());
 		}
 		this.movies = movies;
-		this.options.add("Back to Previous Page");
 	}
 	
 	public void activate() {
-		super.setOptions(this.options);
+//		super.setOptions(this.options);
 		super.setTitle(this.title);
 		super.setViewContent(this.viewContent);
 		super.activate();
 		
-		int userInput = IOManager.getUserInputInt("Please input a choice",1,options.size());
+		int userInput = IOManager.printMultipageOptionsWithReturnedChoice(this.options,10);
+		
+		//int userInput = IOManager.getUserInputInt("Please input a choice",1,options.size());
 		processUserInput(userInput);
 	}
 
 	@Override
 	protected void processUserInput(int input) {
 		
-		if (input == options.size()) {
+		if (input == -1) {
 			ViewNavigator.popView();
 		}else {
 			ViewNavigator.pushView(new MovieViewingView(this.movies.get(input - 1)));

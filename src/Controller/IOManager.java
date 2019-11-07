@@ -1,5 +1,6 @@
 package Controller;
 import java.util.Date;
+import java.util.function.Function;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,12 +62,120 @@ public class IOManager {
 		System.out.println(output);
 	}
 	
+	//the type must have toString method ready
+	//this function just display the list, cannot handle selecting them'
+	public static <E> void printMultipageOptions(ArrayList<E> array,int numOfOptionsPerPage,String endOptionsChoosingSessionMessage) {
+		int numOfReviewsPerPage = numOfOptionsPerPage;
+		int multiplier = 0;
+		boolean isLastPage = false;
+		boolean isFirstPage = true;
+		
+		while (true) {
+			System.out.println("\nPage " + (multiplier + 1) + ": \n");
+			isLastPage = false;
+			isFirstPage = false;
+			for (int x = 1 + (numOfReviewsPerPage*multiplier); x <= array.size() ; x++) {
+				if ((x-1) % (numOfReviewsPerPage*(multiplier+1)) == 0 && (x != 1)) {
+					break;
+				}
+				if (x <= numOfReviewsPerPage) {
+					isFirstPage = true;
+				}
+				if (x == array.size()) {
+					isLastPage = true;
+				}
+				System.out.println(x + ") " + array.get(x - 1).toString());
+				System.out.println(" ");
+			}
+			
+			ArrayList<String> userChoices = new ArrayList<>();
+			userChoices.add(endOptionsChoosingSessionMessage);
+			if (!(isLastPage && isFirstPage) && array.size() != 0) {
+				if (!isFirstPage){userChoices.add("Previous page");}
+				if (!isLastPage) {userChoices.add("Next Page");}
+			}
+			IOManager.printMenuOptions(userChoices);
+			int userChoice = IOManager.getUserInputInt("Please choose an option: ",1,userChoices.size());
+			
+			if (userChoice == 1) {
+				return;
+			}else if (userChoice == 2) {
+				if (!isFirstPage) {
+					multiplier--;
+					continue;
+				}
+			}
+			multiplier++;
+		}
+	}
+	
+	//return -1 if user wants to return to previous menu
+	public static <E> int printMultipageOptionsWithReturnedChoice(ArrayList<E> array,int numOfOptionsPerPage) {
+		int numOfReviewsPerPage = numOfOptionsPerPage;
+		int multiplier = 0;
+		boolean isLastPage = false;
+		boolean isFirstPage = true;
+		
+		while (true) {
+			System.out.println("\nPage " + (multiplier + 1) + ": \n");
+			isLastPage = false;
+			isFirstPage = false;
+			int x;
+			for (x = 1 + (numOfReviewsPerPage*multiplier); x <= array.size() ; x++) {
+				if ((x-1) % (numOfReviewsPerPage*(multiplier+1)) == 0 && (x != 1)) {
+					break;
+				}
+				if (x <= numOfReviewsPerPage) {
+					isFirstPage = true;
+				}
+				if (x == array.size()) {
+					isLastPage = true;
+				}
+				System.out.println("    " + x + ") " + array.get(x - 1).toString());
+			}
+			
+			if (((isFirstPage) && (isLastPage)) || array.size() == 0) {
+				int start = 1;
+				int end = array.size() + 1;
+				System.out.println("    " + x + ") " + "Return to previous menu");
+				int userChoice = IOManager.getUserInputInt("\nInput your choice: ",start,end);
+				if (userChoice == end) {return -1;} else {return userChoice;}
+			}
+			
+			System.out.println("\n\nOptions: ");
+			ArrayList<String> userChoices = new ArrayList<>();
+			userChoices.add("Choose one of the item");
+			userChoices.add("Return to previous menu");
+			if (!isFirstPage){userChoices.add("Previous page");}
+			if (!isLastPage) {userChoices.add("Next Page");}
+			IOManager.printMenuOptions(userChoices);
+			int userChoice = IOManager.getUserInputInt("Please choose an option: ",1,userChoices.size());
+			
+			if (userChoice == 1) {
+//				int start = 1 + (numOfReviewsPerPage*multiplier);
+//				int end = 1 + (numOfReviewsPerPage*(multiplier+1)) - 1;
+				int start = 1;
+				int end = array.size();
+				return IOManager.getUserInputInt("Input your choice: ",start,end);
+			}else if (userChoice == 2) {
+				return -1;
+			}
+			else if (userChoice == 3) {
+				if (!isFirstPage) {
+					multiplier--;
+					continue;
+				}
+			}
+			multiplier++;
+		}
+	}
 	
 	
+	//have to enter empty string
 	public static String getUserInputString(String message) {
 		System.out.println(message);
 		Scanner sc = new Scanner(System.in);
-		String userInput = sc.next();
+		String userInput = sc.nextLine();
 		return userInput;
 	}
 	
@@ -141,16 +250,23 @@ public class IOManager {
 	
 	
 	
-	public static double getUserInputDouble(String message) {
+	public static double getUserInputDouble(String message,double start,double end) {
 		System.out.println(message);
 		double userInput;
 		
 		try {
 			Scanner sc = new Scanner(System.in);
 			userInput = sc.nextDouble();
+			
+			if (userInput < start || userInput > end) {
+				throw new Exception("Invalid input. This input is not in the specified range");
+			}
 		}catch (InputMismatchException err) {
-			System.out.println("You have input the wrong type, please input only decimal numbers");
-			userInput = getUserInputDouble(message);
+			System.out.println("You have input the wrong type, please input only numbers numbers");
+			userInput = getUserInputDouble(message,start,end);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			userInput = getUserInputDouble(message,start,end);
 		}
 		return userInput;
 	}

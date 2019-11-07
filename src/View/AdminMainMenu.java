@@ -1,23 +1,24 @@
 package View;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import Controller.IOManager;
 import Controller.ViewNavigator;
 
-public class MainMenuView extends View {
-
+public class AdminMainMenu extends View {
 	
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
-			"Admin",
-			"Movie-Goer"
+			"Create New Movie",
+			"Update Movie Information",
+			"Configure System Settings",
+			"List Current Top 5 Movies",
+			"Back to Previous Page"
 	)); 
 	
-	
-	private String title = "Moblima Movie Booking System";
-	private String viewContent = "Welcome To Moblima Movie Booking System! Are you a staff or a movie-goer?";
-	
-	
+	private String title = "Admin Main Menu";
+	private String viewContent = "Welcome! Please select one of the options below: ";
+
 	@Override
 	public void activate() {
 		
@@ -30,19 +31,15 @@ public class MainMenuView extends View {
 		processUserInput(userInput);
 	}
 	
-
 	@Override
 	protected void processUserInput(int input) {
-		switch (input) {
-		case 1:
-			ViewNavigator.pushView(new AdminMainMenu());
-		case 2:
-			ViewNavigator.pushView(new MovieGoerView());
+		if (input == options.size()) {
+			ViewNavigator.popView();
+		}else if (input == 1) {
+			ViewNavigator.pushView(new CreateNewMovieView());
+		}else if (input == 2) {
+			ViewNavigator.pushView(new AdminMovieBrowseOptions());
 		}
-
 	}
-
-
-
 
 }

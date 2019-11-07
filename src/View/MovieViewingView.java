@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Movie;
+import Model.MovieStatus;
 
 public class MovieViewingView extends View {
 	
@@ -16,13 +17,15 @@ public class MovieViewingView extends View {
 	public MovieViewingView(Movie movie) {
 		this.movie = movie;
 		options.add("View Movie Detail");
-		if (movie.getStatus() == Movie.MovieStatus.COMINGSOON){
+		if (movie.getStatus() == MovieStatus.COMINGSOON){
 			options.add("Book");
-		}else if (movie.getStatus() == Movie.MovieStatus.ENDED){
+		}else if (movie.getStatus() == MovieStatus.ENDED){
 			options.add("Leave Review");
+			options.add("Read Reviews");
 		}else {
 			options.add("Book Ticket");
 			options.add("Leave Review");
+			options.add("Read Reviews");
 		}
 		options.add("Back to Previous Page");
 		this.title = "Movie: " + movie.getTitle() + " [ " + movie.getStatus().displayName() + " ] ";
@@ -46,6 +49,18 @@ public class MovieViewingView extends View {
 			ViewNavigator.popView();
 		}else if (input == 1) {
 			ViewNavigator.pushView(new MovieDetailView(this.movie));
+		}else if (movie.getStatus() == MovieStatus.COMINGSOON) {
+			//input 2 is book ticket
+		}else if (movie.getStatus() == MovieStatus.ENDED) {
+			if (input == 2) {
+				ViewNavigator.pushView(new LeaveReviewsView(this.movie));
+			}else if (input == 3) {
+				ViewNavigator.pushView(new ListReviewsView(this.movie));
+			}
+		}else {
+			//input 2 is boook
+			//input 4 read reviews
+			//input 3 is leave review
 		}
 
 	}

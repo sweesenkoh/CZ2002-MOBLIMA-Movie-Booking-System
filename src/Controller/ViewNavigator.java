@@ -12,6 +12,7 @@ public class ViewNavigator {
 	
 	private ViewNavigator() {} 
 	
+	
 	public static void pushView(View view) {	
 		views.add(view);
 		view.activate();
@@ -30,8 +31,11 @@ public class ViewNavigator {
 	//pop multiple views at once 
 	public static void popViews(int count) {
 		for (int i = 0 ; i < count ; i++) {
-			popView();
+			if (views.size() > 1) {
+				views.remove(views.size() - 1);
+			}
 		}
+		views.get(views.size() - 1).activate();
 	}
 	
 }
