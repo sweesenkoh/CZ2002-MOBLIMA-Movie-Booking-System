@@ -1,13 +1,16 @@
 package Model;
 
-public enum CinemaClass {
+import java.io.Serializable;
+
+public enum CinemaClass implements Serializable {
 		NORMAL("Normal"),
+		GOLD("Gold"),
 		PLATINUM("Platinum");
 
-	    private String status;
+	    private String className;
 
-	    CinemaClass(String status) {
-	        this.status = status;
+	    CinemaClass(String className) {
+	        this.className = className;
 	    }
-	    public String getStatus() { return status; }
+	    public String getClassName() { return className; }
 }

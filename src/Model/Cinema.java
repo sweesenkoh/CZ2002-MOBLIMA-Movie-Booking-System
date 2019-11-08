@@ -1,25 +1,40 @@
 package Model;
-public class Cinema {
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Cinema implements Serializable {
     
     private Cineplex cineplex;
 	private CinemaClass cinemaClass;
 	private int code;
-	private double price;
-	private Showtime[] showtimes;
+	private ArrayList<Showtime> showtimes = new ArrayList<>();
 	private SeatLayout seatLayout;
-	
-	public Cinema(Cineplex cineplex, CinemaClass cinemaClass, int code, double price, SeatLayout seatLayout) {
+
+	//every cinema has a fixed seat layout, has to be initialised
+	public Cinema(Cineplex cineplex, CinemaClass cinemaClass, int code,SeatLayout seatLayout) {
 		this.cineplex = cineplex;
 		this.cinemaClass = cinemaClass;
 		this.code = code;
-		this.price = price;
 		this.seatLayout = seatLayout;
 	}
 	
 	public CinemaClass getCinemaClass() {
 		return this.cinemaClass;
 	}
-	
+
+	public ArrayList<Showtime> getShowtimes() {
+		return showtimes;
+	}
+
+	public void addShowTime(Showtime showtime){
+		this.showtimes.add(showtime);
+	}
+
+	public Cineplex getCineplex() {
+		return cineplex;
+	}
+
 	public void setClass(CinemaClass c) {
 		cinemaClass = c;
 	}
@@ -32,20 +47,11 @@ public class Cinema {
 		this.code = code;
 	}
 	
-	public double getPrice() {
-		return price;
-	}
-	
-	public void setPrice(double p) {
-		price = p;
-	}
-	
+
+
 	public SeatLayout getLayout() {
 		return seatLayout;
 	}
-	
-	public void setLayout(SeatLayout s) {
-		seatLayout = s;
-	}
+
 
 }

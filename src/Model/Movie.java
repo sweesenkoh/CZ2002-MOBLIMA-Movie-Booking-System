@@ -85,6 +85,8 @@ public class Movie implements Serializable{
 			return String.format("%.1f",this.getRating());
 		}
 	}
+
+
 	
 	public String toString() {
 		String returnString = "";

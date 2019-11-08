@@ -1,8 +1,9 @@
 package Model;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Cineplex {
+public class Cineplex implements Serializable {
     private String cineplexName;
     private ArrayList<Cinema> cinemas;
 
@@ -22,6 +23,10 @@ public class Cineplex {
 	
 	public ArrayList<Cinema> getCinemas(){
 		return cinemas;
+	}
+
+	public void addCinema(Cinema cinema){
+    	this.cinemas.add(cinema);
 	}
 
 

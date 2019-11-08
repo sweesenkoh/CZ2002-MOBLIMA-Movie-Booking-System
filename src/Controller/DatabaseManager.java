@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import Model.AdminUser;
+import Model.Cineplex;
 import Model.Movie;
 
 public class DatabaseManager {
@@ -118,4 +119,34 @@ public class DatabaseManager {
 		}
 	}
 
+
+
+	//Storing cineplexes
+
+	public static void saveCineplexes(ArrayList<Cineplex> cineplexes){
+		try {
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Cineplexes.txt"));
+			output.writeObject(cineplexes);
+
+		} catch (Exception e) {
+			System.out.println("Error occured while trying to save cineplexes to database, try again later");
+		}
+	}
+
+	public static ArrayList<Cineplex> retrieveAllCineplexes(){
+		try {
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("Cineplexes.txt"));
+			ArrayList<Cineplex> cineplexes = new ArrayList<Cineplex>();
+			cineplexes = (ArrayList<Cineplex>) input.readObject();
+			return cineplexes;
+
+		} catch (FileNotFoundException fileE){
+			return (new ArrayList<Cineplex>());
+		}
+
+		catch (Exception e) {
+			System.out.println("Error occured while trying to retrieve cineplexes from database, try again later");
+			return (new ArrayList<Cineplex>());
+		}
+	}
 }

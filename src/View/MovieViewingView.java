@@ -52,7 +52,9 @@ public class MovieViewingView extends View {
 		}else if (input == 1) {
 			ViewNavigator.pushView(new MovieDetailView(this.movie));
 		}else if (movie.getStatus() == MovieStatus.COMINGSOON) {
-			//input 2 is book ticket
+			if (input == 2){
+				ViewNavigator.pushView(new BookingBrowseOptionsView(this.movie));
+			}
 		}else if (movie.getStatus() == MovieStatus.ENDED) {
 			if (input == 2) {
 				ViewNavigator.pushView(new LeaveReviewsView(this.movie));
@@ -60,8 +62,10 @@ public class MovieViewingView extends View {
 				ViewNavigator.pushView(new ListReviewsView(this.movie));
 			}
 		}else {
-			//input 2 is boook
-			if (input == 3) {
+			if (input == 2){
+				ViewNavigator.pushView(new BookingBrowseOptionsView(this.movie));
+			}
+			else if (input == 3) {
 				ViewNavigator.pushView(new LeaveReviewsView(this.movie));
 			}else if (input == 4) {
 				ViewNavigator.pushView(new ListReviewsView(this.movie));

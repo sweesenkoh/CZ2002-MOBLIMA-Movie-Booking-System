@@ -1,6 +1,8 @@
 package Model;
 
-public class Seat {
+import java.io.Serializable;
+
+public class Seat implements Serializable {
 	
 	private int row;
 	private int col;
@@ -26,4 +28,6 @@ public class Seat {
 	public void bookSeat() {
 		booked = true;
 	}
+
+	public void unbookSeat() {booked = false;}
 }
