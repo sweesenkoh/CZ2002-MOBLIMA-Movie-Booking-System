@@ -10,6 +10,7 @@ import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Movie;
+import Model.MovieStatus;
 
 public class AdminMovieBrowseOptions extends MovieBrowseOptionsView {
 	
@@ -53,15 +54,25 @@ public class AdminMovieBrowseOptions extends MovieBrowseOptionsView {
 	
 	@Override
 	protected void handleListPastMoviesOption() {
-		System.out.println("\nThis view is not built out yet....\n");
-		this.activate();
+		ArrayList<Movie> movies = new ArrayList<>();
+		movies = DatabaseManager.retrieveAllMovies();
+		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.ENDED)).collect(Collectors.toList());
+		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
 	}
 	
 	@Override
-	protected void handleListUpcomingAndCurrentMoviesOption() {
-		System.out.println("\nThis view is not built out yet....\n");
-		this.activate();
+	protected void handleListUpcomingMoviesOption() {
+		ArrayList<Movie> movies = new ArrayList<>();
+		movies = DatabaseManager.retrieveAllMovies();
+		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.COMINGSOON)).collect(Collectors.toList());
+		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
 	}
 
-
+	@Override
+	protected void handleListCurrentShowingMovies() {
+		ArrayList<Movie> movies = new ArrayList<>();
+		movies = DatabaseManager.retrieveAllMovies();
+		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.NOWSHOWING)).collect(Collectors.toList());
+		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
+	}
 }

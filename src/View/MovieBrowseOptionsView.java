@@ -11,15 +11,17 @@ import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Movie;
+import Model.MovieStatus;
 
 public class MovieBrowseOptionsView extends View {
 	
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Search movie",
 			"List movie on a date",
-			"List all movies",
+			"List current showing movies",
+			"List Upcoming Movies",
 			"List past movies",
-			"List upcoming and current showing movies",
+			"List all movies",
 			"Back to Previous Page"
 	)); 
 	
@@ -45,15 +47,19 @@ public class MovieBrowseOptionsView extends View {
 			this.handleOptionListMovieOnDate();
 			break;
 		case 3:
-			this.handleListAllMoviesOption();
+			this.handleListCurrentShowingMovies();
 			break;
 		case 4:
+			this.handleListUpcomingMoviesOption();
+			break;
+
+		case 5:
 			this.handleListPastMoviesOption();
 			break;
-		case 5:
-			this.handleListUpcomingAndCurrentMoviesOption();
-			break;
 		case 6:
+			this.handleListAllMoviesOption();
+			break;
+		case 7:
 			this.handleBackToPreviousView();
 		}
 	}
@@ -93,13 +99,24 @@ public class MovieBrowseOptionsView extends View {
 	}
 	
 	protected void handleListPastMoviesOption() {
-		System.out.println("\nThis view is not built out yet....\n");
-		this.activate();
+		ArrayList<Movie> movies = new ArrayList<>();
+		movies = DatabaseManager.retrieveAllMovies();
+		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.ENDED)).collect(Collectors.toList());
+		ViewNavigator.pushView(new ListMoviesView(filteredMovieList));
 	}
 	
-	protected void handleListUpcomingAndCurrentMoviesOption() {
-		System.out.println("\nThis view is not built out yet....\n");
-		this.activate();
+	protected void handleListUpcomingMoviesOption() {
+		ArrayList<Movie> movies = new ArrayList<>();
+		movies = DatabaseManager.retrieveAllMovies();
+		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.COMINGSOON)).collect(Collectors.toList());
+		ViewNavigator.pushView(new ListMoviesView(filteredMovieList));
+	}
+
+	protected  void handleListCurrentShowingMovies(){
+		ArrayList<Movie> movies = new ArrayList<>();
+		movies = DatabaseManager.retrieveAllMovies();
+		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.NOWSHOWING)).collect(Collectors.toList());
+		ViewNavigator.pushView(new ListMoviesView(filteredMovieList));
 	}
 
 

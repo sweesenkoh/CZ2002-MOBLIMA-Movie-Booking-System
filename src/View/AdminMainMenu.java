@@ -21,6 +21,7 @@ public class AdminMainMenu extends View {
 	
 	private String title = "Admin Main Menu";
 	private String viewContent = "Welcome! Please select one of the options below: ";
+	private boolean isAuthorised = false;
 
 
 	@Override
@@ -30,8 +31,15 @@ public class AdminMainMenu extends View {
 		super.setTitle(this.title);
 		super.setViewContent(this.viewContent);
 
-		if (this.authorisedUser()){
+		if (isAuthorised){
 			super.activate();
+			int userInput = IOManager.getUserInputInt("Please input a choice",1,options.size());
+			processUserInput(userInput);
+		}
+
+		else if (this.authorisedUser()){
+			super.activate();
+			isAuthorised = true;
 			int userInput = IOManager.getUserInputInt("Please input a choice",1,options.size());
 			processUserInput(userInput);
 		}
@@ -52,6 +60,23 @@ public class AdminMainMenu extends View {
 			ViewNavigator.pushView(new CreateNewMovieView());
 		}else if (input == 2) {
 			ViewNavigator.pushView(new AdminMovieBrowseOptions());
+		}
+
+		else if (input == 5){
+			String userInputUsername = IOManager.getUserInputString("Please input your new username: ");
+			String userInputPassword = IOManager.getUserInputString("Please input your new password");
+			boolean alreadyIn = false;
+			for (AdminUser adminUser:DatabaseManager.retrieveAllAdminUsers()){
+				if (adminUser.getUsername().equals((new AdminUser(userInputUsername,userInputPassword)).getUsername())){
+					alreadyIn = true;
+					System.out.println("User already exists");
+				}
+			}
+
+			if (!alreadyIn){
+				DatabaseManager.saveNewAdminUser(new AdminUser(userInputUsername,userInputPassword));
+				System.out.println("Saved!");
+			}
 		}
 	}
 

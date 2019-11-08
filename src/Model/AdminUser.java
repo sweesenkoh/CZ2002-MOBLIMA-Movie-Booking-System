@@ -21,6 +21,6 @@ public class AdminUser implements Serializable {
     }
 
     public boolean equals(AdminUser adminUser){
-        return (this.username.equals(adminUser.getUsername())) && (this.password.equals(adminUser.getPassword()));
+        return (this.username.equals(adminUser.getUsername()) && this.password.equals(adminUser.getPassword()));
     }
 }
