@@ -7,8 +7,7 @@ import Controller.ViewNavigator;
 import Model.Movie;
 
 public class ListReviewsView extends View {
-	
-	private ArrayList<String> options = new ArrayList<>();
+
 	private String title = "Reviews for: ";
 	private String viewContent = " ";
 	private Movie selectedMovie;
@@ -19,7 +18,6 @@ public class ListReviewsView extends View {
 	}
 	
 	public void activate() {
-		super.setOptions(this.options);
 		super.setTitle(this.title);
 		super.setViewContent(this.viewContent);
 		super.activate();

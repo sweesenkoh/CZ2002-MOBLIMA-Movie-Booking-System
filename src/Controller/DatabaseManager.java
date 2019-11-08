@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import Model.AdminUser;
 import Model.Movie;
 
 public class DatabaseManager {
@@ -41,7 +42,13 @@ public class DatabaseManager {
 			ArrayList<Movie> movies = new ArrayList<Movie>();
 		    movies = (ArrayList<Movie>) input.readObject();
 			return movies;
-		} catch (Exception e) {
+		}
+
+		catch (FileNotFoundException ne){
+			return (new ArrayList<Movie>());
+		}
+
+		catch (Exception e) {
 			System.out.println("Error occured while trying to retrieve movies from database, try again later");
 			return (new ArrayList<Movie>());
 		}
@@ -63,6 +70,51 @@ public class DatabaseManager {
 			saveMovieToDataBase(movie);
 		}catch(Exception e){
 			System.out.println("Error occured while trying to save to database, try again later");
+		}
+	}
+
+
+
+
+
+	//admin user
+
+	public static void saveNewAdminUser(AdminUser adminUser){
+		try {
+			ArrayList<AdminUser> adminUsers = retrieveAllAdminUsers();
+
+			boolean userIsAlreadyIn = false;
+
+			for (AdminUser adminUserObj:adminUsers){
+				if (adminUserObj.equals(adminUser)){
+					System.out.println("User already in the system");
+					break;
+				}
+			}
+			if (!userIsAlreadyIn) {
+				adminUsers.add(adminUser);
+				ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("AdminUsers.txt"));
+				output.writeObject(adminUsers);
+			}
+		} catch (Exception e) {
+			System.out.println("Error occured while trying to save admin user to database, try again later");
+		}
+	}
+
+	public static ArrayList<AdminUser> retrieveAllAdminUsers(){
+		try {
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("AdminUsers.txt"));
+			ArrayList<AdminUser> adminUsers = new ArrayList<AdminUser>();
+			adminUsers = (ArrayList<AdminUser>) input.readObject();
+			return adminUsers;
+
+		} catch (FileNotFoundException fileE){
+			return (new ArrayList<AdminUser>());
+		}
+
+		catch (Exception e) {
+			System.out.println("Error occured while trying to retrieve admin users from database, try again later");
+			return (new ArrayList<AdminUser>());
 		}
 	}
 

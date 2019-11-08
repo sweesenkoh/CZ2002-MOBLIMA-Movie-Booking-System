@@ -38,7 +38,9 @@ public abstract class View{
     }
     
     public void printOptions() {
-    	IOManager.printMenuOptions(options);
+    	if (options.size() != 0) {
+    		IOManager.printMenuOptions(options);
+    	}
     }
     
     public void printViewContent() {

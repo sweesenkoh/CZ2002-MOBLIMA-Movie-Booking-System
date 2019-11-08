@@ -7,6 +7,8 @@ import Controller.ViewNavigator;
 import Model.Movie;
 import Model.MovieStatus;
 
+import javax.sound.midi.SysexMessage;
+
 public class MovieViewingView extends View {
 	
 	private ArrayList<String> options = new ArrayList<>();
@@ -59,8 +61,11 @@ public class MovieViewingView extends View {
 			}
 		}else {
 			//input 2 is boook
-			//input 4 read reviews
-			//input 3 is leave review
+			if (input == 3) {
+				ViewNavigator.pushView(new LeaveReviewsView(this.movie));
+			}else if (input == 4) {
+				ViewNavigator.pushView(new ListReviewsView(this.movie));
+			}
 		}
 
 	}

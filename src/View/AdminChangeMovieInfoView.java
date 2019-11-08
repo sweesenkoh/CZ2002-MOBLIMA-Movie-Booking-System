@@ -10,6 +10,8 @@ import Controller.ViewNavigator;
 import Model.Movie;
 import Model.MovieStatus;
 
+import javax.xml.crypto.Data;
+
 public class AdminChangeMovieInfoView extends View {
 	
 	private Movie selectedMovie;
@@ -87,13 +89,16 @@ public class AdminChangeMovieInfoView extends View {
 			System.out.println("Current Title: " + this.selectedMovie.getTitle());
 			System.out.println("What would you like to change the title to? ");
 			String newTitle = IOManager.getUserInputString("Input New Title: ");
-			selectedMovie.setSynopsis(newTitle);
-			DatabaseManager.modifyMovieWithNewValues(selectedMovie);
+			DatabaseManager.deleteMovieByName(selectedMovie.getTitle());
+			selectedMovie.setTitle(newTitle);
+			DatabaseManager.saveMovieToDataBase(selectedMovie);
 			System.out.println("Saved");
+		}else if (input == 5) {
+			this.handleChangeCastInformation();
 		}
 		
 		ArrayList<String> choices = new ArrayList<>();
-		choices.add("Continue");
+		choices.add("Continue Editing other information");
 		choices.add("Quit Editing");
 		IOManager.printMenuOptions(choices);
 		
@@ -104,6 +109,62 @@ public class AdminChangeMovieInfoView extends View {
 			ViewNavigator.popViews(3);
 		}
 		
+	}
+
+
+	private void handleChangeCastInformation(){
+
+		while (true) {
+			System.out.println("\nHere is the current list of the casts: \n");
+			for (String cast : this.selectedMovie.getCasts()) {
+				System.out.println("   " + cast);
+			}
+			ArrayList<String> choices = new ArrayList<>();
+			choices.add("Add Cast");
+			choices.add("Delete Cast");
+			choices.add("Edit Existing Cast");
+			choices.add("Done editing");
+			IOManager.printMenuOptions(choices);
+			int userChoice = IOManager.getUserInputInt("\nInput choice: ", 1, choices.size());
+
+			if (userChoice == 1) {
+				String newCastName = IOManager.getUserInputString("Input the name of the cast");
+				this.selectedMovie.addCast(newCastName);
+				DatabaseManager.modifyMovieWithNewValues(this.selectedMovie);
+				System.out.println("Saved!");
+			}
+
+			else if (userChoice == 2){
+				ArrayList<String> choices2 = new ArrayList<>();
+				for (String cast:this.selectedMovie.getCasts()){
+					choices2.add(cast);
+				}
+				IOManager.printMenuOptions(choices2);
+				int castChoice = IOManager.getUserInputInt("Choose the cast to delete: ",1,choices2.size());
+				choices2.remove(castChoice);
+				this.selectedMovie.setCast(choices2);
+				DatabaseManager.modifyMovieWithNewValues(this.selectedMovie);
+				System.out.println("Removed!");
+			}
+
+			else if (userChoice == 3){
+				ArrayList<String> choices3 = new ArrayList<>();
+				for (String cast:this.selectedMovie.getCasts()){
+					choices3.add(cast);
+				}
+				IOManager.printMenuOptions(choices3);
+				int castChoice = IOManager.getUserInputInt("Choose the cast to Edit: ",1,choices3.size());
+				String newName2 = IOManager.getUserInputString("Please input the new cast name: ");
+				choices3.set(castChoice - 1,newName2);
+				this.selectedMovie.setCast(choices3);
+				DatabaseManager.modifyMovieWithNewValues(this.selectedMovie);
+				System.out.println("Edited!");
+			}
+
+			else if (userChoice == 4){
+				break;
+			}
+		}
 	}
 
 }

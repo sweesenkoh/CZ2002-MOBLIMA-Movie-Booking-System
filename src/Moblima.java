@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+
+import Model.AdminUser;
 import Model.MovieStatus;
 
 import Controller.DatabaseManager;
@@ -16,6 +18,8 @@ public class Moblima {
 //	DatabaseManager.saveMovieToDataBase(new Movie("AvatarEnded11",MovieStatus.ENDED));
 //		DatabaseManager.saveMovieToDataBase(new Movie("AvatarEnded12",MovieStatus.ENDED));
 //		DatabaseManager.saveMovieToDataBase(new Movie("AvatarEnded13",MovieStatus.ENDED));
+
+		DatabaseManager.saveNewAdminUser(new AdminUser("admin","admin"));
 		ViewNavigator.pushView(new MainMenuView());
 
 	}

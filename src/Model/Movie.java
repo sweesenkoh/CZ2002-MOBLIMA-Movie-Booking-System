@@ -32,6 +32,10 @@ public class Movie implements Serializable{
 	public void setStatus(MovieStatus status) {
 		this.status = status;
 	}
+
+	public void setTitle(String title) {this.title = title;}
+
+	public void setCast(ArrayList<String> casts){this.casts = casts;}
 	
 	public void addReview(Review review) {
 		this.reviews.add(review);
@@ -60,6 +64,8 @@ public class Movie implements Serializable{
 	public MovieStatus getStatus() { 
 		return this.status;
 	}
+
+	public ArrayList<String> getCasts(){ return this.casts;}
 	
 	public double getRating() {
 		if (this.reviews.size() == 0) {return -1;}
