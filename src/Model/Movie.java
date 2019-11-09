@@ -42,7 +42,7 @@ public class Movie implements Serializable{
 	}
 	
 	public void addCast(String cast) {
-		this.casts.add(cast);
+		this.casts.add(0,cast);
 	}
 	
 	public String getTitle() {

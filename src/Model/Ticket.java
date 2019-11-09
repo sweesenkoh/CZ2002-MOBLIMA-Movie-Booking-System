@@ -15,10 +15,10 @@ public class Ticket implements Serializable {
 		this.seat = seat;
 		this.showtime = showtime;
 		this.ticketType = ticketType;
-		price = this.getTicketPrice();
+		price = this.calculateTicketPrice();
 	}
 
-	private double getTicketPrice(){
+	private double calculateTicketPrice(){
 		return TicketPriceManager.calculateTicketPrice(this);
 	}
 	
@@ -42,6 +42,15 @@ public class Ticket implements Serializable {
 	
 	public void setPrice(double p) {
 		price = p;
+	}
+
+	public String toString(){
+		String returnString = "";
+		returnString += "Seat ID: "+this.getSeat().toString() + "\n";
+		returnString += "Ticket Type: " + this.getTicketType().displayName() + "\n";
+		returnString += "Price: $" + String.format("%.2f",this.getPrice()) + "\n";
+		returnString += "Show Time: \n       " + this.getShowtime().toString();
+		return  returnString;
 	}
 	
 	

@@ -1,5 +1,6 @@
 package Controller;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.io.FileInputStream;
@@ -12,6 +13,8 @@ import java.io.ObjectOutputStream;
 import Model.AdminUser;
 import Model.Cineplex;
 import Model.Movie;
+import Model.Order;
+import com.sun.tools.corba.se.idl.constExpr.Or;
 
 public class DatabaseManager {
 	
@@ -148,5 +151,54 @@ public class DatabaseManager {
 			System.out.println("Error occured while trying to retrieve cineplexes from database, try again later");
 			return (new ArrayList<Cineplex>());
 		}
+	}
+
+	public static void updateCineplexValues(Cineplex cineplex){
+		ArrayList<Cineplex> cineplexesWithNewValue = new ArrayList<>();
+		for (Cineplex cineplex1 : retrieveAllCineplexes()){
+			if (cineplex1.getName().equals(cineplex.getName())){
+				cineplexesWithNewValue.add(cineplex);
+			}else{
+				cineplexesWithNewValue.add(cineplex1);
+			}
+		}
+		saveCineplexes(cineplexesWithNewValue);
+	}
+
+
+	//Storing Orders
+
+	public static void saveOrders(ArrayList<Order> orders){
+		try {
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Orders.txt"));
+			output.writeObject(orders);
+
+		} catch (Exception e) {
+			System.out.println("Error occured while trying to save orders to database, try again later");
+		}
+	}
+
+	public static ArrayList<Order> retrieveAllOrders(){
+		try {
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("Orders.txt"));
+			ArrayList<Order> orders = new ArrayList<Order>();
+			orders = (ArrayList<Order>) input.readObject();
+			return orders;
+
+		} catch (FileNotFoundException fileE){
+			return (new ArrayList<Order>());
+		}
+
+		catch (Exception e) {
+			System.out.println("Error occured while trying to retrieve orders from database, try again later");
+			return (new ArrayList<Order>());
+		}
+	}
+
+	public static void saveNewOrder(Order order){
+		ArrayList<Order> orders = new ArrayList<>();
+		orders = retrieveAllOrders();
+		orders.add(order);
+		saveOrders(orders);
 	}
 }

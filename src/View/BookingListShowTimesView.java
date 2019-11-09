@@ -13,12 +13,13 @@ public class BookingListShowTimesView extends View {
     private ArrayList<String> options = new ArrayList<>();
 
 
-    private String title = "ShowTime List";
+    private String title = "Show Time List for Movie: ";
     private String viewContent = "Here are the ShowTimes";
 
 
     public BookingListShowTimesView(ArrayList<Showtime> showTimes){
         this.showTimes = showTimes;
+        this.title += this.showTimes.get(0).getMovie().getTitle();
     }
 
     @Override

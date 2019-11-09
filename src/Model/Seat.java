@@ -30,4 +30,11 @@ public class Seat implements Serializable {
 	}
 
 	public void unbookSeat() {booked = false;}
+
+	public String toString(){
+		char row = 'A';
+		row = (char)(row + this.row);
+		String returnString = String.valueOf(row) + String.valueOf(this.col + 1);
+		return returnString;
+	}
 }

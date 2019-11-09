@@ -5,6 +5,7 @@ import java.io.Serializable;
 public enum MovieStatus implements Serializable{
 	
 	COMINGSOON("Coming Soon"),
+    PREVIEW("Preview"),
 	ENDED("Ended"),
 	NOWSHOWING("Now Showing");
 

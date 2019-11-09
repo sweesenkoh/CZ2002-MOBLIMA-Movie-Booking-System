@@ -70,6 +70,8 @@ public class Showtime implements Serializable {
 		}
 
 		returnString += "\n       ";
+		returnString += "Cinema Code: " + this.getCinema().getCode();
+		returnString += "\n       ";
 
 		if (this.movieType != MovieType.NORMAL){
 			returnString += "Movie Type: " + this.movieType.typeName() + " ";
@@ -77,7 +79,7 @@ public class Showtime implements Serializable {
 		}
 
 
-		returnString += this.showDatetime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm a")) + "\n  ";
+		returnString += this.showDatetime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm a - EEEE ")) + "\n  ";
 		return returnString;
 	}
 

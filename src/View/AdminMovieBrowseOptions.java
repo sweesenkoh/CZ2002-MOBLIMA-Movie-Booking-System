@@ -1,6 +1,7 @@
 package View;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -28,22 +29,22 @@ public class AdminMovieBrowseOptions extends MovieBrowseOptionsView {
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getTitle().matches("(?i).*" + userInput + ".*")).collect(Collectors.toList());
 		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
 	}
-	
-	@Override
-	protected void handleOptionListMovieOnDate() {
-		Calendar calendar = Calendar.getInstance();
-		String dayOfWeek = new SimpleDateFormat("EE").format(calendar.getTime());
-		String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
-		System.out.println("Today's Date: " + timeStamp + " " + dayOfWeek);
-		System.out.println(" ");
-		Calendar userInputDate = IOManager.getUserInputDate("Please input the date that you want to watch the movie at: \nFormat : dd/MM/yyyy");
-		
-		//filter the movies by this date
-		//then append the movies into this array 
-		ArrayList<Movie> movies = new ArrayList<>();
-		movies = DatabaseManager.retrieveAllMovies();
-		ViewNavigator.pushView(new AdminListMoviesView(movies));
-	}
+//
+//	@Override
+//	protected void handleOptionListMovieOnDate() {
+//		Calendar calendar = Calendar.getInstance();
+//		String dayOfWeek = new SimpleDateFormat("EE").format(calendar.getTime());
+//		String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+//		System.out.println("Today's Date: " + timeStamp + " " + dayOfWeek);
+//		System.out.println(" ");
+//		LocalDate userInputDate = IOManager.getUserInputDate("Please input the date that you want to watch the movie at:");
+//
+//		//filter the movies by this date
+//		//then append the movies into this array
+//		ArrayList<Movie> movies = new ArrayList<>();
+//		movies = DatabaseManager.retrieveAllMovies();
+//		ViewNavigator.pushView(new AdminListMoviesView(movies));
+//	}
 
 	@Override
 	protected void handleListAllMoviesOption(){

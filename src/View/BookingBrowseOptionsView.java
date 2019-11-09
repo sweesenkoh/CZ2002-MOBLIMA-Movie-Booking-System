@@ -7,25 +7,35 @@ import Model.Cinema;
 import Model.Cineplex;
 import Model.Movie;
 import Model.Showtime;
+import sun.util.locale.LocaleObjectCache;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+
+import static java.util.Collections.*;
 
 public class BookingBrowseOptionsView extends View {
 
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
-            "Choose Cineplex",
-            "Choose Date",
-            "By Both Options"
+            "Filter by Cineplex",
+            "Filter by Date",
+//            "Filter by Both Options",
+            "Do not filter",
+            "Back to Previous Page"
     ));
 
 
-    private String title = "Booking Options";
-    private String viewContent = "Do you want to list available movies in a particular cineplex, or list available movies in all cineplexes, or by both?";
+    private String title = "Booking Options: ";
+    private String viewContent = "How do you want to filter the showtime results?";
     private Movie selectedMovie;
 
     public BookingBrowseOptionsView(Movie movie){
         this.selectedMovie = movie;
+        this.title += this.selectedMovie.getTitle();
     }
 
     @Override
@@ -52,9 +62,12 @@ public class BookingBrowseOptionsView extends View {
             case 2:
                 this.handleChooseByDate();
                 break;
+//            case 3:
+//                this.handleChooseByBoth();
             case 3:
-                this.handleChooseByBoth();
+                this.handleDoNotFilter();
             default:
+                ViewNavigator.popView();
                 break;
         }
     }
@@ -71,22 +84,61 @@ public class BookingBrowseOptionsView extends View {
         ArrayList<Showtime> showtimes = new ArrayList<>();
         for (Cinema cinema : chosenCineplex.getCinemas()){
             for (Showtime showtime : cinema.getShowtimes()){
-                showtimes.add(showtime);
+                if (showtime.getMovie().getTitle().equals(selectedMovie.getTitle())){
+                    if (showtime.getShowDatetime().isAfter(LocalDateTime.now())){
+                        showtimes.add(showtime); //do not show any past showtime
+                    }
+                }
             }
         }
 
         //have to think of some way of sorting the showtimes
         //this is sort by date
-
+        Collections.sort(showtimes, Comparator.comparing(Showtime::getShowDatetime));
         ViewNavigator.pushView(new BookingListShowTimesView(showtimes));
-
     }
 
     private void handleChooseByDate(){
 
+        ArrayList<Cineplex> cineplexes = DatabaseManager.retrieveAllCineplexes();
+
+        LocalDate chosenDate = IOManager.getUserInputDate("Input the date: ");
+        ArrayList<Showtime> showtimes = new ArrayList<>();
+        for (Cineplex cineplex : cineplexes){
+            for (Cinema cinema : cineplex.getCinemas()){
+                for (Showtime showtime : cinema.getShowtimes()){
+                    if (showtime.getMovie().getTitle().equals(selectedMovie.getTitle())){
+                        if (showtime.getShowDatetime().toLocalDate().isEqual(chosenDate)){
+                            showtimes.add(showtime);
+                        }
+                    }
+                }
+            }
+        }
+        Collections.sort(showtimes, Comparator.comparing(Showtime::getShowDatetime));
+        ViewNavigator.pushView(new BookingListShowTimesView(showtimes));
+
     }
 
-    private void handleChooseByBoth(){
+//    private void handleChooseByBoth(){
+//
+//    }
 
+    private void handleDoNotFilter(){
+        ArrayList<Cineplex> cineplexes = DatabaseManager.retrieveAllCineplexes();
+        ArrayList<Showtime> showtimes = new ArrayList<>();
+        for (Cineplex cineplex : cineplexes){
+            for (Cinema cinema : cineplex.getCinemas()){
+                for (Showtime showtime : cinema.getShowtimes()){
+                    if (showtime.getMovie().getTitle().equals(selectedMovie.getTitle())){
+                        showtimes.add(showtime);
+                    }
+                }
+            }
+        }
+        Collections.sort(showtimes, Comparator.comparing(Showtime::getShowDatetime));
+        ViewNavigator.pushView(new BookingListShowTimesView(showtimes));
     }
+
+
 }

@@ -1,5 +1,6 @@
 package View;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -17,7 +18,7 @@ public class MovieBrowseOptionsView extends View {
 	
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Search movie",
-			"List movie on a date",
+//			"List movie on a date",
 			"List current showing movies",
 			"List Upcoming Movies",
 			"List past movies",
@@ -43,23 +44,22 @@ public class MovieBrowseOptionsView extends View {
 		case 1:
 			this.handleOptionSearchMovie();
 			break;
+//		case 2:
+//			this.handleOptionListMovieOnDate();
+//			break;
 		case 2:
-			this.handleOptionListMovieOnDate();
-			break;
-		case 3:
 			this.handleListCurrentShowingMovies();
 			break;
-		case 4:
+		case 3:
 			this.handleListUpcomingMoviesOption();
 			break;
-
-		case 5:
+		case 4:
 			this.handleListPastMoviesOption();
 			break;
-		case 6:
+		case 5:
 			this.handleListAllMoviesOption();
 			break;
-		case 7:
+		case 6:
 			this.handleBackToPreviousView();
 		}
 	}
@@ -77,20 +77,20 @@ public class MovieBrowseOptionsView extends View {
 		ViewNavigator.pushView(new ListMoviesView(filteredMovieList));
 	}
 	
-	protected void handleOptionListMovieOnDate() {
-		Calendar calendar = Calendar.getInstance();
-		String dayOfWeek = new SimpleDateFormat("EE").format(calendar.getTime());
-		String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
-		System.out.println("Today's Date: " + timeStamp + " " + dayOfWeek);
-		System.out.println(" ");
-		Calendar userInputDate = IOManager.getUserInputDate("Please input the date that you want to watch the movie at: \nFormat : dd/MM/yyyy");
-		
-		//filter the movies by this date
-		//then append the movies into this array 
-		ArrayList<Movie> movies = new ArrayList<>();
-		movies = DatabaseManager.retrieveAllMovies();
-		ViewNavigator.pushView(new ListMoviesView(movies));
-	}
+//	protected void handleOptionListMovieOnDate() {
+//		Calendar calendar = Calendar.getInstance();
+//		String dayOfWeek = new SimpleDateFormat("EE").format(calendar.getTime());
+//		String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+//		System.out.println("Today's Date: " + timeStamp + " " + dayOfWeek);
+//		System.out.println(" ");
+//		LocalDate userInputDate = IOManager.getUserInputDate("Please input the date that you want to watch the movie at:");
+//
+//		//filter the movies by this date
+//		//then append the movies into this array
+//		ArrayList<Movie> movies = new ArrayList<>();
+//		movies = DatabaseManager.retrieveAllMovies();
+//		ViewNavigator.pushView(new ListMoviesView(movies));
+//	}
 
 	protected void handleListAllMoviesOption(){
 		ArrayList<Movie> movies = new ArrayList<>();

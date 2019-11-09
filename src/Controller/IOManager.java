@@ -1,4 +1,6 @@
 package Controller;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.function.Function;
 import java.text.ParseException;
@@ -195,32 +197,47 @@ public class IOManager {
 		return userInput;
 	}
 	
-	public static Calendar getUserInputDate(String message) {
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//	public static Calendar getUserInputDate(String message) {
+////
+////		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+////		System.out.println(message);
+////		String userInput;
+////		Scanner sc = new Scanner(System.in);
+////		userInput = sc.nextLine();
+////		try {
+////			Date date = sdf.parse(userInput);
+////		} catch (ParseException e) {
+////			System.out.println("You have input the wrong format, try again ");
+////			return getUserInputDate(message);
+////		}
+////		Calendar cal = sdf.getCalendar();
+////
+////		Date date = cal.getTime();
+////		SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+////		String inActiveDate = format1.format(date);
+////		if (!userInput.equals(inActiveDate)) {
+////			System.out.println("You have input a date that does not exist or in wrong format, try again ");
+////			return getUserInputDate(message);
+////		}
+////		return cal;
+////	}
+
+	public static LocalDate getUserInputDate(String message){
+
 		System.out.println(message);
-		String userInput;
-		Scanner sc = new Scanner(System.in);
-		userInput = sc.nextLine();
-		try {
-			Date date = sdf.parse(userInput);
-		} catch (ParseException e) {
-			System.out.println("You have input the wrong format, try again ");
+
+		try{
+			System.out.println("Format: day/month/year, example: 1/12/2019");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+			String userDate = IOManager.getUserInputString("");
+			LocalDate localDate = LocalDate.parse(userDate, formatter);
+			return localDate;
+		}catch (Exception e){
+			System.out.println("Wrong format, try again");
 			return getUserInputDate(message);
 		}
-		Calendar cal = sdf.getCalendar();
-		
-		Date date = cal.getTime();             
-		SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");          
-		String inActiveDate = format1.format(date);
-		if (!userInput.equals(inActiveDate)) {
-			System.out.println("You have input a date that does not exist or in wrong format, try again ");
-			return getUserInputDate(message);
-		}
-		return cal;
 	}
-	
-	
+
 	
 	//limit the integers input to be within a specified range
 	public static int getUserInputInt(String message, int start, int end) {

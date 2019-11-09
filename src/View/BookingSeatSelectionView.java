@@ -13,7 +13,7 @@ public class BookingSeatSelectionView extends View {
 
     private ArrayList<String> options = new ArrayList<>();
     private String title = "Seat Selection";
-    private String viewContent = "         ";
+    private String viewContent = "       ";
     private Showtime showtime;
     private ArrayList<Seat> chosenSeats = new ArrayList<>();
 
@@ -25,8 +25,10 @@ public class BookingSeatSelectionView extends View {
     @Override
     public void activate() {
         super.setTitle(this.title);
-        super.setViewContent(this.viewContent);
         super.activate();
+        System.out.println(this.viewContent);
+        this.chosenSeats.clear();
+        this.options.clear();
         this.showtime.getSeatLayout().printSeatLayout();
 
         options.add("Book Seat");
@@ -57,7 +59,7 @@ public class BookingSeatSelectionView extends View {
                 System.out.println("Please enter the seat number: Eg (A6) means row 1 column 6");
                 String userChosenSeat = IOManager.getUserInputString("");
                 row = Character.toLowerCase(userChosenSeat.substring(0,1).toCharArray()[0])  - 'a';
-                col = Integer.parseInt(userChosenSeat.substring(1,2)) - 1;
+                col = Integer.parseInt(userChosenSeat.substring(1,userChosenSeat.length() >= 3 ? 3 : 2)) - 1;
 
             }catch (Exception e){
                 System.out.println("Wrong format, try again\n");
@@ -107,7 +109,10 @@ public class BookingSeatSelectionView extends View {
             ViewNavigator.popView();
 
         }else if (userProceedChoice == 2){
-            //proceed to next view
+            for (Seat seat:this.chosenSeats){
+                showtime.getSeatLayout().getSeat(seat.getRow(),seat.getCol()).unbookSeat();
+            }
+            ViewNavigator.pushView(new BookingPuchaseTicketView(this.chosenSeats,this.showtime));
         }
 
 

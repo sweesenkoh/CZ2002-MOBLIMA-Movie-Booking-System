@@ -37,5 +37,12 @@ public class ViewNavigator {
 		}
 		views.get(views.size() - 1).activate();
 	}
+
+	public static void popToBaseView(){
+		for (int x = views.size() - 1 ; x > 0 ; x--){
+			views.remove(x);
+		}
+		views.get(0).activate();
+	}
 	
 }
