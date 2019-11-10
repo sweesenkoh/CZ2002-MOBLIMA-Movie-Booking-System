@@ -96,6 +96,9 @@ public class IOManager {
 				if (!isFirstPage){userChoices.add("Previous page");}
 				if (!isLastPage) {userChoices.add("Next Page");}
 			}
+			if (array.size() == 0){
+				System.out.println("    " + "There is no available items");
+			}
 			IOManager.printMenuOptions(userChoices);
 			int userChoice = IOManager.getUserInputInt("Please choose an option: ",1,userChoices.size());
 			
@@ -139,6 +142,9 @@ public class IOManager {
 			if (((isFirstPage) && (isLastPage)) || array.size() == 0) {
 				int start = 1;
 				int end = array.size() + 1;
+				if (array.size() == 0){
+					System.out.println("    " + "There is no available items\n");
+				}
 				System.out.println("    " + x + ") " + "Return to previous menu");
 				int userChoice = IOManager.getUserInputInt("\nInput your choice: ",start,end);
 				if (userChoice == end) {return -1;} else {return userChoice;}
@@ -154,8 +160,6 @@ public class IOManager {
 			int userChoice = IOManager.getUserInputInt("Please choose an option: ",1,userChoices.size());
 			
 			if (userChoice == 1) {
-//				int start = 1 + (numOfReviewsPerPage*multiplier);
-//				int end = 1 + (numOfReviewsPerPage*(multiplier+1)) - 1;
 				int start = 1;
 				int end = array.size();
 				return IOManager.getUserInputInt("Input your choice: ",start,end);
@@ -197,30 +201,7 @@ public class IOManager {
 		return userInput;
 	}
 	
-//	public static Calendar getUserInputDate(String message) {
-////
-////		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-////		System.out.println(message);
-////		String userInput;
-////		Scanner sc = new Scanner(System.in);
-////		userInput = sc.nextLine();
-////		try {
-////			Date date = sdf.parse(userInput);
-////		} catch (ParseException e) {
-////			System.out.println("You have input the wrong format, try again ");
-////			return getUserInputDate(message);
-////		}
-////		Calendar cal = sdf.getCalendar();
-////
-////		Date date = cal.getTime();
-////		SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
-////		String inActiveDate = format1.format(date);
-////		if (!userInput.equals(inActiveDate)) {
-////			System.out.println("You have input a date that does not exist or in wrong format, try again ");
-////			return getUserInputDate(message);
-////		}
-////		return cal;
-////	}
+
 
 	public static LocalDate getUserInputDate(String message){
 
