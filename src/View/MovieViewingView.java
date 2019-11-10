@@ -20,7 +20,7 @@ public class MovieViewingView extends View {
 		this.movie = movie;
 		options.add("View Movie Detail");
 		if (movie.getStatus() == MovieStatus.COMINGSOON){
-			options.add("Book");
+//			options.add("Book");  //logically coming soon movies should not be able to be booked
 		}else if (movie.getStatus() == MovieStatus.ENDED){
 			options.add("Leave Review");
 			options.add("Read Reviews");
@@ -52,9 +52,9 @@ public class MovieViewingView extends View {
 		}else if (input == 1) {
 			ViewNavigator.pushView(new MovieDetailView(this.movie));
 		}else if (movie.getStatus() == MovieStatus.COMINGSOON) {
-			if (input == 2){
-				ViewNavigator.pushView(new BookingBrowseOptionsView(this.movie));
-			}
+//			if (input == 2){
+//				ViewNavigator.pushView(new BookingBrowseOptionsView(this.movie));
+//			}
 		}else if (movie.getStatus() == MovieStatus.ENDED) {
 			if (input == 2) {
 				ViewNavigator.pushView(new LeaveReviewsView(this.movie));

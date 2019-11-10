@@ -8,6 +8,7 @@ import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Movie;
+import Model.MovieCensorshipRating;
 import Model.MovieStatus;
 
 public class CreateNewMovieView extends View {
@@ -45,8 +46,18 @@ public class CreateNewMovieView extends View {
 			IOManager.printMenuOptions(movieStatusListStrings);
 			int statusChoice = IOManager.getUserInputInt("Input the choice: ",1,movieStatusListStrings.size());
 			MovieStatus statusChosen = movieStatusList.get(statusChoice - 1);
-			
-			Movie newMovie = new Movie(movieName,statusChosen);
+
+			System.out.println("What is the current censorship rating of the movie? ");
+			ArrayList<MovieCensorshipRating> movieCensorShipList = new ArrayList<MovieCensorshipRating>(EnumSet.allOf(MovieCensorshipRating.class));
+			ArrayList<String> movieCensorShipListStrings = new ArrayList<String>();
+			for (int x = 0 ; x < movieCensorShipList.size() ; x++) {
+				movieCensorShipListStrings.add(movieCensorShipList.get(x).displayName());
+			}
+			IOManager.printMenuOptions(movieCensorShipListStrings);
+			int censorChoice = IOManager.getUserInputInt("Input the choice: ",1,movieCensorShipList.size());
+			MovieCensorshipRating censorshipChosen = movieCensorShipList.get(censorChoice - 1);
+
+			Movie newMovie = new Movie(movieName,statusChosen,censorshipChosen);
 			newMovie.setDirector(directorName);
 			newMovie.setSynopsis(synopsis);
 			for (String cast : casts) {

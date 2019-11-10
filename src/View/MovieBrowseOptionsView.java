@@ -18,9 +18,9 @@ public class MovieBrowseOptionsView extends View {
 	
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Search movie",
-//			"List movie on a date",
-			"List current showing movies",
-			"List Upcoming Movies",
+			"List Current Showing Movies",
+			"List Preview Movies",
+			"List Coming Soon Movies",
 			"List past movies",
 			"List all movies",
 			"Back to Previous Page"
@@ -48,18 +48,21 @@ public class MovieBrowseOptionsView extends View {
 //			this.handleOptionListMovieOnDate();
 //			break;
 		case 2:
-			this.handleListCurrentShowingMovies();
-			break;
+				this.handleListCurrentShowingMovies();
+				break;
 		case 3:
-			this.handleListUpcomingMoviesOption();
+			this.handleListPreviewMovies();
 			break;
 		case 4:
-			this.handleListPastMoviesOption();
+			this.handleListUpcomingMoviesOption();
 			break;
 		case 5:
-			this.handleListAllMoviesOption();
+			this.handleListPastMoviesOption();
 			break;
 		case 6:
+			this.handleListAllMoviesOption();
+			break;
+		case 7:
 			this.handleBackToPreviousView();
 		}
 	}
@@ -74,6 +77,13 @@ public class MovieBrowseOptionsView extends View {
 		String userInput = IOManager.getUserInputString("Please write the name of the movie: ");
 		
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getTitle().matches("(?i).*" + userInput + ".*")).collect(Collectors.toList());
+		ViewNavigator.pushView(new ListMoviesView(filteredMovieList));
+	}
+
+	protected void handleListPreviewMovies(){
+		ArrayList<Movie> movies = new ArrayList<>();
+		movies = DatabaseManager.retrieveAllMovies();
+		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.PREVIEW)).collect(Collectors.toList());
 		ViewNavigator.pushView(new ListMoviesView(filteredMovieList));
 	}
 	

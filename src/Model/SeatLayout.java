@@ -71,7 +71,7 @@ public class SeatLayout implements Serializable {
 
 	public void printSeatLayout(){
 
-		int screenWidth = numOfColumns * 5 + "a a        ".length();
+		int screenWidth = numOfColumns * 5 + "a a                  ".length();
 		for (int x = 0 ; x < screenWidth ; x++){
 			System.out.printf("-");
 		}
@@ -89,7 +89,7 @@ public class SeatLayout implements Serializable {
 		}
 
 		System.out.printf("\n");
-		System.out.printf("  ");
+		System.out.printf("       ");
 
 		for (int z = 0 ; z < numOfColumns ; z++){
 			if (z == (numOfColumns / 2)){
@@ -109,7 +109,7 @@ public class SeatLayout implements Serializable {
 
 		Character rowChar = 'a';
 		for (int row = 0 ; row < numOfRows ; row++){
-			System.out.printf(rowChar + " ");
+			System.out.printf(rowChar + "      ");
 			for (int col = 0 ; col < numOfColumns ; col++){
 
 				if (col == (numOfColumns / 2)){
@@ -126,7 +126,7 @@ public class SeatLayout implements Serializable {
 					System.out.printf("     ");
 				}
 			}
-			System.out.printf(" " + rowChar);
+			System.out.printf("      " + rowChar);
 			System.out.printf("\n");
 			rowChar++;
 		}

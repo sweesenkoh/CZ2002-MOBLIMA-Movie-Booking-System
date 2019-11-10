@@ -94,4 +94,10 @@ public class TicketPriceManager {
                 return price;
         }
     }
+
+
+    //this is for the order
+    public static double applyGSTFactor(double price){
+        return (price + price * priceConfiguration.getGstPercentageIncrease());
+    }
 }

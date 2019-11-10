@@ -12,13 +12,15 @@ public class Movie implements Serializable{
 	private ArrayList<Review> reviews;
 	private ArrayList<String> casts;
 	private MovieStatus status;
+	private MovieCensorshipRating movieCensorshipRating;
 
 	
-	public Movie(String title,MovieStatus status) {
+	public Movie(String title,MovieStatus status,MovieCensorshipRating movieCensorshipRating) {
 		this.title = title;
 		this.status = status;
 		this.reviews = new ArrayList<Review>();
 		this.casts = new ArrayList<String>();
+		this.movieCensorshipRating = movieCensorshipRating;
 	}
 	
 	public void setDirector(String directorName) {
@@ -38,11 +40,11 @@ public class Movie implements Serializable{
 	public void setCast(ArrayList<String> casts){this.casts = casts;}
 	
 	public void addReview(Review review) {
-		this.reviews.add(review);
+		this.reviews.add(0,review);
 	}
 	
 	public void addCast(String cast) {
-		this.casts.add(0,cast);
+		this.casts.add(cast);
 	}
 	
 	public String getTitle() {
@@ -66,8 +68,16 @@ public class Movie implements Serializable{
 	}
 
 	public ArrayList<String> getCasts(){ return this.casts;}
-	
-	public double getRating() {
+
+    public void setMovieCensorshipRating(MovieCensorshipRating movieCensorshipRating) {
+        this.movieCensorshipRating = movieCensorshipRating;
+    }
+
+    public MovieCensorshipRating getMovieCensorshipRating() {
+        return movieCensorshipRating;
+    }
+
+    public double getRating() {
 		if (this.reviews.size() == 0) {return -1;}
 		int count = 0;
 		double rating = 0;
@@ -90,15 +100,15 @@ public class Movie implements Serializable{
 	
 	public String toString() {
 		String returnString = "";
-		returnString += "Title: " + this.title + "\n\n";
+		returnString += "Title: " + this.title + " (" + this.movieCensorshipRating.displayName() + ")" + "\n\n";
 		returnString += "Director: " + this.director + "\n\n";
 		returnString += "Synopsis:\n" + this.synopsis + "\n\n";
 		returnString += "Casts: ";
-		for (String cast:this.casts) {
-			returnString += cast + ", ";
+		for (int x = 0 ;x < this.casts.size() ; x++) {
+			returnString += this.casts.get(x) + ((x == (casts.size() - 1) ? " " : ", "));
 		}
 		returnString += "\n\n" + "Status: " + this.status.displayName() + "\n\n";
-		returnString += "Rating: " + this.getRatingString() + "\n";
+		returnString += "Overall Rating: " + this.getRatingString() + "\n";
 		return returnString;
 	}
 }

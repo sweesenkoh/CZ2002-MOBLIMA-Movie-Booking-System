@@ -8,6 +8,7 @@ import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Movie;
+import Model.MovieCensorshipRating;
 import Model.MovieStatus;
 
 import javax.xml.crypto.Data;
@@ -22,6 +23,7 @@ public class AdminChangeMovieInfoView extends View {
 			"Synopsis",
 			"Title",
 			"Casts",
+			"Censorship Rating",
 			"Go back to admin main menu"
 	)); 
 	
@@ -52,7 +54,8 @@ public class AdminChangeMovieInfoView extends View {
 	protected void processUserInput(int input) {
 		
 		if (input == options.size()) {
-			ViewNavigator.popViews(3);
+//			ViewNavigator.popViews(3);
+			ViewNavigator.popTillView(new AdminMainMenu());
 		
 		}else if (input == 1) {
 			System.out.println("Current Status: " + this.selectedMovie.getStatus().displayName());
@@ -95,6 +98,20 @@ public class AdminChangeMovieInfoView extends View {
 			System.out.println("Saved");
 		}else if (input == 5) {
 			this.handleChangeCastInformation();
+		}else if (input == 6){
+			System.out.println("Current Rating: " + this.selectedMovie.getMovieCensorshipRating().displayName());
+			System.out.println("What would you like to rating to? ");
+			ArrayList<MovieCensorshipRating> movieCensorshipList = new ArrayList<MovieCensorshipRating>(EnumSet.allOf(MovieCensorshipRating.class));
+			ArrayList<String> movieCensorshipListStrings = new ArrayList<String>();
+			for (int x = 0 ; x < movieCensorshipList.size() ; x++) {
+				movieCensorshipListStrings.add(movieCensorshipList.get(x).displayName());
+			}
+			IOManager.printMenuOptions(movieCensorshipListStrings);
+			int censorChoice = IOManager.getUserInputInt("Input the choice: ",1,movieCensorshipListStrings.size());
+			MovieCensorshipRating censorChosen = movieCensorshipList.get(censorChoice - 1);
+			this.selectedMovie.setMovieCensorshipRating(censorChosen);
+			DatabaseManager.modifyMovieWithNewValues(selectedMovie);
+			System.out.println("Saved");
 		}
 		
 		ArrayList<String> choices = new ArrayList<>();

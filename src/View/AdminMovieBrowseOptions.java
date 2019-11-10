@@ -47,6 +47,13 @@ public class AdminMovieBrowseOptions extends MovieBrowseOptionsView {
 //	}
 
 	@Override
+	protected void handleListPreviewMovies(){
+		ArrayList<Movie> movies = new ArrayList<>();
+		movies = DatabaseManager.retrieveAllMovies();
+		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.PREVIEW)).collect(Collectors.toList());
+		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
+	}
+	@Override
 	protected void handleListAllMoviesOption(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();

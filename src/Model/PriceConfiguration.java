@@ -22,6 +22,8 @@ public class PriceConfiguration {
     private double childPercentageOff = 0.5;
     private double seniorCitizenPercentageOff = 0.6;
 
+    private double gstPercentageIncrease = 0.07;
+
 
     public void setPublicHolidays(ArrayList<PublicHoliday> publicHolidays) {
         this.publicHolidays = publicHolidays;
@@ -65,5 +67,9 @@ public class PriceConfiguration {
 
     public double getSeniorCitizenPercentageOff() {
         return seniorCitizenPercentageOff;
+    }
+
+    public double getGstPercentageIncrease() {
+        return gstPercentageIncrease;
     }
 }

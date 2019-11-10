@@ -13,7 +13,7 @@ public class AdminListMoviesView extends ListMoviesView {
 
 	@Override
 	protected void processUserInput(int input) {
-		
+
 		if (input == -1) {
 			ViewNavigator.popView();
 		}else {

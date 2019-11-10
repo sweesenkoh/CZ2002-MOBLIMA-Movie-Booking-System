@@ -1,12 +1,18 @@
 package View;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
-import Model.AdminUser;
+import Model.*;
+
+import javax.xml.crypto.Data;
 
 public class AdminMainMenu extends View {
 	
@@ -16,6 +22,7 @@ public class AdminMainMenu extends View {
 			"Configure System Settings",
 			"List Current Top 5 Movies",
 			"Add Another Admin User to the System",
+			"List all Admin Users exist on this System",
 			"Back to Previous Page"
 	)); 
 	
@@ -62,12 +69,21 @@ public class AdminMainMenu extends View {
 			ViewNavigator.pushView(new AdminMovieBrowseOptions());
 		}
 
+		else if (input == 6){
+			for (AdminUser adminUser : DatabaseManager.retrieveAllAdminUsers()){
+				System.out.println("     " + adminUser.getUsername());
+			}
+			System.out.println("\n");
+			IOManager.getUserInputString("Press any key twice to go back");
+			this.activate();
+		}
+
 		else if (input == 5){
 			String userInputUsername = IOManager.getUserInputString("Please input your new username: ");
 			String userInputPassword = IOManager.getUserInputString("Please input your new password");
 			boolean alreadyIn = false;
 			for (AdminUser adminUser:DatabaseManager.retrieveAllAdminUsers()){
-				if (adminUser.getUsername().equals((new AdminUser(userInputUsername,userInputPassword)).getUsername())){
+				if (adminUser.getUsername().toLowerCase().equals((new AdminUser(userInputUsername,userInputPassword)).getUsername().toLowerCase())){
 					alreadyIn = true;
 					System.out.println("User already exists");
 				}
@@ -76,6 +92,59 @@ public class AdminMainMenu extends View {
 			if (!alreadyIn){
 				DatabaseManager.saveNewAdminUser(new AdminUser(userInputUsername,userInputPassword));
 				System.out.println("Saved!");
+			}
+
+			this.activate();
+		}
+
+		else if (input == 4){
+			ArrayList<String> userChoices = new ArrayList<>();
+			userChoices.add("Top 5 by ticket sales");
+			userChoices.add("Top 5 by reviewers' ratings");
+			IOManager.printMenuOptions(userChoices);
+
+			int userChoice = IOManager.getUserInputInt("Please select one of the options",1,userChoices.size());
+
+			if (userChoice == 1){
+
+				ArrayList<Order> orders = DatabaseManager.retrieveAllOrders();
+				ArrayList<Movie> movies = DatabaseManager.retrieveAllMovies();
+				ArrayList<Movie> resultMovies = new ArrayList<>();
+
+				ArrayList<Integer> resultSales = new ArrayList<>();
+
+				for (Movie movie: movies){
+					int sales = 0;
+					for (Order order: orders){
+						for (Ticket ticket:order.getTickets()){
+							if (ticket.getShowtime().getMovie().getTitle().equals(movie.getTitle())){
+								sales += 1;
+							}
+						}
+					}
+					resultSales.add(sales);
+				}
+
+				for (int x = 0 ; x < 5 ;x++){
+					int max = Collections.max(resultSales);
+					if (max == 0){break;}
+					int index = resultSales.indexOf(max);
+					resultMovies.add(movies.get(index));
+					resultSales.set(index,-1);
+				}
+
+				ViewNavigator.pushView(new AdminListTop5MoviesView(resultMovies, AdminListTop5MoviesView.Top5MoviesOption.TICKETSALES));
+
+
+
+			}else{
+				ArrayList<Movie> movies = DatabaseManager.retrieveAllMovies();
+				movies= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getRating() != -1.0).collect(Collectors.toList());
+				movies= (ArrayList<Movie>) movies.stream().filter(movie -> (movie.getStatus() == MovieStatus.PREVIEW) || (movie.getStatus() == MovieStatus.NOWSHOWING)).collect(Collectors.toList());
+				Collections.sort(movies, Comparator.comparing(Movie::getRating));
+				Collections.reverse(movies);
+				movies = new ArrayList<>(movies.subList((movies.size() > 5 ? movies.size() - 5 : 0),movies.size()));
+				ViewNavigator.pushView(new AdminListTop5MoviesView(movies, AdminListTop5MoviesView.Top5MoviesOption.RATINGS));
 			}
 		}
 	}

@@ -38,6 +38,21 @@ public class ViewNavigator {
 		views.get(views.size() - 1).activate();
 	}
 
+	public static void popTillView(View view){
+		while (true) {
+			if (views.size() > 1) {
+				Class viewClass = view.getClass();
+				Class currentViewClass = views.get(views.size() - 1).getClass();
+				if (!(viewClass.equals(currentViewClass))){
+					views.remove(views.size() - 1);
+				}else{
+					break;
+				}
+			}else{break;}
+		}
+		views.get(views.size() - 1).activate();
+	}
+
 	public static void popToBaseView(){
 		for (int x = views.size() - 1 ; x > 0 ; x--){
 			views.remove(x);

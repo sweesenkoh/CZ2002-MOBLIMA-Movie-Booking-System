@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.TicketPriceManager;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 
 public class Order implements Serializable {
     private ArrayList<Ticket> tickets;
-	private double price;
+	private double price; //this price should be inclusive of gst
 	private String buyerName;
 	private String buyerEmailAddress;
 	private String TID;
@@ -20,14 +22,23 @@ public class Order implements Serializable {
 		this.buyerEmailAddress = buyerEmailAddress;
 		TID = this.calculateTID();
 	}
-	
+
+	public String getBuyerName() {
+		return buyerName;
+	}
+
 	public double calculatePrice() {
 		int i;
 		double total =0;
 		for (i = 0; i < tickets.size(); i++) {
 			total += tickets.get(i).getPrice();
 		}
+		total = TicketPriceManager.applyGSTFactor(total);
 		return total;
+	}
+
+	public ArrayList<Ticket> getTickets() {
+		return tickets;
 	}
 
 	public String calculateTID(){
@@ -61,9 +72,28 @@ public class Order implements Serializable {
 			returnString += ticket.toString() + "\n";
 		}
 
-		returnString += String.format("Total Price: %.2f",this.getPrice());
+		returnString += String.format("Total Price: $%.2f",this.getPrice()) + " (inclusive of GST)";
 
 		returnString += "\n---------------------------------------------\n";
+
+		return returnString;
+	}
+
+	public String toSummarisedString(){
+		String returnString = "";
+
+		returnString += "Transaction ID: " + this.TID + "\n";
+		returnString += "     Buyer Name: " + this.buyerName + "\n";
+		returnString += "     Email Address: " + this.buyerEmailAddress + "\n\n";
+
+		returnString += "     Tickets: ";
+
+		for (Ticket ticket : this.tickets){
+			returnString += ticket.getSeat().toString() + ("  ");
+		}
+
+		returnString += String.format("\n     Total Price: $%.2f",this.getPrice()) + " (inclusive of GST)";
+		returnString += "\n";
 
 		return returnString;
 	}

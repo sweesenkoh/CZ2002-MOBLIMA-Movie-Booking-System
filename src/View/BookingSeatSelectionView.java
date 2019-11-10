@@ -90,17 +90,31 @@ public class BookingSeatSelectionView extends View {
 
             ArrayList<String> choices = new ArrayList<>();
             choices.add("Add more seat");
+            choices.add("Undo previous seat selection");
             choices.add("Proceed to next step");
             choices.add("Cancel and back to previous page");
 
             IOManager.printMenuOptions(choices);
             userProceedChoice = IOManager.getUserInputInt("Please input a choice",1,choices.size());
 
-            if (userProceedChoice == 1){continue;}
+            if (userProceedChoice == 1){
+                continue;
+            }else if (userProceedChoice == 2){
+                if (this.chosenSeats.size() < 1){
+                    System.out.println("Cannot unbook seat, you do not have any previous selection");
+                    continue;
+                }
+                Seat lastChosenSeat = this.chosenSeats.get(chosenSeats.size() - 1);
+                showtime.getSeatLayout().getSeat(lastChosenSeat.getRow(),lastChosenSeat.getCol()).unbookSeat();
+                this.chosenSeats.remove(chosenSeats.size() - 1);
+                System.out.println("Removed!");
+                showtime.getSeatLayout().printSeatLayout();
+                continue;
+            }
             else break;
         }
 
-        if (userProceedChoice == 3){
+        if (userProceedChoice == 4){
             //this step is to unbook all the booked seats
             for (Seat seat:this.chosenSeats){
                 showtime.getSeatLayout().getSeat(seat.getRow(),seat.getCol()).unbookSeat();
@@ -108,7 +122,7 @@ public class BookingSeatSelectionView extends View {
             this.chosenSeats.clear();
             ViewNavigator.popView();
 
-        }else if (userProceedChoice == 2){
+        }else if (userProceedChoice == 3){
             for (Seat seat:this.chosenSeats){
                 showtime.getSeatLayout().getSeat(seat.getRow(),seat.getCol()).unbookSeat();
             }

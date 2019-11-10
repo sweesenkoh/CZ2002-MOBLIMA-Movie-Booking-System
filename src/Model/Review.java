@@ -40,7 +40,7 @@ public class Review implements Serializable{
 	public String toString() {
 		String returnString = "";
 		returnString += "" + "Reviewer: " + this.reviewer + "\n";
-		returnString += "   " + "Rating: " + this.rating + "\n";
+		returnString += "   " + "Rating: " + String.format("%.1f",this.rating) + "\n";
 		returnString += "   " + "Content: " + this.reviewContent;
 		return returnString;
 	}

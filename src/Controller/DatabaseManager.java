@@ -90,8 +90,9 @@ public class DatabaseManager {
 			boolean userIsAlreadyIn = false;
 
 			for (AdminUser adminUserObj:adminUsers){
-				if (adminUserObj.equals(adminUser)){
+				if (adminUserObj.getUsername().toLowerCase().equals(adminUser.getUsername().toLowerCase())){
 					System.out.println("User already in the system");
+					userIsAlreadyIn = true;
 					break;
 				}
 			}

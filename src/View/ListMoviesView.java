@@ -20,10 +20,15 @@ public class ListMoviesView extends View {
 	
 	
 	public ListMoviesView(ArrayList<Movie> movies) {
-		for (Movie movie : movies) {
-			this.options.add(movie.getTitle());
-		}
 		this.movies = movies;
+	}
+
+	protected ArrayList<String> convertMoviesObjectToOptionStrings(ArrayList<Movie> movies){
+		ArrayList<String> movieStrings = new ArrayList<>();
+		for (Movie movie : movies) {
+			movieStrings.add(movie.getTitle());
+		}
+		return movieStrings;
 	}
 	
 	public void activate() {
@@ -31,7 +36,7 @@ public class ListMoviesView extends View {
 		super.setTitle(this.title);
 		super.setViewContent(this.viewContent);
 		super.activate();
-		
+		this.options = convertMoviesObjectToOptionStrings(movies);
 		int userInput = IOManager.printMultipageOptionsWithReturnedChoice(this.options,10);
 		
 		//int userInput = IOManager.getUserInputInt("Please input a choice",1,options.size());

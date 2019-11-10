@@ -2,6 +2,7 @@ package View;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
+import Controller.TicketPriceManager;
 import Controller.ViewNavigator;
 import Model.*;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
@@ -94,8 +95,10 @@ public class BookingPuchaseTicketView extends View {
             totalPrice += ticket.getPrice();
         }
 
-
-        returnString += String.format("Total Price: %.2f",totalPrice);
+        returnString += String.format("Total Price Before GST : $%.2f\n",totalPrice);
+        double priceAfterGST = TicketPriceManager.applyGSTFactor(totalPrice);
+        returnString += String.format("GST : $%.2f\n",priceAfterGST - totalPrice);
+        returnString += String.format("Total Price: $%.2f",priceAfterGST);
 
         returnString += "\n---------------------------------------------\n";
 

@@ -23,9 +23,9 @@ public class Moblima {
 		
 
 //		DatabaseManager.saveNewAdminUser(new AdminUser("admin","admin"));
-
+	//	generateAdminUsersToDatabase();
 		ViewNavigator.pushView(new MainMenuView());
-		//generateDatabase();
+	//	generateDatabase();
 
 
 
@@ -34,10 +34,15 @@ public class Moblima {
 
 	}
 
+	public static void generateAdminUsersToDatabase(){
+		AdminUser adminUser = new AdminUser("admin","admin");
+		DatabaseManager.saveNewAdminUser(adminUser);
+	}
+
 	public static void generateDatabase(){
 
 
-		Movie movie_avatar = new Movie("Avatar",MovieStatus.ENDED);
+		Movie movie_avatar = new Movie("Avatar",MovieStatus.ENDED,MovieCensorshipRating.PG13);
 		movie_avatar.setDirector("James Cameron");
 		movie_avatar.setSynopsis("Jake, a paraplegic marine, replaces his brother on the Na'vi inhabited Pandora for a corporate mission. He is accepted by the natives as one of their own but he must decide where his loyalties lie.");
 		movie_avatar.addCast("Zoe Zaldana");
@@ -52,7 +57,7 @@ public class Moblima {
 
 
 
-		Movie movie_joker = new Movie("Joker",MovieStatus.ENDED);
+		Movie movie_joker = new Movie("Joker",MovieStatus.ENDED,MovieCensorshipRating.PG13);
 		movie_joker.setDirector("Todd Philips");
 		movie_joker.setSynopsis("Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him. Isolated, bullied and disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker.");
 		movie_joker.addCast("Joaquin Phoenix");
@@ -69,7 +74,7 @@ public class Moblima {
 
 
 
-		Movie movie_midway = new Movie("Midway",MovieStatus.NOWSHOWING);
+		Movie movie_midway = new Movie("Midway",MovieStatus.NOWSHOWING,MovieCensorshipRating.PG);
 		movie_midway.setDirector("Roland Emmerich");
 		movie_midway.setSynopsis("US soldiers and pilots change the course of World War II during the Battle of Midway in June 1942. The US and Imperial Japanese naval forces fought for four days.");
 		movie_midway.addCast("Luke Evans");
@@ -87,7 +92,7 @@ public class Moblima {
 
 
 
-		Movie movie_terminator = new Movie("Terminator: Dark Fate",MovieStatus.NOWSHOWING);
+		Movie movie_terminator = new Movie("Terminator: Dark Fate",MovieStatus.NOWSHOWING,MovieCensorshipRating.PG13);
 		movie_terminator.setDirector("Tim Miller");
 		movie_terminator.setSynopsis("In Mexico City, a newly modified liquid Terminator -- the Rev-9 model -- arrives from the future to kill a young factory worker named Dani Ramos. Also sent back in time is Grace, a hybrid cyborg human who must protect Ramos from the seemingly indestructible robotic assassin. But the two women soon find some much-needed help from a pair of unexpected allies -- seasoned warrior Sarah Connor and the T-800 Terminator.");
 		movie_terminator.addCast("Linda Hamilton");
@@ -103,7 +108,7 @@ public class Moblima {
 
 
 
-		Movie movie_thegoodliar = new Movie("The Good Liar",MovieStatus.PREVIEW);
+		Movie movie_thegoodliar = new Movie("The Good Liar",MovieStatus.PREVIEW,MovieCensorshipRating.M18);
 		movie_thegoodliar.setDirector("Bill Condon");
 		movie_thegoodliar.setSynopsis("Career con artist Roy Courtnay can hardly believe his luck when he meets well-to-do widow Betty McLeish online. As Betty opens her life and home to him, Roy is surprised to find himself caring about her, turning what should be a cut-and-dry swindle into the most treacherous tightrope walk of his life.");
 		movie_thegoodliar.addCast("Ian Mckellen");
@@ -119,7 +124,7 @@ public class Moblima {
 
 
 
-		Movie movie_21Bridges = new Movie("21 Bridges",MovieStatus.PREVIEW);
+		Movie movie_21Bridges = new Movie("21 Bridges",MovieStatus.PREVIEW,MovieCensorshipRating.PG);
 		movie_21Bridges.setDirector("Bill Condon");
 		movie_21Bridges.setSynopsis("After uncovering a massive conspiracy, an embattled NYPD detective joins a citywide manhunt for two young cop killers. As the night unfolds, he soon becomes unsure of who to pursue -- and who's in pursuit of him. When the search intensifies, authorities decide to take extreme measures by closing all of Manhattan's 21 bridges to prevent the suspects from escaping.");
 		movie_21Bridges.addCast("Chadwick Boseman");
@@ -134,32 +139,32 @@ public class Moblima {
 
 
 
-		Movie movie_frozen2 = new Movie("Frozen 2",MovieStatus.COMINGSOON);
+		Movie movie_frozen2 = new Movie("Frozen 2",MovieStatus.COMINGSOON,MovieCensorshipRating.G);
 		movie_frozen2.setDirector("Jennifer Lee");
 		movie_frozen2.setSynopsis("Elsa the Snow Queen and her sister Anna embark on an adventure far away from the kingdom of Arendelle. They are joined by friends, Kristoff, Olaf, and Sven.");
 		movie_frozen2.addCast("Kristen Bell");
 		movie_frozen2.addCast("Josh Gad");
 
-		for (int x = 1; x < 20 ; x++){
-			double random = 1 + Math.random() * (5 - 1);
-			movie_frozen2.addReview(new Review("ReviewerName " + x,random,"This is the content number : " + x + " reviewing for " + movie_frozen2.getTitle()));
-		}
+//		for (int x = 1; x < 20 ; x++){
+//			double random = 1 + Math.random() * (5 - 1);
+//			movie_frozen2.addReview(new Review("ReviewerName " + x,random,"This is the content number : " + x + " reviewing for " + movie_frozen2.getTitle()));
+//		}
 
 		DatabaseManager.saveMovieToDataBase(movie_frozen2);
 
 
 
 
-		Movie movie_darkwaters = new Movie("Dark Waters",MovieStatus.COMINGSOON);
+		Movie movie_darkwaters = new Movie("Dark Waters",MovieStatus.COMINGSOON,MovieCensorshipRating.PG);
 		movie_darkwaters.setDirector("Todd Haynes");
 		movie_darkwaters.setSynopsis("A tenacious attorney uncovers a dark secret that connects a growing number of unexplained deaths to one of the world's largest corporations. While trying to expose the truth, he soon finds himself risking his future, his family and his own life");
 		movie_darkwaters.addCast("Mark Ruffalo");
 		movie_darkwaters.addCast("Anne Hathaway");
 
-		for (int x = 1; x < 20 ; x++){
-			double random = 1 + Math.random() * (5 - 1);
-			movie_darkwaters.addReview(new Review("ReviewerName " + x,random,"This is the content number : " + x + " reviewing for " + movie_darkwaters.getTitle()));
-		}
+//		for (int x = 1; x < 20 ; x++){
+//			double random = 1 + Math.random() * (5 - 1);
+//			movie_darkwaters.addReview(new Review("ReviewerName " + x,random,"This is the content number : " + x + " reviewing for " + movie_darkwaters.getTitle()));
+//		}
 
 		DatabaseManager.saveMovieToDataBase(movie_darkwaters);
 
