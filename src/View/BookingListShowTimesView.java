@@ -19,7 +19,9 @@ public class BookingListShowTimesView extends View {
 
     public BookingListShowTimesView(ArrayList<Showtime> showTimes){
         this.showTimes = showTimes;
-        this.title += this.showTimes.get(0).getMovie().getTitle();
+        if (this.showTimes.size() != 0){
+            this.title += this.showTimes.get(0).getMovie().getTitle();
+        }
     }
 
     @Override
