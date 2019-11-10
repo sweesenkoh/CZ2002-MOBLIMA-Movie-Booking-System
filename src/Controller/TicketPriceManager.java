@@ -11,10 +11,6 @@ import static Model.CinemaClass.NORMAL;
 
 public class TicketPriceManager {
 
-    //next time need to fetch from database
-    private static PriceConfiguration priceConfiguration = new PriceConfiguration();
-
-
     //factors:
     //age
     //cinema class
@@ -40,28 +36,28 @@ public class TicketPriceManager {
 
         switch (cinemaClass){
             case NORMAL:
-                return priceConfiguration.getBasePrice();
+                return DatabaseManager.loadPriceConfiguration().getBasePrice();
             case PLATINUM:
-                return priceConfiguration.getPlatinumBasePrice();
+                return DatabaseManager.loadPriceConfiguration().getPlatinumBasePrice();
             case GOLD:
-                return priceConfiguration.getGoldBasePrice();
+                return DatabaseManager.loadPriceConfiguration().getGoldBasePrice();
             default:
-                return priceConfiguration.getBasePrice();
+                return DatabaseManager.loadPriceConfiguration().getBasePrice();
         }
     }
 
     private static double applyDayOfWeekOrPHFactor(double price, LocalDate date){
 
         //first check whether is in public holiday
-        for (PublicHoliday ph:priceConfiguration.getPublicHolidays()){
+        for (PublicHoliday ph:DatabaseManager.loadPriceConfiguration().getPublicHolidays()){
             if (ph.getDate().isEqual(date)){
-                return price + priceConfiguration.getPublicHolidayIncrement();
+                return price + DatabaseManager.loadPriceConfiguration().getPublicHolidayIncrement();
             }
         }
 
         //if not in public holiday, check if is in weekend
         if ((date.getDayOfWeek() == DayOfWeek.SATURDAY) || (date.getDayOfWeek() == DayOfWeek.SUNDAY)){
-            return price + priceConfiguration.getWeekendIncrement();
+            return price + DatabaseManager.loadPriceConfiguration().getWeekendIncrement();
         }
 
         return price;
@@ -73,9 +69,9 @@ public class TicketPriceManager {
             case NORMAL:
                 return price;
             case THREED:
-                return price + priceConfiguration.getThreeDMovieIncrement();
+                return price + DatabaseManager.loadPriceConfiguration().getThreeDMovieIncrement();
             case BLOCKBUSTER:
-                return price + priceConfiguration.getBlockbusterMovieIncrement();
+                return price + DatabaseManager.loadPriceConfiguration().getBlockbusterMovieIncrement();
             default:
                 return price;
         }
@@ -87,9 +83,9 @@ public class TicketPriceManager {
             case ADULT:
                 return price;
             case CHILD:
-                return price * priceConfiguration.getChildPercentageOff();
+                return price * DatabaseManager.loadPriceConfiguration().getChildPercentageOff();
             case SENIORCITIZEN:
-                return price * priceConfiguration.getSeniorCitizenPercentageOff();
+                return price * DatabaseManager.loadPriceConfiguration().getSeniorCitizenPercentageOff();
             default:
                 return price;
         }
@@ -98,6 +94,6 @@ public class TicketPriceManager {
 
     //this is for the order
     public static double applyGSTFactor(double price){
-        return (price + price * priceConfiguration.getGstPercentageIncrease());
+        return (price + price * DatabaseManager.loadPriceConfiguration().getGstPercentageIncrease());
     }
 }

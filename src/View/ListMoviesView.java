@@ -26,7 +26,7 @@ public class ListMoviesView extends View {
 	protected ArrayList<String> convertMoviesObjectToOptionStrings(ArrayList<Movie> movies){
 		ArrayList<String> movieStrings = new ArrayList<>();
 		for (Movie movie : movies) {
-			movieStrings.add(movie.getTitle());
+			movieStrings.add(movie.getTitle() + " (" + movie.getMovieCensorshipRating().displayName() + ")");
 		}
 		return movieStrings;
 	}

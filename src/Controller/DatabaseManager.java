@@ -10,10 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import Model.AdminUser;
-import Model.Cineplex;
-import Model.Movie;
-import Model.Order;
+import Model.*;
 import com.sun.tools.corba.se.idl.constExpr.Or;
 
 public class DatabaseManager {
@@ -202,4 +199,37 @@ public class DatabaseManager {
 		orders.add(order);
 		saveOrders(orders);
 	}
+
+
+	//Save Price configuration
+
+	public static void savePriceConfiguration(PriceConfiguration priceConfiguration){
+		try {
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("PriceConfiguration.txt"));
+			output.writeObject(priceConfiguration);
+
+		} catch (Exception e) {
+			System.out.println("Error occured while trying to save orders to database, try again later");
+		}
+	}
+
+
+	//load price configuration
+
+	public static PriceConfiguration loadPriceConfiguration(){
+		try {
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("PriceConfiguration.txt"));
+			PriceConfiguration priceConfiguration = (PriceConfiguration) input.readObject();
+			return priceConfiguration;
+
+		} catch (FileNotFoundException fileE){
+			return (new PriceConfiguration());
+		}
+
+		catch (Exception e) {
+			System.out.println("Error occured while trying to retrieve orders from database, try again later");
+			return (new PriceConfiguration());
+		}
+	}
+
 }

@@ -43,20 +43,41 @@ public class BookingPuchaseTicketView extends View {
         int seniorCitizenCount;
 
         while (true){
-            adultCount = 0;
-            childCount = 0;
-            seniorCitizenCount = 0;
-            adultCount = IOManager.getUserInputInt("How many adults? ");
-            ticketCount += adultCount; if (ticketCount == selectedSeats.size()) break;
-            childCount = IOManager.getUserInputInt("How many children? ");
-            ticketCount += childCount; if (ticketCount == selectedSeats.size()) break;
-            seniorCitizenCount = IOManager.getUserInputInt("How many senior citizen");
-            ticketCount += seniorCitizenCount; if (ticketCount == selectedSeats.size()) break;
+            while (true){
+                ticketCount = 0;
+                adultCount = 0;
+                childCount = 0;
+                seniorCitizenCount = 0;
+                adultCount = IOManager.getUserInputInt("How many adults? ");
+                ticketCount += adultCount; if (ticketCount == selectedSeats.size()) break;
+                childCount = IOManager.getUserInputInt("How many children? ");
+                ticketCount += childCount; if (ticketCount == selectedSeats.size()) break;
+                seniorCitizenCount = IOManager.getUserInputInt("How many senior citizen");
+                ticketCount += seniorCitizenCount; if (ticketCount == selectedSeats.size()) break;
 
-            System.out.printf("The total number of people (%d) does not tally with the number of selected seats (%d), please try again\n",ticketCount,selectedSeats.size());
-            ticketCount = 0;
-            continue;
+                System.out.printf("The total number of people (%d) does not tally with the number of selected seats (%d), please try again\n",ticketCount,selectedSeats.size());
+                ticketCount = 0;
+                continue;
+            }
+
+            if ((selectedShowtime.getMovie().getMovieCensorshipRating() == MovieCensorshipRating.PG) || (selectedShowtime.getMovie().getMovieCensorshipRating() == MovieCensorshipRating.G)){
+                break;
+            }else if (childCount == 0){
+                break;
+            }else{
+                System.out.println("This movie is rated to be " + selectedShowtime.getMovie().getMovieCensorshipRating().displayName() + ", therefore children under 13 are not allowed.");
+                ArrayList<String> optionChoices = new ArrayList<>();
+                optionChoices.add("Input the seat count again: ");
+                optionChoices.add("Go back to previous page to reselect seat");
+                IOManager.printMenuOptions(optionChoices);
+                int optionChoice = IOManager.getUserInputInt("Please choose one option",1,optionChoices.size());
+
+                if (optionChoice == 2){
+                    ViewNavigator.popView();
+                }
+            }
         }
+
 
         for (Seat seat : this.selectedSeats){
             if (adultCount != 0){

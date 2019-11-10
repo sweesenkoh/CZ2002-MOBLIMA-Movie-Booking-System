@@ -146,6 +146,8 @@ public class AdminMainMenu extends View {
 				movies = new ArrayList<>(movies.subList((movies.size() > 5 ? movies.size() - 5 : 0),movies.size()));
 				ViewNavigator.pushView(new AdminListTop5MoviesView(movies, AdminListTop5MoviesView.Top5MoviesOption.RATINGS));
 			}
+		}else if (input == 3){
+			ViewNavigator.pushView(new AdminSystemSettingsView());
 		}
 	}
 
