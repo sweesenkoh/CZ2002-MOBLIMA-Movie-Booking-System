@@ -17,7 +17,7 @@ public class AdminMainMenu extends View {
 	
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Create New Movie",
-			"Update Movie Information",
+			"Update Movie Information or Add Show Time",
 			"Configure System Settings",
 			"List Current Top 5 Movies",
 			"Add Another Admin User to the System",

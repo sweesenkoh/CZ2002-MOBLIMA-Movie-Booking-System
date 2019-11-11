@@ -172,6 +172,10 @@ public class IOManager {
 			multiplier++;
 		}
 	}
+
+	public static void printDouble(double value,int decimalPlace){
+		System.out.printf("%." + decimalPlace + "f",value);
+	}
 	
 	
 	//have to enter empty string

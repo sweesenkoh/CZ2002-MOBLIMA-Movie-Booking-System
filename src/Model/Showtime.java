@@ -79,7 +79,7 @@ public class Showtime implements Serializable {
 		}
 
 
-		returnString += this.showDatetime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm a - EEEE ")) + "\n  ";
+		returnString += this.showDatetime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm - EEEE ")) + "\n  ";
 		return returnString;
 	}
 

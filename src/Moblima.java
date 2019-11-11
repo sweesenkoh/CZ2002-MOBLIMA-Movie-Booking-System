@@ -30,8 +30,6 @@ public class Moblima {
 
 
 
-
-
 	}
 
 	public static void generateAdminUsersToDatabase(){

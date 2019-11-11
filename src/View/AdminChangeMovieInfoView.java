@@ -1,5 +1,8 @@
 package View;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -7,9 +10,7 @@ import java.util.EnumSet;
 import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
-import Model.Movie;
-import Model.MovieCensorshipRating;
-import Model.MovieStatus;
+import Model.*;
 
 import javax.xml.crypto.Data;
 
@@ -24,6 +25,7 @@ public class AdminChangeMovieInfoView extends View {
 			"Title",
 			"Casts",
 			"Censorship Rating",
+			"Add Show Time for this movie",
 			"Go back to admin main menu"
 	)); 
 	
@@ -113,6 +115,10 @@ public class AdminChangeMovieInfoView extends View {
 			DatabaseManager.modifyMovieWithNewValues(selectedMovie);
 			System.out.println("Saved");
 		}
+
+		else if (input == 7){
+			this.handleAddShowTime();
+		}
 		
 		ArrayList<String> choices = new ArrayList<>();
 		choices.add("Continue Editing other information");
@@ -182,6 +188,77 @@ public class AdminChangeMovieInfoView extends View {
 				break;
 			}
 		}
+	}
+
+
+	private void handleAddShowTime(){
+		ArrayList<Cineplex> cineplexes = DatabaseManager.retrieveAllCineplexes();
+		ArrayList<String> cineplexesString = new ArrayList<>();
+		for (Cineplex cineplex : cineplexes){
+			cineplexesString.add(cineplex.getName());
+		}
+		IOManager.printMenuOptions(cineplexesString);
+		int userChosenCineplex = IOManager.getUserInputInt("Please choose one of the cineplexes",1,cineplexes.size());
+		ArrayList<String> cinemaStrings = new ArrayList<>();
+		for (Cinema cinema : cineplexes.get(userChosenCineplex - 1).getCinemas()){
+			cinemaStrings.add("Cinema Code: " + cinema.getCode());
+		}
+		IOManager.printMenuOptions(cinemaStrings);
+		int userChosenCinema = IOManager.getUserInputInt("Please choose one of the cinemas",1,cinemaStrings.size());
+		LocalDate chosenDate = IOManager.getUserInputDate("Please input the date that you want to insert the show time to: ");
+
+
+
+		int count = 1;
+		for (Showtime showtime:cineplexes.get(userChosenCineplex - 1).getCinemas().get(userChosenCinema - 1).getShowtimes()){
+			if (showtime.getShowDatetime().toLocalDate().equals(chosenDate)){
+				if (count == 1){
+					System.out.println("Here is the current showtime on this day:\n\n");
+				}
+				System.out.println("    " + count + ") " + showtime.getShowDatetime());
+				count++;
+			}
+		}
+
+		if (count != 1){
+
+		}
+
+		else{
+			System.out.println("There is currently no show time inserted on this day");
+		}
+
+		System.out.println("What time do u want to insert it in: ");
+		System.out.println("Please input the hour component (24-hour format), range (0-23)");
+		int hourComponent = IOManager.getUserInputInt("",0,23);
+		System.out.println("Please input the minute component (24-hour format), range (0-59)");
+		int minuteComponent = IOManager.getUserInputInt("",0,59);
+
+
+		System.out.println("What would you like to movie type to be? ");
+		ArrayList<MovieType> movieTypeList = new ArrayList<MovieType>(EnumSet.allOf(MovieType.class));
+		ArrayList<String> movieTypeListStrings = new ArrayList<String>();
+		for (int x = 0 ; x < movieTypeList.size() ; x++) {
+			movieTypeListStrings.add(movieTypeList.get(x).typeName());
+		}
+		IOManager.printMenuOptions(movieTypeListStrings);
+		int typeChoice = IOManager.getUserInputInt("Input the choice: ",1,movieTypeListStrings.size());
+		MovieType typeChosen = movieTypeList.get(typeChoice - 1);
+
+		LocalDateTime chosenDateTime = chosenDate.atTime(hourComponent,minuteComponent);
+		Showtime chosenShowTime = new Showtime(chosenDateTime,this.selectedMovie,cineplexes.get(userChosenCineplex - 1).getCinemas().get(userChosenCinema - 1),typeChosen);
+		System.out.println(chosenDateTime.toString());
+		System.out.println("Here is the show time that you have created, proceed to save?");
+		int userSaveChoice = IOManager.getUserInputInt("1 - Proceed to save, 0 - Cancel",0,1);
+
+		if (userSaveChoice == 1){
+			cineplexes.get(userChosenCineplex - 1).getCinemas().get(userChosenCinema - 1).addShowTime(chosenShowTime);
+			DatabaseManager.saveCineplexes(cineplexes);
+		}
+
+		//get date
+		//display current showtime for that date
+		//add showtime
 	}
 
 }
