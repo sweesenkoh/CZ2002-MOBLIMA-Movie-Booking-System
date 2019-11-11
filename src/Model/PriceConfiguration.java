@@ -1,9 +1,10 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class PriceConfiguration {
+public class PriceConfiguration implements Serializable {
 
 
     private ArrayList<PublicHoliday> publicHolidays = new ArrayList<>();
@@ -37,39 +38,79 @@ public class PriceConfiguration {
         return basePrice;
     }
 
+    public void setBasePrice(double basePrice) {
+        this.basePrice = basePrice;
+    }
+
     public double getPlatinumBasePrice() {
         return platinumBasePrice;
+    }
+
+    public void setPlatinumBasePrice(double platinumBasePrice) {
+        this.platinumBasePrice = platinumBasePrice;
     }
 
     public double getGoldBasePrice() {
         return goldBasePrice;
     }
 
+    public void setGoldBasePrice(double goldBasePrice) {
+        this.goldBasePrice = goldBasePrice;
+    }
+
     public double getWeekendIncrement() {
         return weekendIncrement;
+    }
+
+    public void setWeekendIncrement(double weekendIncrement) {
+        this.weekendIncrement = weekendIncrement;
     }
 
     public double getPublicHolidayIncrement() {
         return publicHolidayIncrement;
     }
 
+    public void setPublicHolidayIncrement(double publicHolidayIncrement) {
+        this.publicHolidayIncrement = publicHolidayIncrement;
+    }
+
     public double getThreeDMovieIncrement() {
         return threeDMovieIncrement;
+    }
+
+    public void setThreeDMovieIncrement(double threeDMovieIncrement) {
+        this.threeDMovieIncrement = threeDMovieIncrement;
     }
 
     public double getBlockbusterMovieIncrement() {
         return blockbusterMovieIncrement;
     }
 
+    public void setBlockbusterMovieIncrement(double blockbusterMovieIncrement) {
+        this.blockbusterMovieIncrement = blockbusterMovieIncrement;
+    }
+
     public double getChildPercentageOff() {
         return childPercentageOff;
+    }
+
+    public void setChildPercentageOff(double childPercentageOff) {
+        this.childPercentageOff = childPercentageOff;
     }
 
     public double getSeniorCitizenPercentageOff() {
         return seniorCitizenPercentageOff;
     }
 
+    public void setSeniorCitizenPercentageOff(double seniorCitizenPercentageOff) {
+        this.seniorCitizenPercentageOff = seniorCitizenPercentageOff;
+    }
+
     public double getGstPercentageIncrease() {
         return gstPercentageIncrease;
+    }
+
+    public void setGstPercentageIncrease(double gstPercentageIncrease) {
+        this.gstPercentageIncrease = gstPercentageIncrease;
     }
 }
