@@ -1,7 +1,6 @@
 package View;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumSet;
 
 import Controller.DatabaseManager;

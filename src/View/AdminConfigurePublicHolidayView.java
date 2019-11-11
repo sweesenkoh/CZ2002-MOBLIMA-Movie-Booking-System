@@ -5,8 +5,6 @@ import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.PriceConfiguration;
 import Model.PublicHoliday;
-
-import javax.xml.crypto.Data;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

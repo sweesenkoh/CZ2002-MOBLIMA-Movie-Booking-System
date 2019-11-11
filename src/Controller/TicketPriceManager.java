@@ -1,13 +1,10 @@
 package Controller;
 
 import Model.*;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Date;
 
-import static Model.CinemaClass.NORMAL;
 
 public class TicketPriceManager {
 

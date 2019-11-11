@@ -6,7 +6,6 @@ import Model.Seat;
 import Model.Showtime;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class BookingSeatSelectionView extends View {
 

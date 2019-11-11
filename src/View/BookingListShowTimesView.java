@@ -5,7 +5,6 @@ import Controller.ViewNavigator;
 import Model.Showtime;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class BookingListShowTimesView extends View {
 

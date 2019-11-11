@@ -1,6 +1,5 @@
 package View;
 
-import java.util.ArrayList;
 
 import Controller.IOManager;
 import Controller.ViewNavigator;
