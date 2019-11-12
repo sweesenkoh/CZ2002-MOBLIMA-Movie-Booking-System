@@ -19,6 +19,7 @@ public class AdminListMoviesView extends ListMoviesView {
 		}else {
 			ViewNavigator.pushView(new AdminChangeMovieInfoView(this.movies.get(input - 1)));
 		}
+
 	}
 
 }

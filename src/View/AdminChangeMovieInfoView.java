@@ -117,7 +117,8 @@ public class AdminChangeMovieInfoView extends View {
 		}
 
 		else if (input == 7){
-			this.handleAddShowTime();
+			ViewNavigator.pushView(new AdminAddShowTimeView(this.selectedMovie));
+			//this.handleAddShowTime();
 		}
 		
 		ArrayList<String> choices = new ArrayList<>();

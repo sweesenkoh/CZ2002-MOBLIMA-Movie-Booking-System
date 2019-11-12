@@ -46,8 +46,10 @@ public class Cinema implements Serializable {
 	public void setCode(int code) {
 		this.code = code;
 	}
-	
 
+	public void setShowtimes(ArrayList<Showtime> showtimes) {
+		this.showtimes = showtimes;
+	}
 
 	public SeatLayout getLayout() {
 		return seatLayout;
