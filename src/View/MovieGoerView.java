@@ -14,7 +14,7 @@ public class MovieGoerView extends View {
 	)); 
 	
 	private String title = "Movie-Goer Menu";
-	private String viewContent = "What yould you like to do?";
+	private String viewContent = "What would you like to do?";
 
 	public void activate() {
 		super.setOptions(this.options);

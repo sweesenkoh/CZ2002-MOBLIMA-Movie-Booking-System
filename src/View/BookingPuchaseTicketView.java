@@ -51,7 +51,7 @@ public class BookingPuchaseTicketView extends View {
                 ticketCount += adultCount; if (ticketCount == selectedSeats.size()) break;
                 childCount = IOManager.getUserInputInt("How many children? ");
                 ticketCount += childCount; if (ticketCount == selectedSeats.size()) break;
-                seniorCitizenCount = IOManager.getUserInputInt("How many senior citizen");
+                seniorCitizenCount = IOManager.getUserInputInt("How many senior citizen? ");
                 ticketCount += seniorCitizenCount; if (ticketCount == selectedSeats.size()) break;
 
                 System.out.printf("The total number of people (%d) does not tally with the number of selected seats (%d), please try again\n",ticketCount,selectedSeats.size());

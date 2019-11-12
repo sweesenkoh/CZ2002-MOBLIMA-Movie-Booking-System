@@ -21,7 +21,7 @@ public class PriceConfiguration implements Serializable {
 
 
     private double childPercentageOff = 0.5;
-    private double seniorCitizenPercentageOff = 0.6;
+    private double seniorCitizenPercentageOff = 0.6; //this means 0.6 of the original price, meaning 40% discount
 
     private double gstPercentageIncrease = 0.07;
 

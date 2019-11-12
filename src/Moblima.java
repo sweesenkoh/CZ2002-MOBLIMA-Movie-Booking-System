@@ -25,7 +25,7 @@ public class Moblima {
 //		DatabaseManager.saveNewAdminUser(new AdminUser("admin","admin"));
 	//	generateAdminUsersToDatabase();
 		ViewNavigator.pushView(new MainMenuView());
-	   // generateDatabase();
+	    //generateDatabase();
 
 
 
@@ -55,7 +55,7 @@ public class Moblima {
 
 
 
-		Movie movie_joker = new Movie("Joker",MovieStatus.ENDED,MovieCensorshipRating.PG13);
+		Movie movie_joker = new Movie("Joker",MovieStatus.NOWSHOWING,MovieCensorshipRating.PG13);
 		movie_joker.setDirector("Todd Philips");
 		movie_joker.setSynopsis("Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him. Isolated, bullied and disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker.");
 		movie_joker.addCast("Joaquin Phoenix");
@@ -90,7 +90,7 @@ public class Moblima {
 
 
 
-		Movie movie_terminator = new Movie("Terminator: Dark Fate",MovieStatus.NOWSHOWING,MovieCensorshipRating.PG13);
+		Movie movie_terminator = new Movie("Terminator: Dark Fate",MovieStatus.NOWSHOWING,MovieCensorshipRating.PG);
 		movie_terminator.setDirector("Tim Miller");
 		movie_terminator.setSynopsis("In Mexico City, a newly modified liquid Terminator -- the Rev-9 model -- arrives from the future to kill a young factory worker named Dani Ramos. Also sent back in time is Grace, a hybrid cyborg human who must protect Ramos from the seemingly indestructible robotic assassin. But the two women soon find some much-needed help from a pair of unexpected allies -- seasoned warrior Sarah Connor and the T-800 Terminator.");
 		movie_terminator.addCast("Linda Hamilton");
@@ -219,10 +219,10 @@ public class Moblima {
 
 		Cinema jurongeastcinema1 = new Cinema(jurongeast_cineplex,CinemaClass.GOLD,1,bishanSeatLayout_Small); //i use back the same layout, too lazy
 		Cinema jurongeastcinema2 = new Cinema(jurongeast_cineplex,CinemaClass.GOLD,2,bishanSeatLayout_Small);
-		Cinema jurongeastcinema3 = new Cinema(jurongeast_cineplex,CinemaClass.GOLD,3,bishanSeatLayout_Medium);
+		Cinema jurongeastcinema3 = new Cinema(jurongeast_cineplex,CinemaClass.PLATINUM,3,bishanSeatLayout_Medium);
 		Cinema jurongeastcinema4 = new Cinema(jurongeast_cineplex,CinemaClass.PLATINUM,4,bishanSeatLayout_Medium);
-		Cinema jurongeastcinema5 = new Cinema(jurongeast_cineplex,CinemaClass.PLATINUM,5,bishanSeatLayout_Large);
-		Cinema jurongeastcinema6 = new Cinema(jurongeast_cineplex,CinemaClass.PLATINUM,6,bishanSeatLayout_Large);
+		Cinema jurongeastcinema5 = new Cinema(jurongeast_cineplex,CinemaClass.NORMAL,5,bishanSeatLayout_Large);
+		Cinema jurongeastcinema6 = new Cinema(jurongeast_cineplex,CinemaClass.NORMAL,6,bishanSeatLayout_Large);
 
 
 		jurongeast_cineplex.addCinema(jurongeastcinema1);
@@ -237,10 +237,10 @@ public class Moblima {
 
 		Cinema bedokcinema1 = new Cinema(bedok_cineplex,CinemaClass.GOLD,1,bishanSeatLayout_Small); //i use back the same layout, too lazy
 		Cinema bedokcinema2 = new Cinema(bedok_cineplex,CinemaClass.GOLD,2,bishanSeatLayout_Small);
-		Cinema bedokcinema3 = new Cinema(bedok_cineplex,CinemaClass.GOLD,3,bishanSeatLayout_Medium);
+		Cinema bedokcinema3 = new Cinema(bedok_cineplex,CinemaClass.PLATINUM,3,bishanSeatLayout_Medium);
 		Cinema bedokcinema4 = new Cinema(bedok_cineplex,CinemaClass.PLATINUM,4,bishanSeatLayout_Medium);
-		Cinema bedokcinema5 = new Cinema(bedok_cineplex,CinemaClass.PLATINUM,5,bishanSeatLayout_Large);
-		Cinema bedokcinema6 = new Cinema(bedok_cineplex,CinemaClass.PLATINUM,6,bishanSeatLayout_Large);
+		Cinema bedokcinema5 = new Cinema(bedok_cineplex,CinemaClass.NORMAL,5,bishanSeatLayout_Large);
+		Cinema bedokcinema6 = new Cinema(bedok_cineplex,CinemaClass.NORMAL,6,bishanSeatLayout_Large);
 
 
 		bedok_cineplex.addCinema(bedokcinema1);
@@ -342,11 +342,11 @@ public class Moblima {
 		bishancinema4.addShowTime(showtime20);
 
 		//BishanCinema5(midway) 15/11
-		Showtime showtime21 = new Showtime(LocalDateTime.of(2019,11,15,9,30),movie_midway,bishancinema5,MovieType.BLOCKBUSTER);
-		Showtime showtime22 = new Showtime(LocalDateTime.of(2019,11,15,11,30),movie_midway,bishancinema5,MovieType.BLOCKBUSTER);
-		Showtime showtime23 = new Showtime(LocalDateTime.of(2019,11,15,13,30),movie_midway,bishancinema5,MovieType.BLOCKBUSTER);
-		Showtime showtime24 = new Showtime(LocalDateTime.of(2019,11,15,16,00),movie_midway,bishancinema5,MovieType.BLOCKBUSTER);
-		Showtime showtime25 = new Showtime(LocalDateTime.of(2019,11,15,21,00),movie_midway,bishancinema5,MovieType.BLOCKBUSTER);
+		Showtime showtime21 = new Showtime(LocalDateTime.of(2019,11,15,9,30),movie_midway,bishancinema5,MovieType.NORMAL);
+		Showtime showtime22 = new Showtime(LocalDateTime.of(2019,11,15,11,30),movie_midway,bishancinema5,MovieType.NORMAL);
+		Showtime showtime23 = new Showtime(LocalDateTime.of(2019,11,15,13,30),movie_midway,bishancinema5,MovieType.NORMAL);
+		Showtime showtime24 = new Showtime(LocalDateTime.of(2019,11,15,16,00),movie_midway,bishancinema5,MovieType.NORMAL);
+		Showtime showtime25 = new Showtime(LocalDateTime.of(2019,11,15,21,00),movie_midway,bishancinema5,MovieType.NORMAL);
 		bishancinema5.addShowTime(showtime21);
 		bishancinema5.addShowTime(showtime22);
 		bishancinema5.addShowTime(showtime23);
