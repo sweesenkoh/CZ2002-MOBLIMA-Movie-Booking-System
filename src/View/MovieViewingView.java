@@ -38,12 +38,11 @@ public class MovieViewingView extends View {
 		super.setTitle(this.title);
 		super.setViewContent(this.viewContent);
 		super.activate();
-		
+
 		int userInput = IOManager.getUserInputInt("Please input your choice",1,options.size());
 		processUserInput(userInput);
 	}
-	
-	
+
 	@Override
 	protected void processUserInput(int input) {
 		

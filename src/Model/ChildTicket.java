@@ -2,12 +2,18 @@ package Model;
 
 
 public class ChildTicket extends Ticket {
-	public ChildTicket(Seat seat, Showtime showtime, TicketType ticketType) {
-		super(seat, showtime, ticketType);
+
+	public ChildTicket(Seat seat, Showtime showtime) {
+		super(seat, showtime);
 	}
-//	public ChildTicket(Seat seat, Showtime showtime) {
-//		super(seat, showtime);
-//		super.setPrice(showtime.getPrice() - 2);
-//		//child and SC ticket price TBC
-//	}
+
+	@Override
+	public double getFractionalCostOutOfOriginal() {
+		return PriceConfiguration.getInstance().getChildPercentageOff();
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket Type: Child\n" + super.toString();
+	}
 }

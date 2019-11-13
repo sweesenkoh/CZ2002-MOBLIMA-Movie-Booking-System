@@ -103,17 +103,16 @@ public class AdminSystemSettingsView extends View {
 
     private void handleSetBaseTicketPrice(){
 
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
         System.out.printf("Current Base Price: $");
-        IOManager.printDouble(priceConfiguration.getBasePrice(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getBasePrice(),2);
         System.out.printf("\n");
         double userInput = IOManager.getUserInputDouble("What is the new base price that you want to set? (We will round up to 2dp)",0,Double.POSITIVE_INFINITY);
         BigDecimal bd = new BigDecimal(userInput).setScale(2, RoundingMode.HALF_UP);
         double roundedInput = bd.doubleValue();
-        priceConfiguration.setBasePrice(roundedInput);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setBasePrice(roundedInput);
+        DatabaseManager.savePriceConfiguration(PriceConfiguration.getInstance());
         System.out.printf("Saved! Here is the new base price: $");
-        IOManager.printDouble(priceConfiguration.getBasePrice(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getBasePrice(),2);
         System.out.printf("\n");
         IOManager.getUserInputString("Press any key to continue: ");
         this.activate();
@@ -122,17 +121,15 @@ public class AdminSystemSettingsView extends View {
 
     private void handleSetBasePlatinumTicketPrice(){
 
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
         System.out.printf("Current Base Platinum Price: $");
-        IOManager.printDouble(priceConfiguration.getPlatinumBasePrice(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getPlatinumBasePrice(),2);
         System.out.printf(" \n");
         double userInput = IOManager.getUserInputDouble("What is the new base platinum price that you want to set? (We will round up to 2dp)",0,Double.POSITIVE_INFINITY);
         BigDecimal bd = new BigDecimal(userInput).setScale(2, RoundingMode.HALF_UP);
         double roundedInput = bd.doubleValue();
-        priceConfiguration.setPlatinumBasePrice(roundedInput);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setPlatinumBasePrice(roundedInput);
         System.out.printf("Saved! Here is the new base platinum price: $");
-        IOManager.printDouble(priceConfiguration.getPlatinumBasePrice(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getPlatinumBasePrice(),2);
         System.out.printf("\n");
         IOManager.getUserInputString("Press any key to continue: ");
         this.activate();
@@ -140,68 +137,60 @@ public class AdminSystemSettingsView extends View {
 
     private void handleSetBaseGoldTicketPrice(){
 
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
         System.out.printf("Current Gold Platinum Price: $");
-        IOManager.printDouble(priceConfiguration.getGoldBasePrice(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getGoldBasePrice(),2);
         System.out.printf("\n");
         double userInput = IOManager.getUserInputDouble("What is the new base gold class price that you want to set? (We will round up to 2dp)",0,Double.POSITIVE_INFINITY);
         BigDecimal bd = new BigDecimal(userInput).setScale(2, RoundingMode.HALF_UP);
         double roundedInput = bd.doubleValue();
-        priceConfiguration.setGoldBasePrice(roundedInput);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setGoldBasePrice(roundedInput);
         System.out.printf("Saved! Here is the new base gold price: $");
-        IOManager.printDouble(priceConfiguration.getGoldBasePrice(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getGoldBasePrice(),2);
         System.out.printf("\n");
         IOManager.getUserInputString("Press any key to continue: ");
         this.activate();
     }
 
     private void handleSetWeekendPriceIncrement(){
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
         System.out.printf("Current Weekend Price Increment: $");
-        IOManager.printDouble(priceConfiguration.getWeekendIncrement(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getWeekendIncrement(),2);
         System.out.printf("\n");
         double userInput = IOManager.getUserInputDouble("What is the new weekend price increment that you want to set? (We will round up to 2dp)",0,Double.POSITIVE_INFINITY);
         BigDecimal bd = new BigDecimal(userInput).setScale(2, RoundingMode.HALF_UP);
         double roundedInput = bd.doubleValue();
-        priceConfiguration.setWeekendIncrement(roundedInput);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setWeekendIncrement(roundedInput);
         System.out.printf("Saved! Here is the new weekend price increment: $");
-        IOManager.printDouble(priceConfiguration.getWeekendIncrement(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getWeekendIncrement(),2);
         System.out.printf("\n");
         IOManager.getUserInputString("Press any key to continue: ");
         this.activate();
     }
 
     private void handleSetPHPriceIncrement(){
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
         System.out.printf("Current Public Holiday Price Increment: $");
-        IOManager.printDouble(priceConfiguration.getPublicHolidayIncrement(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getPublicHolidayIncrement(),2);
         System.out.printf("\n");
         double userInput = IOManager.getUserInputDouble("What is the new public holiday price increment that you want to set? (We will round up to 2dp)",0,Double.POSITIVE_INFINITY);
         BigDecimal bd = new BigDecimal(userInput).setScale(2, RoundingMode.HALF_UP);
         double roundedInput = bd.doubleValue();
-        priceConfiguration.setPublicHolidayIncrement(roundedInput);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setPublicHolidayIncrement(roundedInput);
         System.out.printf("Saved! Here is the new public holiday price increment: $");
-        IOManager.printDouble(priceConfiguration.getPublicHolidayIncrement(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getPublicHolidayIncrement(),2);
         System.out.printf("\n");
         IOManager.getUserInputString("Press any key to continue: ");
         this.activate();
     }
 
     private void handleSet3DPriceIncrement(){
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
         System.out.printf("Current 3D Price Increment: $");
-        IOManager.printDouble(priceConfiguration.getThreeDMovieIncrement(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getThreeDMovieIncrement(),2);
         System.out.printf("\n");
         double userInput = IOManager.getUserInputDouble("What is the new 3D price increment that you want to set? (We will round up to 2dp)",0,Double.POSITIVE_INFINITY);
         BigDecimal bd = new BigDecimal(userInput).setScale(2, RoundingMode.HALF_UP);
         double roundedInput = bd.doubleValue();
-        priceConfiguration.setThreeDMovieIncrement(roundedInput);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setThreeDMovieIncrement(roundedInput);
         System.out.printf("Saved! Here is the new 3D price increment: $");
-        IOManager.printDouble(priceConfiguration.getThreeDMovieIncrement(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getThreeDMovieIncrement(),2);
         System.out.printf("\n");
         IOManager.getUserInputString("Press any key to continue: ");
         this.activate();
@@ -209,68 +198,60 @@ public class AdminSystemSettingsView extends View {
     }
 
     private void handleSetBlockbusterPriceIncrement(){
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
         System.out.printf("Current Blockbuster Movie Price Increment: $");
-        IOManager.printDouble(priceConfiguration.getBlockbusterMovieIncrement(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getBlockbusterMovieIncrement(),2);
         System.out.printf("\n");
         double userInput = IOManager.getUserInputDouble("What is the new 3D price increment that you want to set? (We will round up to 2dp)",0,Double.POSITIVE_INFINITY);
         BigDecimal bd = new BigDecimal(userInput).setScale(2, RoundingMode.HALF_UP);
         double roundedInput = bd.doubleValue();
-        priceConfiguration.setBlockbusterMovieIncrement(roundedInput);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setBlockbusterMovieIncrement(roundedInput);
         System.out.printf("Saved! Here is the new blockbuster movie price increment: $");
-        IOManager.printDouble(priceConfiguration.getBlockbusterMovieIncrement(),2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getBlockbusterMovieIncrement(),2);
         System.out.printf("\n");
         IOManager.getUserInputString("Press any key to continue: ");
         this.activate();
     }
 
     private void handleSetChildTicketPercentageDiscount(){
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
         System.out.printf("Current Child Ticket Percentage Off: ");
-        IOManager.printDouble((1 - priceConfiguration.getChildPercentageOff()) * 100,2);
+        IOManager.printDouble((1 - PriceConfiguration.getInstance().getChildPercentageOff()) * 100,2);
         System.out.printf("%% \n");
         double userInput = IOManager.getUserInputDouble("What is the new child ticket percentage off that you want to set? (from 0 to 100) example: 20 for 20% discount for child ticket",0,100);
         BigDecimal bd = new BigDecimal((100 - userInput) / 100).setScale(2, RoundingMode.HALF_UP);
         double roundedInput = bd.doubleValue();
-        priceConfiguration.setChildPercentageOff(roundedInput);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setChildPercentageOff(roundedInput);
         System.out.printf("Saved! Here is the new child ticket percentage off: ");
-        IOManager.printDouble((1 - priceConfiguration.getChildPercentageOff()) * 100,2);
-        System.out.printf("%%  " + "(Meaning only need to pay " + priceConfiguration.getChildPercentageOff() * 100 + "%% of the original price)\n");
+        IOManager.printDouble((1 - PriceConfiguration.getInstance().getChildPercentageOff()) * 100,2);
+        System.out.printf("%%  " + "(Meaning only need to pay " + PriceConfiguration.getInstance().getChildPercentageOff() * 100 + "%% of the original price)\n");
         IOManager.getUserInputString("Press any key to continue: ");
         this.activate();
     }
 
     private void handleSetSCTicketPercentageDiscount(){
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
         System.out.printf("Current Senior Citizen Ticket Percentage Off: ");
-        IOManager.printDouble((1 - priceConfiguration.getSeniorCitizenPercentageOff()) * 100,2);
+        IOManager.printDouble((1 - PriceConfiguration.getInstance().getSeniorCitizenPercentageOff()) * 100,2);
         System.out.printf("%% \n");
         double userInput = IOManager.getUserInputDouble("What is the new senior citizen ticket percentage off that you want to set? (from 0 to 100) example: 20 for 20% discount for senior citizen ticket",0,100);
         BigDecimal bd = new BigDecimal((100 - userInput) / 100).setScale(2, RoundingMode.HALF_UP);
         double roundedInput = bd.doubleValue();
-        priceConfiguration.setSeniorCitizenPercentageOff(roundedInput);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setSeniorCitizenPercentageOff(roundedInput);
          System.out.printf("Saved! Here is the Senior citizen ticket percentage off: ");
-        IOManager.printDouble((1 - priceConfiguration.getSeniorCitizenPercentageOff()) * 100,2);
-        System.out.printf("%%  " + "(Meaning only need to pay " + priceConfiguration.getSeniorCitizenPercentageOff() * 100 + "%% of the original price)\n");
+        IOManager.printDouble((1 - PriceConfiguration.getInstance().getSeniorCitizenPercentageOff()) * 100,2);
+        System.out.printf("%%  " + "(Meaning only need to pay " + PriceConfiguration.getInstance().getSeniorCitizenPercentageOff() * 100 + "%% of the original price)\n");
         IOManager.getUserInputString("Press any key to continue: ");
         this.activate();
     }
 
     private void handleSetGSTPercentageIncrease(){
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
         System.out.printf("Current GST Percentage: ");
-        IOManager.printDouble(priceConfiguration.getGstPercentageIncrease() * 100,2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getGstPercentageIncrease() * 100,2);
         System.out.printf("%%" +  "\n");
         double userInput = IOManager.getUserInputDouble("What is the new gst percentage that you want to set? (from 0 to 100) example: 7 for 7% charge on gst",0,100);
         BigDecimal bd = new BigDecimal(userInput / 100).setScale(2, RoundingMode.HALF_UP);
         double roundedInput = bd.doubleValue();
-        priceConfiguration.setGstPercentageIncrease(roundedInput);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setGstPercentageIncrease(roundedInput);
         System.out.printf("Saved! Here is the new gst percentage: ");
-        IOManager.printDouble(priceConfiguration.getGstPercentageIncrease() * 100,2);
+        IOManager.printDouble(PriceConfiguration.getInstance().getGstPercentageIncrease() * 100,2);
         System.out.printf("%% \n");
         IOManager.getUserInputString("Press any key to continue: ");
         this.activate();

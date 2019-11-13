@@ -223,12 +223,12 @@ public class DatabaseManager {
 			return priceConfiguration;
 
 		} catch (FileNotFoundException fileE){
-			return (new PriceConfiguration());
+			return (null);
 		}
 
 		catch (Exception e) {
 			System.out.println("Error occured while trying to retrieve orders from database, try again later");
-			return (new PriceConfiguration());
+			return (PriceConfiguration.getInstance());
 		}
 	}
 

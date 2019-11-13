@@ -1,12 +1,18 @@
 package Model;
 
 public class SCTicket extends Ticket {
-	public SCTicket(Seat seat, Showtime showtime, TicketType ticketType) {
-		super(seat, showtime, ticketType);
+
+	public SCTicket(Seat seat, Showtime showtime) {
+		super(seat, showtime);
 	}
-//	public SCTicket(Seat seat, Showtime showtime) {
-//		super(seat, showtime);
-//		super.setPrice(showtime.getPrice() - 3);
-//		//child and SC ticket price TBC
-//	}
+
+	@Override
+	public double getFractionalCostOutOfOriginal() {
+		return PriceConfiguration.getInstance().getSeniorCitizenPercentageOff();
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket Type: Senior Citizen\n" + super.toString();
+	}
 }

@@ -24,37 +24,38 @@ public class TicketPriceManager {
         finalPrice = applyDayOfWeekOrPHFactor(finalPrice,ticket.getShowtime().getShowDatetime().toLocalDate());
         finalPrice = applyMovieTypeFactor(finalPrice,ticket.getShowtime().getMovieType());
 
-        finalPrice = applyAgeFactor(finalPrice,ticket.getTicketType());
+//        finalPrice = applyAgeFactor(finalPrice,ticket.getTicketType());
+        finalPrice = applyAgeFactor(finalPrice,ticket);
         return finalPrice;
     }
 
 
     private static double applyCinemaClassFactor(CinemaClass cinemaClass){
-
-        switch (cinemaClass){
-            case NORMAL:
-                return DatabaseManager.loadPriceConfiguration().getBasePrice();
-            case PLATINUM:
-                return DatabaseManager.loadPriceConfiguration().getPlatinumBasePrice();
-            case GOLD:
-                return DatabaseManager.loadPriceConfiguration().getGoldBasePrice();
-            default:
-                return DatabaseManager.loadPriceConfiguration().getBasePrice();
-        }
+        return cinemaClass.getBasePrice();
+//        switch (cinemaClass){
+//            case NORMAL:
+//                return PriceConfiguration.getInstance().getBasePrice();
+//            case PLATINUM:
+//                return PriceConfiguration.getInstance().getPlatinumBasePrice();
+//            case GOLD:
+//                return PriceConfiguration.getInstance().getGoldBasePrice();
+//            default:
+//                return PriceConfiguration.getInstance().getBasePrice();
+//        }
     }
 
     private static double applyDayOfWeekOrPHFactor(double price, LocalDate date){
 
         //first check whether is in public holiday
-        for (PublicHoliday ph:DatabaseManager.loadPriceConfiguration().getPublicHolidays()){
+        for (PublicHoliday ph:PriceConfiguration.getInstance().getPublicHolidays()){
             if (ph.getDate().isEqual(date)){
-                return price + DatabaseManager.loadPriceConfiguration().getPublicHolidayIncrement();
+                return price + PriceConfiguration.getInstance().getPublicHolidayIncrement();
             }
         }
 
         //if not in public holiday, check if is in weekend
         if ((date.getDayOfWeek() == DayOfWeek.SATURDAY) || (date.getDayOfWeek() == DayOfWeek.SUNDAY)){
-            return price + DatabaseManager.loadPriceConfiguration().getWeekendIncrement();
+            return price + PriceConfiguration.getInstance().getWeekendIncrement();
         }
 
         return price;
@@ -62,30 +63,37 @@ public class TicketPriceManager {
 
     private static double applyMovieTypeFactor(double price, MovieType movieType){
 
-        switch (movieType){
-            case NORMAL:
-                return price;
-            case THREED:
-                return price + DatabaseManager.loadPriceConfiguration().getThreeDMovieIncrement();
-            case BLOCKBUSTER:
-                return price + DatabaseManager.loadPriceConfiguration().getBlockbusterMovieIncrement();
-            default:
-                return price;
-        }
+        return price + movieType.getPriceIncrement();
+
+//        switch (movieType){
+//            case NORMAL:
+//                return price;
+//            case THREED:
+//                return price + PriceConfiguration.getInstance().getThreeDMovieIncrement();
+//            case BLOCKBUSTER:
+//                return price + PriceConfiguration.getInstance().getBlockbusterMovieIncrement();
+//            default:
+//                return price;
+//        }
     }
+//
+//    private static double applyAgeFactor(double price,TicketType ticketType){
+//
+//        switch (ticketType){
+//            case ADULT:
+//                return price;
+//            case CHILD:
+//                return price * DatabaseManager.loadPriceConfiguration().getChildPercentageOff();
+//            case SENIORCITIZEN:
+//                return price * DatabaseManager.loadPriceConfiguration().getSeniorCitizenPercentageOff();
+//            default:
+//                return price;
+//        }
+//    }
 
-    private static double applyAgeFactor(double price,TicketType ticketType){
 
-        switch (ticketType){
-            case ADULT:
-                return price;
-            case CHILD:
-                return price * DatabaseManager.loadPriceConfiguration().getChildPercentageOff();
-            case SENIORCITIZEN:
-                return price * DatabaseManager.loadPriceConfiguration().getSeniorCitizenPercentageOff();
-            default:
-                return price;
-        }
+    private static double applyAgeFactor(double price,Ticket ticket){
+        return price*ticket.getFractionalCostOutOfOriginal();
     }
 
 

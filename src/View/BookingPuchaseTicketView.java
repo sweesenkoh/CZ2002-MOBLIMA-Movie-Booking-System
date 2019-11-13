@@ -6,6 +6,7 @@ import Controller.TicketPriceManager;
 import Controller.ViewNavigator;
 import Model.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -80,17 +81,17 @@ public class BookingPuchaseTicketView extends View {
 
         for (Seat seat : this.selectedSeats){
             if (adultCount != 0){
-                createdTickets.add(new Ticket(seat,this.selectedShowtime, TicketType.ADULT));
+                createdTickets.add(new AdultTicket(seat,this.selectedShowtime));
                 adultCount--;
             }
 
             else if (childCount != 0){
-                createdTickets.add(new Ticket(seat,this.selectedShowtime, TicketType.CHILD));
+                createdTickets.add(new ChildTicket(seat,this.selectedShowtime));
                 childCount--;
             }
 
             else if (seniorCitizenCount != 0){
-                createdTickets.add(new Ticket(seat,this.selectedShowtime, TicketType.SENIORCITIZEN));
+                createdTickets.add(new SCTicket(seat,this.selectedShowtime));
                 seniorCitizenCount--;
             }
         }
@@ -113,6 +114,15 @@ public class BookingPuchaseTicketView extends View {
         for (Ticket ticket : createdTickets){
             returnString += ticket.toString() + "\n";
             totalPrice += ticket.getPrice();
+        }
+
+        for (PublicHoliday publicHoliday : PriceConfiguration.getInstance().getPublicHolidays()){
+            if (publicHoliday.getDate().isEqual(selectedShowtime.getShowDatetime().toLocalDate())){
+                returnString += "Public Holiday: " + publicHoliday.getName() + "\n";
+                returnString += "Public Holiday Additional Charge Per Ticket: $" + String.format("%.2f",PriceConfiguration.getInstance().getPublicHolidayIncrement());
+                returnString += "\n";
+                break;
+            }
         }
 
         returnString += String.format("Total Price Before GST : $%.2f\n",totalPrice);

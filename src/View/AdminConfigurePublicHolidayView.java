@@ -20,7 +20,7 @@ public class AdminConfigurePublicHolidayView extends View {
 
     private String title = "Configure Public Holiday";
     private String viewContent = "";
-    private ArrayList<PublicHoliday> publicHolidays = DatabaseManager.loadPriceConfiguration().getPublicHolidays();
+    private ArrayList<PublicHoliday> publicHolidays = PriceConfiguration.getInstance().getPublicHolidays();
 
     public AdminConfigurePublicHolidayView(){
     }
@@ -28,7 +28,7 @@ public class AdminConfigurePublicHolidayView extends View {
 
     @Override
     public void activate() {
-        viewContent = " ";
+        viewContent = "\n\n";
         int count = 1;
         for (PublicHoliday publicHoliday : publicHolidays){
             viewContent += "     " + count + ". " + publicHoliday.getName() + "  (" + publicHoliday.getDate().format(DateTimeFormatter.ofPattern("d/M/yyyy")) + ") \n";
@@ -43,8 +43,9 @@ public class AdminConfigurePublicHolidayView extends View {
 
         super.setOptions(options);
         super.setTitle(this.title);
-        super.setViewContent(this.viewContent);
-        super.activate();
+        super.printViewTitle();
+        System.out.println(viewContent);
+        super.printOptions();
 
         int userInput = IOManager.getUserInputInt("Please input a choice",1,options.size());
         processUserInput(userInput);
@@ -72,9 +73,7 @@ public class AdminConfigurePublicHolidayView extends View {
         LocalDate date = IOManager.getUserInputDate("Please input the date of the public holiday");
         PublicHoliday publicHoliday = new PublicHoliday(name,date);
         this.publicHolidays.add(publicHoliday);
-        PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
-        priceConfiguration.setPublicHolidays(this.publicHolidays);
-        DatabaseManager.savePriceConfiguration(priceConfiguration);
+        PriceConfiguration.getInstance().setPublicHolidays(this.publicHolidays);
         IOManager.getUserInputString("Successful! Please input any key to continue");
         this.activate();
     }
@@ -97,9 +96,7 @@ public class AdminConfigurePublicHolidayView extends View {
             System.out.println("\n\n");
             int userChoice = IOManager.getUserInputInt("Please select the public holiday that you wish to delete: ",1,this.publicHolidays.size());
             this.publicHolidays.remove(userChoice - 1);
-            PriceConfiguration priceConfiguration = DatabaseManager.loadPriceConfiguration();
-            priceConfiguration.setPublicHolidays(this.publicHolidays);
-            DatabaseManager.savePriceConfiguration(priceConfiguration);
+            PriceConfiguration.getInstance().setPublicHolidays(this.publicHolidays);
             IOManager.getUserInputString("Successful! Please input any key to continue");
             this.activate();
         }

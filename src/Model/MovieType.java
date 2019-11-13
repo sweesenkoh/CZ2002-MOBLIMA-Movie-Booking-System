@@ -16,5 +16,18 @@ public enum MovieType implements Serializable {
     }
 
     public String typeName() { return typeName; }
+
+    public double getPriceIncrement(){
+        switch (this){
+            case NORMAL:
+                return 0;
+            case THREED:
+                return PriceConfiguration.getInstance().getThreeDMovieIncrement();
+            case BLOCKBUSTER:
+                return PriceConfiguration.getInstance().getBlockbusterMovieIncrement();
+            default:
+                return 0;
+        }
+    }
 }
 
