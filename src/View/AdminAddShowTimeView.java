@@ -21,7 +21,6 @@ public class AdminAddShowTimeView extends View {
             "Back to Previous Page"
     ));
 
-
     private String title = "Admin: Add or Remove Show Time for: ";
     private String viewContent = "";
     private Movie selectedMovie;
@@ -83,7 +82,7 @@ public class AdminAddShowTimeView extends View {
         chosenCineplexIndex = IOManager.getUserInputInt("Please choose one of the cineplexes",1,cineplexes.size());
         ArrayList<String> cinemaStrings = new ArrayList<>();
         for (Cinema cinema : cineplexes.get(chosenCineplexIndex - 1).getCinemas()){
-            cinemaStrings.add("Cinema Code: " + cinema.getCode());
+            cinemaStrings.add("Cinema Code: " + cinema.getCode() + "  [ " + cinema.getCinemaClass().getClassName() + " ]");
         }
         IOManager.printMenuOptions(cinemaStrings);
         chosenCinemaIndex = IOManager.getUserInputInt("Please choose one of the cinemas",1,cinemaStrings.size());
@@ -92,8 +91,8 @@ public class AdminAddShowTimeView extends View {
 
     private void printingCurrentAvailableShowTime(){
         int count = 1;
-        for (Showtime showtime:cineplexes.get(chosenCinemaIndex - 1).getCinemas().get(chosenCinemaIndex - 1).getShowtimes()){
-            if (showtime.getShowDatetime().toLocalDate().equals(chosenDate)){
+        for (Showtime showtime:cineplexes.get(chosenCineplexIndex - 1).getCinemas().get(chosenCinemaIndex - 1).getShowtimes()){
+            if (showtime.getShowDatetime().toLocalDate().isEqual(chosenDate)){
                 if (count == 1) {
                     System.out.println("Here is the current showtime on this day:\n\n");
                 }
@@ -124,15 +123,19 @@ public class AdminAddShowTimeView extends View {
         ArrayList<Showtime> showtimes = new ArrayList<>();
         ArrayList<Showtime> otherDateShowTimes = new ArrayList<>();
 
-        for (Showtime showtime:cineplexes.get(chosenCinemaIndex - 1).getCinemas().get(chosenCinemaIndex - 1).getShowtimes()){
-            if (showtime.getShowDatetime().toLocalDate().equals(chosenDate)){
+        for (Showtime showtime:cineplexes.get(chosenCineplexIndex - 1).getCinemas().get(chosenCinemaIndex - 1).getShowtimes()){
+            if (showtime.getShowDatetime().toLocalDate().isEqual(chosenDate)){
                 showtimes.add(showtime);
             }else{
                 otherDateShowTimes.add(showtime);
             }
         }
+
         showtimes.remove(removeChoice - 1);
-        otherDateShowTimes.addAll(showtimes);
+
+        for (Showtime showtime : showtimes){
+            otherDateShowTimes.add(showtime);
+        }
 
         cineplexes.get(chosenCineplexIndex - 1).getCinemas().get(chosenCinemaIndex - 1).setShowtimes(otherDateShowTimes);
         DatabaseManager.saveCineplexes(cineplexes);
