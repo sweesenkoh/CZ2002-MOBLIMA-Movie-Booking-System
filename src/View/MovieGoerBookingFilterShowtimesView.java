@@ -15,7 +15,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class MovieGoerBookingBrowseOptionsView extends View {
+/**
+ * This View class is responsible for getting the filter mode from the user and filter the showtimes accordingly
+ */
+
+public class MovieGoerBookingFilterShowtimesView extends View {
 
     /**
      * This is the View options
@@ -43,7 +47,11 @@ public class MovieGoerBookingBrowseOptionsView extends View {
      */
     private Movie selectedMovie;
 
-    public MovieGoerBookingBrowseOptionsView(Movie movie){
+    /**
+     * This is constructor which requires a movie object as an argument
+     * @param movie The selected Movie object
+     */
+    public MovieGoerBookingFilterShowtimesView(Movie movie){
         this.selectedMovie = movie;
         this.title += this.selectedMovie.getTitle();
     }
@@ -87,6 +95,9 @@ public class MovieGoerBookingBrowseOptionsView extends View {
         }
     }
 
+    /**
+     * This method handles the option when the user choose to handle showtimes by cineplex
+     */
     private void handleChooseCineplex(){
 
         ArrayList<Cineplex> cineplexes = DatabaseManager.retrieveAllCineplexes();
@@ -113,6 +124,9 @@ public class MovieGoerBookingBrowseOptionsView extends View {
         ViewNavigator.pushView(new MovieGoerBookingListShowTimesView(showtimes));
     }
 
+    /**
+     * This method handles the option when the user choose to filter showtimes by date
+     */
     private void handleChooseByDate(){
 
         ArrayList<Cineplex> cineplexes = DatabaseManager.retrieveAllCineplexes();
@@ -135,10 +149,10 @@ public class MovieGoerBookingBrowseOptionsView extends View {
 
     }
 
-//    private void handleChooseByBoth(){
-//
-//    }
 
+    /**
+     * This method handles the option when the user choose not to filter the showtimes
+     */
     private void handleDoNotFilter(){
         ArrayList<Cineplex> cineplexes = DatabaseManager.retrieveAllCineplexes();
         ArrayList<Showtime> showtimes = new ArrayList<>();

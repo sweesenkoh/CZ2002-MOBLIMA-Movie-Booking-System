@@ -2,9 +2,7 @@ package Model;
 
 import Controller.DatabaseManager;
 
-import javax.xml.crypto.Data;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PriceConfiguration implements Serializable {
@@ -37,10 +35,10 @@ public class PriceConfiguration implements Serializable {
     public static PriceConfiguration getInstance()
     {
         if (single_instance == null){
-            if (DatabaseManager.loadPriceConfiguration() == null){
+            if (DatabaseManager.retrievePriceConfiguration() == null){
                 return new PriceConfiguration();
             }else{
-                return DatabaseManager.loadPriceConfiguration(); //loading price configuration stored in text file
+                return DatabaseManager.retrievePriceConfiguration(); //loading price configuration stored in text file
             }
         }
         return single_instance;

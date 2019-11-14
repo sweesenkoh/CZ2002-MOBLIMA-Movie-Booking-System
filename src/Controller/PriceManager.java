@@ -32,7 +32,6 @@ public class PriceManager {
         finalPrice = applyDayOfWeekOrPHFactor(finalPrice,ticket.getShowtime().getShowDatetime().toLocalDate());
         finalPrice = applyMovieTypeFactor(finalPrice,ticket.getShowtime().getMovieType());
 
-//        finalPrice = applyAgeFactor(finalPrice,ticket.getTicketType());
         finalPrice = applyAgeFactor(finalPrice,ticket);
         return finalPrice;
     }
@@ -40,16 +39,6 @@ public class PriceManager {
 
     private static double applyCinemaClassFactor(CinemaClass cinemaClass){
         return cinemaClass.getBasePrice();
-//        switch (cinemaClass){
-//            case NORMAL:
-//                return PriceConfiguration.getInstance().getBasePrice();
-//            case PLATINUM:
-//                return PriceConfiguration.getInstance().getPlatinumBasePrice();
-//            case GOLD:
-//                return PriceConfiguration.getInstance().getGoldBasePrice();
-//            default:
-//                return PriceConfiguration.getInstance().getBasePrice();
-//        }
     }
 
     private static double applyDayOfWeekOrPHFactor(double price, LocalDate date){
@@ -70,34 +59,9 @@ public class PriceManager {
     }
 
     private static double applyMovieTypeFactor(double price, MovieType movieType){
-
         return price + movieType.getPriceIncrement();
-
-//        switch (movieType){
-//            case NORMAL:
-//                return price;
-//            case THREED:
-//                return price + PriceConfiguration.getInstance().getThreeDMovieIncrement();
-//            case BLOCKBUSTER:
-//                return price + PriceConfiguration.getInstance().getBlockbusterMovieIncrement();
-//            default:
-//                return price;
-//        }
     }
-//
-//    private static double applyAgeFactor(double price,TicketType ticketType){
-//
-//        switch (ticketType){
-//            case ADULT:
-//                return price;
-//            case CHILD:
-//                return price * DatabaseManager.loadPriceConfiguration().getChildPercentageOff();
-//            case SENIORCITIZEN:
-//                return price * DatabaseManager.loadPriceConfiguration().getSeniorCitizenPercentageOff();
-//            default:
-//                return price;
-//        }
-//    }
+
 
 
     private static double applyAgeFactor(double price,Ticket ticket){

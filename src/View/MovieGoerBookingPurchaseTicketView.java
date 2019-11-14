@@ -9,7 +9,11 @@ import Model.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MovieGoerBookingPuchaseTicketView extends View {
+
+/**
+ * This View class is primarily responsible for facilitating the booking and purchasing of tickets from movie-goer
+ */
+public class MovieGoerBookingPurchaseTicketView extends View {
 
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Confirm",
@@ -23,12 +27,15 @@ public class MovieGoerBookingPuchaseTicketView extends View {
     private ArrayList<Seat> selectedSeats;
     private Showtime selectedShowtime;
 
-    public MovieGoerBookingPuchaseTicketView(ArrayList<Seat> selectedSeats, Showtime selectedShowtime){
+    public MovieGoerBookingPurchaseTicketView(ArrayList<Seat> selectedSeats, Showtime selectedShowtime){
         this.selectedSeats = selectedSeats;
         this.selectedShowtime = selectedShowtime;
     }
 
 
+    /**
+     * This method helps to transform this view into active state
+     */
     @Override
     public void activate() {
         super.setTitle(this.title);

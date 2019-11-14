@@ -84,16 +84,16 @@ public class MovieViewingView extends View {
 //			}
 		}else if (movie.getStatus() == MovieStatus.ENDED) {
 			if (input == 2) {
-				ViewNavigator.pushView(new MovieGoerLeaveReviewsView(this.movie));
+				ViewNavigator.pushView(new MovieGoerLeaveReviewView(this.movie));
 			}else if (input == 3) {
 				ViewNavigator.pushView(new MovieGoerListReviewsView(this.movie));
 			}
 		}else {
 			if (input == 2){
-				ViewNavigator.pushView(new MovieGoerBookingBrowseOptionsView(this.movie));
+				ViewNavigator.pushView(new MovieGoerBookingFilterShowtimesView(this.movie));
 			}
 			else if (input == 3) {
-				ViewNavigator.pushView(new MovieGoerLeaveReviewsView(this.movie));
+				ViewNavigator.pushView(new MovieGoerLeaveReviewView(this.movie));
 			}else if (input == 4) {
 				ViewNavigator.pushView(new MovieGoerListReviewsView(this.movie));
 			}

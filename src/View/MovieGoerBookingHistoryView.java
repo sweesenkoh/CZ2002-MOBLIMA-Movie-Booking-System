@@ -7,14 +7,42 @@ import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Order;
 
+/**
+ * This class is responsible for showing the booking history that has been made by a movie-goer
+ */
 public class MovieGoerBookingHistoryView extends View {
-	
+
+	/**
+	 * This is the View options
+	 */
 	private ArrayList<String> options = new ArrayList<>();
+
+	/**
+	 * This is the View title
+	 */
 	private String title = "Booking History";
+
+	/**
+	 * This is the View content
+	 */
 	private String viewContent = "Here is the list of your past bookings: Choose any one of the order to show the detailed order information";
+
+	/**
+	 * This is the movie goer name which is used to filter the booking history in which the booking is made under this name
+	 */
 	private String username;
+
+	/**
+	 * This is the list of orders made by the movie-goer
+	 */
 	private ArrayList<Order> orders = new ArrayList<>();
-	
+
+
+	/**
+	 * This is the constructor which takes the username as an argument.
+	 * This username refers to the movie goer name, which is needed to show his booking histories
+	 * @param username The name of the movie goer
+	 */
 	public MovieGoerBookingHistoryView(String username) {
 		this.username = username;
 		for (Order order : DatabaseManager.retrieveAllOrders()){
@@ -26,7 +54,10 @@ public class MovieGoerBookingHistoryView extends View {
 
 		this.options.add("Back to Previous Page");
 	}
-	
+
+	/**
+	 * This method helps to transform the View into active state
+	 */
 	public void activate() {
 		super.setOptions(this.options);
 		super.setTitle(this.title);

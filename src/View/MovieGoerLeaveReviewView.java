@@ -1,26 +1,45 @@
 package View;
 
 import java.util.ArrayList;
-
 import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Movie;
 import Model.Review;
 
-public class MovieGoerLeaveReviewsView extends View {
-	
-	
+
+/**
+ * This View class is responsible for getting review from the movie-goer
+ */
+public class MovieGoerLeaveReviewView extends View {
+
+	/**
+	 * This is the options for the View
+	 */
 	private ArrayList<String> options = new ArrayList<>();
+
+	/**
+	 * This is the title for the View
+	 */
 	private String title = "Leave Review";
+
+	/**
+	 * This is the content for the View
+	 */
 	private String viewContent = " ";
+
+	/**
+	 * This is the selected movie where the user will leave the reviews on
+	 */
 	private Movie selectedMovie;
 	
-	public MovieGoerLeaveReviewsView(Movie movie) {
+	public MovieGoerLeaveReviewView(Movie movie) {
 		this.selectedMovie = movie;
 	}
-	
 
+	/**
+	 * This method transforms the View state into active state
+	 */
 	public void activate() {
 		super.setOptions(this.options);
 		super.setTitle(this.title);

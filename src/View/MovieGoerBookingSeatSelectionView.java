@@ -7,20 +7,50 @@ import Model.Showtime;
 
 import java.util.ArrayList;
 
+
+/**
+ * This View class is primarily responsible for facilitating the process of choosing of seats by the movie-goer before proceeding for booking.
+ */
 public class MovieGoerBookingSeatSelectionView extends View {
 
-
+    /**
+     * This is the options for the View
+     */
     private ArrayList<String> options = new ArrayList<>();
+
+    /**
+     * This is the title for the View
+     */
     private String title = "Seat Selection";
+
+    /**
+     * This is the content for the View
+     */
     private String viewContent = "       ";
+
+    /**
+     * This is the selected showtime to be used for booking a seat
+     */
     private Showtime showtime;
+
+    /**
+     * This is the chosen seat by the movie-goer to be used for booking
+     */
     private ArrayList<Seat> chosenSeats = new ArrayList<>();
 
+
+    /**
+     * This is the constructor which takes in the showtime as the argument and assign it to our private showtime variable
+     * @param showtime The selected showtime by the movie-goer
+     */
     public MovieGoerBookingSeatSelectionView(Showtime showtime){
         this.showtime = showtime;
         this.viewContent += this.showtime.toString();
     }
 
+    /**
+     * This method transforms the state of this View to be active.
+     */
     @Override
     public void activate() {
         super.setTitle(this.title);
@@ -51,6 +81,9 @@ public class MovieGoerBookingSeatSelectionView extends View {
         }
     }
 
+    /**
+     * This method handles the process of booking seat from the seat layout by the movie-goer
+     */
     private void handleBookSeat(){
 
         int row;
@@ -129,11 +162,8 @@ public class MovieGoerBookingSeatSelectionView extends View {
             for (Seat seat:this.chosenSeats){
                 showtime.getSeatLayout().getSeat(seat.getRow(),seat.getCol()).unbookSeat();
             }
-            ViewNavigator.pushView(new MovieGoerBookingPuchaseTicketView(this.chosenSeats,this.showtime));
+            ViewNavigator.pushView(new MovieGoerBookingPurchaseTicketView(this.chosenSeats,this.showtime));
         }
-
-
-
 
     }
 }

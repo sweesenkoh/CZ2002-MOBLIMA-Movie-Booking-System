@@ -185,7 +185,7 @@ public class DatabaseManager {
 
 	/**
 	 * This method returns the list of cineplexes in the database (Cineplexes.txt)
-	 * @return
+	 * @return An array of the cineplexes
 	 */
 	public static ArrayList<Cineplex> retrieveAllCineplexes(){
 		try {
@@ -297,7 +297,7 @@ public class DatabaseManager {
 	 * @return The PriceConfiguration object from the database
 	 */
 
-	public static PriceConfiguration loadPriceConfiguration(){
+	public static PriceConfiguration retrievePriceConfiguration(){
 		try {
 			ObjectInputStream input = new ObjectInputStream(new FileInputStream("PriceConfiguration.txt"));
 			PriceConfiguration priceConfiguration = (PriceConfiguration) input.readObject();
