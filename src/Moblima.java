@@ -1,21 +1,20 @@
 
 //import Model.SeatLayout;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Random;
 
 
+import Controller.IOManager;
 import Model.*;
 
 import Controller.DatabaseManager;
-import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.MovieStatus;
 import View.MainMenuView;
 
-import javax.xml.crypto.Data;
+/**
+ * This is the main application class, the entry point of our Application
+ */
 
 public class Moblima {
 
@@ -24,20 +23,21 @@ public class Moblima {
 
 //		DatabaseManager.saveNewAdminUser(new AdminUser("admin","admin"));
 	//	generateAdminUsersToDatabase();
+		//generateDatabase();
 		ViewNavigator.pushView(new MainMenuView());
-	    //generateDatabase();
+
 
 
 
 
 	}
 
-	public static void generateAdminUsersToDatabase(){
+	private static void generateAdminUsersToDatabase(){
 		AdminUser adminUser = new AdminUser("admin","admin");
 		DatabaseManager.saveNewAdminUser(adminUser);
 	}
 
-	public static void generateDatabase(){
+	private static void generateDatabase(){
 
 
 		Movie movie_avatar = new Movie("Avatar",MovieStatus.ENDED,MovieCensorshipRating.PG13);
@@ -193,15 +193,15 @@ public class Moblima {
 		Cineplex bishan_cineplex = new Cineplex("Bishan Cineplex",new ArrayList<>());
 
 		Cinema bishancinema1 = new Cinema(bishan_cineplex,CinemaClass.GOLD,1,bishanSeatLayout_Small);
-		Cinema bishancinema2 = new Cinema(bishan_cineplex,CinemaClass.GOLD,2,bishanSeatLayout_Small);
+		Cinema bishancinema2 = new Cinema(bishan_cineplex,CinemaClass.NORMAL,2,bishanSeatLayout_Small);
 		Cinema bishancinema3 = new Cinema(bishan_cineplex,CinemaClass.GOLD,3,bishanSeatLayout_Small);
 
 		Cinema bishancinema4 = new Cinema(bishan_cineplex,CinemaClass.PLATINUM,4,bishanSeatLayout_Medium);
-		Cinema bishancinema5 = new Cinema(bishan_cineplex,CinemaClass.PLATINUM,5,bishanSeatLayout_Medium);
+		Cinema bishancinema5 = new Cinema(bishan_cineplex,CinemaClass.NORMAL,5,bishanSeatLayout_Medium);
 		Cinema bishancinema6 = new Cinema(bishan_cineplex,CinemaClass.PLATINUM,6,bishanSeatLayout_Medium);
 
 		Cinema bishancinema7 = new Cinema(bishan_cineplex,CinemaClass.NORMAL,7,bishanSeatLayout_Large);
-		Cinema bishancinema8 = new Cinema(bishan_cineplex,CinemaClass.NORMAL,8,bishanSeatLayout_Large);
+		Cinema bishancinema8 = new Cinema(bishan_cineplex,CinemaClass.GOLD,8,bishanSeatLayout_Large);
 		Cinema bishancinema9 = new Cinema(bishan_cineplex,CinemaClass.NORMAL,9,bishanSeatLayout_Large);
 
 		bishan_cineplex.addCinema(bishancinema1);
@@ -1851,6 +1851,10 @@ public class Moblima {
 		bedokcinema6.addShowTime(showtime579);
 
 
+		Showtime showtime600 = new Showtime(LocalDateTime.of(2019,11,15,22,00),movie_joker,bishancinema2,MovieType.NORMAL);
+		bishancinema6.addShowTime(showtime600);
+
+
 
 
 
@@ -1862,13 +1866,94 @@ public class Moblima {
 
 
 
-
-
 		ArrayList<Cineplex> cineplexes = new ArrayList<>();
 		cineplexes.add(bishan_cineplex);
 		cineplexes.add(jurongeast_cineplex);
 		cineplexes.add(bedok_cineplex);
-		DatabaseManager.saveCineplexes(cineplexes);
+		DatabaseManager.overwriteCineplexDatabaseWithNewCineplexes(cineplexes);
+
+
+		//	Ticket ticket1 = new AdultTicket(
+		ArrayList<Ticket> createdTickets = new ArrayList<Ticket>();
+
+	//joker
+		//midway
+		//21
+		//good liar
+		//terminator
+
+		//joker 5 tickets
+		Seat seat5_a = new Seat(4,1);
+		Ticket ticket5_a = new AdultTicket(seat5_a,showtime600);
+		Seat seat5_b = new Seat(4,2);
+		Ticket ticket5_b = new AdultTicket(seat5_b,showtime600);
+		Seat seat5_c = new Seat(4,3);
+		Ticket ticket5_c = new AdultTicket(seat5_c,showtime600);
+		Seat seat5_d = new Seat(4,4);
+		Ticket ticket5_d = new AdultTicket(seat5_d,showtime600);
+		Seat seat5_e = new Seat(4,5);
+		Ticket ticket5_e = new AdultTicket(seat5_e,showtime600);
+
+		createdTickets.add(ticket5_a);
+		createdTickets.add(ticket5_b);
+		createdTickets.add(ticket5_c);
+		createdTickets.add(ticket5_d);
+		createdTickets.add(ticket5_e);
+
+		//midway 2 rickets
+		Seat seat1_a = new Seat(4,4);
+		Ticket ticket1_a = new AdultTicket(seat1_a,showtime1);
+		Seat seat1_b = new Seat(4,5);
+		Ticket ticket1_b = new AdultTicket(seat1_b,showtime1);
+		createdTickets.add(ticket1_a);
+		createdTickets.add(ticket1_b);
+
+		//21 1 ticket
+		Seat seat2_a = new Seat(4,4);
+		Ticket ticket2_a = new AdultTicket(seat1_a,showtime215);
+
+		createdTickets.add(ticket2_a);
+
+
+		//good liar  3 tickets
+		Seat seat3_a = new Seat(4,4);
+		Ticket ticket3_a = new AdultTicket(seat3_a,showtime14);
+		Seat seat3_b = new Seat(4,5);
+		Ticket ticket3_b = new AdultTicket(seat3_b,showtime14);
+		Seat seat3_c = new Seat(4,6);
+		Ticket ticket3_c = new AdultTicket(seat3_c,showtime14);
+		createdTickets.add(ticket3_a);
+		createdTickets.add(ticket3_b);
+		createdTickets.add(ticket3_c);
+
+
+		//terminator
+		Seat seat4_a = new Seat(3,4);
+		Ticket ticket4_a = new AdultTicket(seat4_a,showtime6);
+		Seat seat4_b = new Seat(3,5);
+		Ticket ticket4_b = new AdultTicket(seat4_b,showtime6);
+		Seat seat4_c = new Seat(3,6);
+		Ticket ticket4_c = new AdultTicket(seat4_c,showtime6);
+		Seat seat4_d = new Seat(3,7);
+		Ticket ticket4_d = new AdultTicket(seat4_d,showtime6);
+		createdTickets.add(ticket4_a);
+		createdTickets.add(ticket4_b);
+		createdTickets.add(ticket4_c);
+		createdTickets.add(ticket4_d);
+
+		String buyerName1 = "John";
+		String emailAddress1 = "john@gmail.com";
+		Order order1 = new Order(createdTickets,buyerName1,emailAddress1);
+		System.out.println("Bought Successfully");
+		//save to database
+
+		for (Ticket ticket : createdTickets){
+			ticket.getShowtime().getSeatLayout().getSeat(ticket.getSeat().getRow(),ticket.getSeat().getCol()).bookSeat();
+		}
+
+		Cineplex cineplex = createdTickets.get(0).getShowtime().getCinema().getCineplex();
+		DatabaseManager.updateCineplexValues(cineplex);
+		DatabaseManager.saveNewOrder(order1);
 
 
 

@@ -15,28 +15,42 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
-import static java.util.Collections.*;
+public class MovieGoerBookingBrowseOptionsView extends View {
 
-public class BookingBrowseOptionsView extends View {
-
+    /**
+     * This is the View options
+     */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Filter by Cineplex",
             "Filter by Date",
-//            "Filter by Both Options",
             "Do not filter",
             "Back to Previous Page"
     ));
 
 
+    /**
+     * This is the View title
+     */
     private String title = "Booking Options: ";
+
+    /**
+     * This is the View content
+     */
     private String viewContent = "How do you want to filter the showtime results?";
+
+    /**
+     * This is the selected movie object
+     */
     private Movie selectedMovie;
 
-    public BookingBrowseOptionsView(Movie movie){
+    public MovieGoerBookingBrowseOptionsView(Movie movie){
         this.selectedMovie = movie;
         this.title += this.selectedMovie.getTitle();
     }
 
+    /**
+     * This method transforms the View into active state
+     */
     @Override
     public void activate() {
 
@@ -50,8 +64,10 @@ public class BookingBrowseOptionsView extends View {
     }
 
 
-
-
+    /**
+     * This method helps to manage execution of code based on the user put choice on the View options.
+     * @param input the index of the options
+     */
     @Override
     protected void processUserInput(int input) {
         switch (input){
@@ -94,7 +110,7 @@ public class BookingBrowseOptionsView extends View {
         //have to think of some way of sorting the showtimes
         //this is sort by date
         Collections.sort(showtimes, Comparator.comparing(Showtime::getShowDatetime));
-        ViewNavigator.pushView(new BookingListShowTimesView(showtimes));
+        ViewNavigator.pushView(new MovieGoerBookingListShowTimesView(showtimes));
     }
 
     private void handleChooseByDate(){
@@ -115,7 +131,7 @@ public class BookingBrowseOptionsView extends View {
             }
         }
         Collections.sort(showtimes, Comparator.comparing(Showtime::getShowDatetime));
-        ViewNavigator.pushView(new BookingListShowTimesView(showtimes));
+        ViewNavigator.pushView(new MovieGoerBookingListShowTimesView(showtimes));
 
     }
 
@@ -136,7 +152,7 @@ public class BookingBrowseOptionsView extends View {
             }
         }
         Collections.sort(showtimes, Comparator.comparing(Showtime::getShowDatetime));
-        ViewNavigator.pushView(new BookingListShowTimesView(showtimes));
+        ViewNavigator.pushView(new MovieGoerBookingListShowTimesView(showtimes));
     }
 
 

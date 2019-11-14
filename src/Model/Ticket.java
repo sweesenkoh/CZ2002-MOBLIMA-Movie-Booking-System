@@ -1,9 +1,9 @@
 package Model;
 
-import Controller.TicketPriceManager;
+import Controller.PriceManager;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+
 public abstract class Ticket implements Serializable {
 
 	private double fractionalCostOutOfOriginal;
@@ -28,7 +28,7 @@ public abstract class Ticket implements Serializable {
 	public abstract double getFractionalCostOutOfOriginal(); //subclass must configure the percentage discount
 
 	private double calculateTicketPrice(){
-		return TicketPriceManager.calculateTicketPrice(this);
+		return PriceManager.calculateTicketPrice(this);
 	}
 	
 	public Seat getSeat() {
@@ -58,7 +58,7 @@ public abstract class Ticket implements Serializable {
 		returnString += "Seat ID: "+this.getSeat().toString() + "\n";
 //		returnString += "Ticket Type: " + this.getTicketType().displayName() + "\n";
 		returnString += "Price: $" + String.format("%.2f",this.getPrice()) + "\n";
-		returnString += "Show Time: \n       " + this.getShowtime().toString();
+		returnString += "Showtime: \n       " + this.getShowtime().toString();
 		return  returnString;
 	}
 	

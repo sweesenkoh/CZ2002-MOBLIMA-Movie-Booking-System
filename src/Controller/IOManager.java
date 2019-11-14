@@ -1,17 +1,23 @@
 package Controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+/**
+ * This class is responsible for the direct interaction with the user.
+ * This class deals with getting input from the user as well as printing text and options onto the screen for the user
+ */
 
 public class IOManager {
-	
-	
+
+
+	/**
+	 * This method prints the title of each menu view in a pretty format
+	 * @param title The title String of the menu view
+	 */
 	public static void printMenuTitle(String title) {
 		System.out.println("\n\n");
 		String upperBorderLine = "______________________________________________________________________________";
@@ -29,9 +35,15 @@ public class IOManager {
 		System.out.println(title);
 		System.out.println(upperBorderLine + "\n");
 	}
-	
-	
-	
+
+
+	/**
+	 * This method helps to print the numbered options in a consistent format.
+	 * Every menu view will display numbered options for users to choose the option they want.
+	 * This method can be used for printing such options.
+	 *
+	 * @param options The ArrayList of strings to be used as the options
+	 */
 	public static void printMenuOptions(ArrayList<String> options) {
 		int counter = 1;
 		System.out.println("\n");
@@ -41,7 +53,13 @@ public class IOManager {
 		}
 		System.out.println("\n");
 	}
-	
+
+
+	/**
+	 * This method helps to print String content in any View. This method ensures that the string will automatically go to the next line when it reaches the maximum width of the allowable screen width
+	 * @param input The String content
+	 */
+
 	public static void printMenuContent(String input) {
 		String upperBorderLine = "______________________________________________________________________________";
 		int viewLength = upperBorderLine.length();
@@ -60,9 +78,15 @@ public class IOManager {
 	    }
 		System.out.println(output);
 	}
-	
-	//the type must have toString method ready
-	//this function just display the list, cannot handle selecting them'
+
+	/**
+	 * Given an ArrayList of any type, this method helps to transform the list into multi-page options menu and manage the navigation of the pages.
+	 * This method does not support the selection of the options.
+	 * @param array Array containing objects to be listed as options in this menu
+	 * @param numOfOptionsPerPage The maximum number of options allowed for each page
+	 * @param endOptionsChoosingSessionMessage The option String that tells user to navigate back to previous View.
+	 * @param <E> Any type as long as the toString() method is properly configured.
+	 */
 	public static <E> void printMultipageOptions(ArrayList<E> array,int numOfOptionsPerPage,String endOptionsChoosingSessionMessage) {
 		int numOfReviewsPerPage = numOfOptionsPerPage;
 		int multiplier = 0;
@@ -110,8 +134,15 @@ public class IOManager {
 			multiplier++;
 		}
 	}
-	
-	//return -1 if user wants to return to previous menu
+
+	/**
+	 * Given an ArrayList of any type, this method helps to transform the list into multi-page options menu and manage the navigation of the pages and selection of the element in the multi-page menu options.
+	 * This method uses the toString() method for each element in the ArrayList to print each option.
+	 * @param array Array containing objects to be listed as options in this menu
+	 * @param numOfOptionsPerPage The maximum number of options allowed for each page
+	 * @param <E> Any type as long as the toString() method is properly configured.
+	 * @return The position of the selected option. (eg 4 if the 4th option is selected). Return -1 if user choose to close this menu to return to previous menu.
+	 */
 	public static <E> int printMultipageOptionsWithReturnedChoice(ArrayList<E> array,int numOfOptionsPerPage) {
 		int numOfReviewsPerPage = numOfOptionsPerPage;
 		int multiplier = 0;
@@ -173,21 +204,35 @@ public class IOManager {
 		}
 	}
 
+
+	/**
+	 * This method helps to print double value with a specified number of decimal place.
+	 * @param value the double value to be printed
+	 * @param decimalPlace the number of decimal places
+	 */
+
 	public static void printDouble(double value,int decimalPlace){
 		System.out.printf("%." + decimalPlace + "f",value);
 	}
-	
-	
-	//have to enter empty string
+
+	/**
+	 * This method is responsible for getting input of type String from the user.
+	 * @param message The message to print on the console when asking for user input
+	 * @return The String value input by user
+	 */
 	public static String getUserInputString(String message) {
 		System.out.println(message);
 		Scanner sc = new Scanner(System.in);
 		String userInput = sc.nextLine();
 		return userInput;
 	}
-	
-	
-	
+
+	/**
+	 * This method is responsible for getting input of type int from the user.
+	 * Invalid input exception handling is automatically handled in this function.
+	 * @param message The message to print on the console when asking for user input
+	 * @return The int value input by user
+	 */
 	public static int getUserInputInt(String message) {
 		System.out.println(message);
 		int userInput;
@@ -201,8 +246,13 @@ public class IOManager {
 		}
 		return userInput;
 	}
-	
 
+
+	/**
+	 * This method is responsible for getting user to input a date value
+	 * @param message The message to print on the console when asking for user input
+	 * @return The date value input by user, LocalDate object
+	 */
 
 	public static LocalDate getUserInputDate(String message){
 
@@ -220,8 +270,16 @@ public class IOManager {
 		}
 	}
 
-	
-	//limit the integers input to be within a specified range
+	 /**
+	 * This method is responsible for getting input of type int from the user.
+	 * This method limits the range of acceptable from the user to be between the parameter values, start and end.
+	 * Invalid input exception handling is automatically handled in this function.
+	 * @param message The message to print on the console when asking for user input
+	 * @param start The start of the allowed range of values (inclusive)
+	 * @param end The end of the allowed range of values (inclusive)
+	 * @return The int value input by user
+	 */
+
 	public static int getUserInputInt(String message, int start, int end) {
 		System.out.println(message);
 		int userInput;
@@ -244,10 +302,17 @@ public class IOManager {
 		
 		return userInput;
 	}
-	
-	
-	
-	
+
+
+	/**
+	 * This method is responsible for getting input of type double from the user.
+	 * This method limits the range of acceptable from the user to be between the parameter values, start and end.
+	 * Invalid input exception handling is automatically handled in this function.
+	 * @param message The message to print on the console when asking for user input
+	 * @param start The start of the allowed range of values (inclusive)
+	 * @param end The end of the allowed range of values (inclusive)
+	 * @return The double value input by user
+	 */
 	
 	public static double getUserInputDouble(String message,double start,double end) {
 		System.out.println(message);

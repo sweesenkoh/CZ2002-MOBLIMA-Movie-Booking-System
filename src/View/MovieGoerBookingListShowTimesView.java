@@ -6,22 +6,23 @@ import Model.Showtime;
 
 import java.util.ArrayList;
 
-public class BookingListShowTimesView extends View {
+public class MovieGoerBookingListShowTimesView extends View {
 
     private ArrayList<Showtime> showTimes;
     private ArrayList<String> options = new ArrayList<>();
 
 
-    private String title = "Show Time List for Movie: ";
+    private String title = "Showtime List for Movie: ";
     private String viewContent = "Here are the ShowTimes";
 
 
-    public BookingListShowTimesView(ArrayList<Showtime> showTimes){
+    public MovieGoerBookingListShowTimesView(ArrayList<Showtime> showTimes){
         this.showTimes = showTimes;
         if (this.showTimes.size() != 0){
             this.title += this.showTimes.get(0).getMovie().getTitle();
         }
     }
+
 
     @Override
     public void activate() {
@@ -33,13 +34,18 @@ public class BookingListShowTimesView extends View {
         int userInput = IOManager.printMultipageOptionsWithReturnedChoice(this.showTimes,5);
         processUserInput(userInput);
     }
+
+    /**
+     * This method helps to manage execution of code based on the user put choice on the View options.
+     * @param input the index of the options
+     */
     @Override
     protected void processUserInput(int input) {
 
         if (input == -1){
             ViewNavigator.popView();
         }else{
-            ViewNavigator.pushView(new BookingSeatSelectionView(this.showTimes.get(input - 1)));
+            ViewNavigator.pushView(new MovieGoerBookingSeatSelectionView(this.showTimes.get(input - 1)));
         }
 
     }

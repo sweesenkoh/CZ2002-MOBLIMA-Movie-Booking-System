@@ -1,22 +1,27 @@
 package Controller;
-
-
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
 import Model.*;
-import com.sun.tools.corba.se.idl.constExpr.Or;
+
+
+/**
+ * This class is responsible for interacting with the database (text files).
+ * This class manages the storing and retrieval of data from the various text files.
+ */
 
 public class DatabaseManager {
-	
-	//probably need to handle the case where if file is not found, we need to create file automatically
-	
+
+
+	/**
+	 * This method saves a new movie into the existing database (Movies.txt). If the text file is not found, it will create a new text fil containing this movie
+	 * @param movie The movie object to be saved to database
+	 */
+
 	public static void saveMovieToDataBase(Movie movie){
 		try {
 			ArrayList<Movie> movies = retrieveAllMovies();
@@ -28,6 +33,11 @@ public class DatabaseManager {
 		}
 	}
 
+	/**
+	 * This method overwrites the existing movie database (Movies.txt) with the new ArrayList of movies in the parameter
+	 * @param movies  The movies to be used to overwrite and replace the existing movies in the movies database
+	 */
+
 	public static void overwriteMoviesDatabaseWithMovies(ArrayList<Movie> movies){
 		try {
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Movies.txt"));
@@ -36,6 +46,12 @@ public class DatabaseManager {
 			System.out.println("Error occured while trying to save to database, try again later");
 		}
 	}
+
+
+	/**
+	 * This method retrieves all the movies stored in the database (Movies.txt). It will return an empty ArrayList of movies if the database (Movies.txt) is not found
+	 * @return
+	 */
 	
 	public static ArrayList<Movie> retrieveAllMovies(){
 		try {
@@ -54,6 +70,11 @@ public class DatabaseManager {
 			return (new ArrayList<Movie>());
 		}
 	}
+
+	/**
+	 * This method helps to delete an existing movie with the same name as the parameter. If no movies are found with that name, no movies will be deleted
+	 * @param movieName The name of the movie
+	 */
 	
 	public static void deleteMovieByName(String movieName){
 		try{
@@ -64,7 +85,18 @@ public class DatabaseManager {
 			System.out.println("Error occured while trying to delete from database, try again later");
 		}
 	}
-	
+
+
+	/**
+	 * When we want to modify the details of an existing movie in the database (Movies.txt), we can pass the modified movie object as parameter and
+	 * the existing movie in the database will be updated.
+	 *
+	 * Note that if no existing movies in the database that has the same name as the title name of the movie object in the parameter, the
+	 * movie object will be inserted into the database as a new movie
+	 *
+	 * @param movie The movie object with updated value
+	 */
+
 	public static void modifyMovieWithNewValues(Movie movie) {
 		try{
 			deleteMovieByName(movie.getTitle());
@@ -79,6 +111,13 @@ public class DatabaseManager {
 
 
 	//admin user
+
+	/**
+	 * This method helps to add new admin user into the admin users database (AdminUsers.txt).
+	 * Note that if the database already contains another admin user with the same name (case insensitive), this admin user
+	 * will not be saved.
+	 * @param adminUser The new admin user to be inserted into the database
+	 */
 
 	public static void saveNewAdminUser(AdminUser adminUser){
 		try {
@@ -103,6 +142,12 @@ public class DatabaseManager {
 		}
 	}
 
+
+	/**
+	 * This method returns the ArrayList of all existing admin users in the database (AdminUsers.txt)
+	 * @return List of existing admin users in the database
+	 */
+
 	public static ArrayList<AdminUser> retrieveAllAdminUsers(){
 		try {
 			ObjectInputStream input = new ObjectInputStream(new FileInputStream("AdminUsers.txt"));
@@ -122,9 +167,13 @@ public class DatabaseManager {
 
 
 
-	//Storing cineplexes
 
-	public static void saveCineplexes(ArrayList<Cineplex> cineplexes){
+	/**
+	 * This method overwrites the database (Cineplexes.txt) with new cineplexes in the parameter
+	 * @param cineplexes  The cineplexes to be used to overwrite the database
+	 */
+
+	public static void overwriteCineplexDatabaseWithNewCineplexes(ArrayList<Cineplex> cineplexes){
 		try {
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Cineplexes.txt"));
 			output.writeObject(cineplexes);
@@ -134,6 +183,10 @@ public class DatabaseManager {
 		}
 	}
 
+	/**
+	 * This method returns the list of cineplexes in the database (Cineplexes.txt)
+	 * @return
+	 */
 	public static ArrayList<Cineplex> retrieveAllCineplexes(){
 		try {
 			ObjectInputStream input = new ObjectInputStream(new FileInputStream("Cineplexes.txt"));
@@ -151,6 +204,14 @@ public class DatabaseManager {
 		}
 	}
 
+
+	/**
+	 * This method helps to update existing cineplex in the database with new state or values.
+	 * This method works by searching the database and finding a cineplex with matching name,
+	 * and replacing that cineplex with the new cineplex object in the parameter
+	 *
+	 * @param cineplex The cineplex with updated values
+	 */
 	public static void updateCineplexValues(Cineplex cineplex){
 		ArrayList<Cineplex> cineplexesWithNewValue = new ArrayList<>();
 		for (Cineplex cineplex1 : retrieveAllCineplexes()){
@@ -160,13 +221,16 @@ public class DatabaseManager {
 				cineplexesWithNewValue.add(cineplex1);
 			}
 		}
-		saveCineplexes(cineplexesWithNewValue);
+		overwriteCineplexDatabaseWithNewCineplexes(cineplexesWithNewValue);
 	}
 
 
-	//Storing Orders
+	/**
+	 * This method overwrites the existing orders database (Orders.txt) with the new orders array in the parameter
+	 * @param orders The list of orders to be used for overwriting the database
+	 */
 
-	public static void saveOrders(ArrayList<Order> orders){
+	public static void overwriteOrdersDatabaseWithNewOrders(ArrayList<Order> orders){
 		try {
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Orders.txt"));
 			output.writeObject(orders);
@@ -176,6 +240,11 @@ public class DatabaseManager {
 		}
 	}
 
+
+	/**
+	 * This method returns the existing orders in the database (Orders.txt)
+	 * @return  Existing orders in the database
+	 */
 	public static ArrayList<Order> retrieveAllOrders(){
 		try {
 			ObjectInputStream input = new ObjectInputStream(new FileInputStream("Orders.txt"));
@@ -193,15 +262,24 @@ public class DatabaseManager {
 		}
 	}
 
+
+	/**
+	 * This method helps to save new order object into the existing database (Orders.txt)
+	 * @param order Order object to be inserted into the database
+	 */
+
 	public static void saveNewOrder(Order order){
 		ArrayList<Order> orders = new ArrayList<>();
 		orders = retrieveAllOrders();
 		orders.add(order);
-		saveOrders(orders);
+		overwriteOrdersDatabaseWithNewOrders(orders);
 	}
 
 
-	//Save Price configuration
+	/**
+	 * This method save the single instance of PriceConfiguration object into the database (PriceConfiguration.txt)
+	 * @param priceConfiguration The PriceConfiguration object to be stored
+	 */
 
 	public static void savePriceConfiguration(PriceConfiguration priceConfiguration){
 		try {
@@ -214,7 +292,10 @@ public class DatabaseManager {
 	}
 
 
-	//load price configuration
+	/**
+	 * This method helps to retrieve PriceConfiguration object from the database (PriceConfiguration.txt)
+	 * @return The PriceConfiguration object from the database
+	 */
 
 	public static PriceConfiguration loadPriceConfiguration(){
 		try {

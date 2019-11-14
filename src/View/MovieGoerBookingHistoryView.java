@@ -7,7 +7,7 @@ import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Order;
 
-public class BookingHistoryView extends View {
+public class MovieGoerBookingHistoryView extends View {
 	
 	private ArrayList<String> options = new ArrayList<>();
 	private String title = "Booking History";
@@ -15,7 +15,7 @@ public class BookingHistoryView extends View {
 	private String username;
 	private ArrayList<Order> orders = new ArrayList<>();
 	
-	public BookingHistoryView(String username) {
+	public MovieGoerBookingHistoryView(String username) {
 		this.username = username;
 		for (Order order : DatabaseManager.retrieveAllOrders()){
 			if (order.getBuyerName().toLowerCase().equals(this.username.toLowerCase())){
@@ -37,6 +37,10 @@ public class BookingHistoryView extends View {
 		processUserInput(userInput);
 	}
 
+	/**
+	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * @param input the index of the options
+	 */
 	@Override
 	protected void processUserInput(int input) {
 		if (input == options.size()) {

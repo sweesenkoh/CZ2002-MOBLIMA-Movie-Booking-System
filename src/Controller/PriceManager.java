@@ -5,8 +5,11 @@ import Model.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+/**
+ * This class is responsible for calculating the ticket prices based on the various factors.
+ */
 
-public class TicketPriceManager {
+public class PriceManager {
 
     //factors:
     //age
@@ -14,6 +17,11 @@ public class TicketPriceManager {
     //day of week
     //type of movie
 
+    /**
+     * This methods helps to calculate the price of a movie Ticket based on the following factors: Age, CinemaClass, Day of Week, MovieType (eg 3D or Blockbuster)
+     * @param ticket Ticket object to be used for price calculation.
+     * @return Price of the ticket
+     */
 
     public static double calculateTicketPrice(Ticket ticket){
 
@@ -97,8 +105,13 @@ public class TicketPriceManager {
     }
 
 
-    //this is for the order
+    /**
+     * Given a price, this method returns the price value after applying GST increment.
+     * This is used for calculation of the final price of an order/transaction, not the individual tickets.
+     * @param price Price before GST
+     * @return Price after GST
+     */
     public static double applyGSTFactor(double price){
-        return (price + price * DatabaseManager.loadPriceConfiguration().getGstPercentageIncrease());
+        return (price + price * PriceConfiguration.getInstance().getGstPercentageIncrease());
     }
 }

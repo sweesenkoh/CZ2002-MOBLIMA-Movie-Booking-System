@@ -7,7 +7,7 @@ import Model.Showtime;
 
 import java.util.ArrayList;
 
-public class BookingSeatSelectionView extends View {
+public class MovieGoerBookingSeatSelectionView extends View {
 
 
     private ArrayList<String> options = new ArrayList<>();
@@ -16,7 +16,7 @@ public class BookingSeatSelectionView extends View {
     private Showtime showtime;
     private ArrayList<Seat> chosenSeats = new ArrayList<>();
 
-    public BookingSeatSelectionView(Showtime showtime){
+    public MovieGoerBookingSeatSelectionView(Showtime showtime){
         this.showtime = showtime;
         this.viewContent += this.showtime.toString();
     }
@@ -38,6 +38,10 @@ public class BookingSeatSelectionView extends View {
     }
 
 
+    /**
+     * This method helps to manage execution of code based on the user put choice on the View options.
+     * @param input the index of the options
+     */
     @Override
     protected void processUserInput(int input) {
         if (input == options.size()){
@@ -125,7 +129,7 @@ public class BookingSeatSelectionView extends View {
             for (Seat seat:this.chosenSeats){
                 showtime.getSeatLayout().getSeat(seat.getRow(),seat.getCol()).unbookSeat();
             }
-            ViewNavigator.pushView(new BookingPuchaseTicketView(this.chosenSeats,this.showtime));
+            ViewNavigator.pushView(new MovieGoerBookingPuchaseTicketView(this.chosenSeats,this.showtime));
         }
 
 

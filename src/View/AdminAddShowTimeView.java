@@ -11,17 +11,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
-import java.util.concurrent.TimeUnit;
 
 public class AdminAddShowTimeView extends View {
 
 
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
-            "Add Show Time",
+            "Add Showtime",
             "Back to Previous Page"
     ));
 
-    private String title = "Admin: Add or Remove Show Time for: ";
+    private String title = "Admin: Add or Remove Showtime for: ";
     private String viewContent = "";
     private Movie selectedMovie;
 
@@ -51,6 +50,10 @@ public class AdminAddShowTimeView extends View {
     }
 
 
+    /**
+     * This method helps to manage execution of code based on the user put choice on the View options.
+     * @param input the index of the options
+     */
     @Override
     protected void processUserInput(int input) {
 
@@ -86,7 +89,7 @@ public class AdminAddShowTimeView extends View {
         }
         IOManager.printMenuOptions(cinemaStrings);
         chosenCinemaIndex = IOManager.getUserInputInt("Please choose one of the cinemas",1,cinemaStrings.size());
-        chosenDate = IOManager.getUserInputDate("Please input the date that you want to insert the show time to: ");
+        chosenDate = IOManager.getUserInputDate("Please input the date that you want to insert the showtime to: ");
     }
 
     private void printingCurrentAvailableShowTime(){
@@ -104,14 +107,14 @@ public class AdminAddShowTimeView extends View {
         }
 
         if (count == 1){
-            System.out.println("There is currently no show time inserted on this day");
+            System.out.println("There is currently no showtime inserted on this day");
             if (this.options.size() == 3){
                 this.options.remove(1);
                 super.setOptions(this.options);
             }
         } else{
             if (this.options.size() == 2){
-                this.options.add(1,"Remove Show Time");
+                this.options.add(1,"Remove Showtime");
                 super.setOptions(this.options);
             }
         }
@@ -119,7 +122,7 @@ public class AdminAddShowTimeView extends View {
 
     private void handleRemoveShowTime(){
         int maxlength = cineplexes.get(chosenCineplexIndex - 1).getCinemas().get(chosenCinemaIndex - 1).getShowtimes().size();
-        int removeChoice = IOManager.getUserInputInt("Please input the number of the show time that you want to remove: ",1,maxlength);
+        int removeChoice = IOManager.getUserInputInt("Please input the number of the showtime that you want to remove: ",1,maxlength);
         ArrayList<Showtime> showtimes = new ArrayList<>();
         ArrayList<Showtime> otherDateShowTimes = new ArrayList<>();
 
@@ -138,7 +141,7 @@ public class AdminAddShowTimeView extends View {
         }
 
         cineplexes.get(chosenCineplexIndex - 1).getCinemas().get(chosenCinemaIndex - 1).setShowtimes(otherDateShowTimes);
-        DatabaseManager.saveCineplexes(cineplexes);
+        DatabaseManager.overwriteCineplexDatabaseWithNewCineplexes(cineplexes);
         System.out.println("Removed!");
         this.activate();
 
@@ -166,12 +169,12 @@ public class AdminAddShowTimeView extends View {
         LocalDateTime chosenDateTime = chosenDate.atTime(hourComponent,minuteComponent);
         Showtime chosenShowTime = new Showtime(chosenDateTime,this.selectedMovie,cineplexes.get(chosenCineplexIndex - 1).getCinemas().get(chosenCinemaIndex - 1),typeChosen);
         System.out.println(chosenShowTime.toString());
-        System.out.println("Here is the show time that you have created, proceed to save?");
+        System.out.println("Here is the showtime that you have created, proceed to save?");
         int userSaveChoice = IOManager.getUserInputInt("1 - Proceed to save, 0 - Cancel",0,1);
 
         if (userSaveChoice == 1){
             cineplexes.get(chosenCineplexIndex - 1).getCinemas().get(chosenCinemaIndex - 1).addShowTime(chosenShowTime);
-            DatabaseManager.saveCineplexes(cineplexes);
+            DatabaseManager.overwriteCineplexDatabaseWithNewCineplexes(cineplexes);
             System.out.println("Saved!");
         }
 

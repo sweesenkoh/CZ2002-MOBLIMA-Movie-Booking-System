@@ -8,7 +8,7 @@ import Controller.ViewNavigator;
 import Model.Movie;
 import Model.Review;
 
-public class LeaveReviewsView extends View {
+public class MovieGoerLeaveReviewsView extends View {
 	
 	
 	private ArrayList<String> options = new ArrayList<>();
@@ -16,7 +16,7 @@ public class LeaveReviewsView extends View {
 	private String viewContent = " ";
 	private Movie selectedMovie;
 	
-	public LeaveReviewsView(Movie movie) {
+	public MovieGoerLeaveReviewsView(Movie movie) {
 		this.selectedMovie = movie;
 	}
 	
@@ -59,6 +59,10 @@ public class LeaveReviewsView extends View {
 		
 	}
 
+	/**
+	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * @param input the index of the options
+	 */
 	@Override
 	protected void processUserInput(int input) {
 		// TODO Auto-generated method stub

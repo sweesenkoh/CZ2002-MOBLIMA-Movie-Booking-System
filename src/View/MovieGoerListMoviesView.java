@@ -1,15 +1,16 @@
 package View;
-
 import java.util.ArrayList;
 
+import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Movie;
 
-public class AdminListMoviesView extends BaseListMoviesView {
+public class MovieGoerListMoviesView extends BaseListMoviesView {
 
-	public AdminListMoviesView(ArrayList<Movie> movies) {
+	public MovieGoerListMoviesView(ArrayList<Movie> movies) {
 		super(movies);
 	}
+
 
 	/**
 	 * This method helps to manage execution of code based on the user put choice on the View options.
@@ -17,13 +18,12 @@ public class AdminListMoviesView extends BaseListMoviesView {
 	 */
 	@Override
 	protected void processUserInput(int input) {
-
+		
 		if (input == -1) {
 			ViewNavigator.popView();
 		}else {
-			ViewNavigator.pushView(new AdminChangeMovieInfoView(this.movies.get(input - 1)));
+			ViewNavigator.pushView(new MovieViewingView(this.movies.get(input - 1)));
 		}
-
 	}
 
 }

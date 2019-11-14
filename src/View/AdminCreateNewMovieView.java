@@ -10,7 +10,7 @@ import Model.Movie;
 import Model.MovieCensorshipRating;
 import Model.MovieStatus;
 
-public class CreateNewMovieView extends View {
+public class AdminCreateNewMovieView extends View {
 	
 	private String title = "Create New Movie";
 
@@ -99,6 +99,10 @@ public class CreateNewMovieView extends View {
 //		processUserInput(userInput);
 	}
 
+	/**
+	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * @param input the index of the options
+	 */
 	@Override
 	protected void processUserInput(int input) {
 		// TODO Auto-generated method stub

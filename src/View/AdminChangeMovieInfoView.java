@@ -1,6 +1,5 @@
 package View;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,8 +10,6 @@ import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.*;
-
-import javax.xml.crypto.Data;
 
 public class AdminChangeMovieInfoView extends View {
 	
@@ -25,7 +22,7 @@ public class AdminChangeMovieInfoView extends View {
 			"Title",
 			"Casts",
 			"Censorship Rating",
-			"Add Show Time for this movie",
+			"Add or Remove Showtime for this movie",
 			"Go back to admin main menu"
 	)); 
 	
@@ -50,14 +47,19 @@ public class AdminChangeMovieInfoView extends View {
 		processUserInput(userInput);
 	}
 	//director,synopsis,cast,status,title
-	
+
+	/**
+	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * @param input the index of the options
+	 */
 	
 	@Override
 	protected void processUserInput(int input) {
 		
 		if (input == options.size()) {
 //			ViewNavigator.popViews(3);
-			ViewNavigator.popTillView(new AdminMainMenu());
+//			ViewNavigator.popTillView(new AdminMainMenu());
+			ViewNavigator.popTillView(AdminMainMenuView.class);
 		
 		}else if (input == 1) {
 			System.out.println("Current Status: " + this.selectedMovie.getStatus().displayName());
@@ -226,7 +228,7 @@ public class AdminChangeMovieInfoView extends View {
 		}
 
 		else{
-			System.out.println("There is currently no show time inserted on this day");
+			System.out.println("There is currently no showtime inserted on this day");
 		}
 
 		System.out.println("What time do u want to insert it in: ");
@@ -249,12 +251,12 @@ public class AdminChangeMovieInfoView extends View {
 		LocalDateTime chosenDateTime = chosenDate.atTime(hourComponent,minuteComponent);
 		Showtime chosenShowTime = new Showtime(chosenDateTime,this.selectedMovie,cineplexes.get(userChosenCineplex - 1).getCinemas().get(userChosenCinema - 1),typeChosen);
 		System.out.println(chosenDateTime.toString());
-		System.out.println("Here is the show time that you have created, proceed to save?");
+		System.out.println("Here is the showtime that you have created, proceed to save?");
 		int userSaveChoice = IOManager.getUserInputInt("1 - Proceed to save, 0 - Cancel",0,1);
 
 		if (userSaveChoice == 1){
 			cineplexes.get(userChosenCineplex - 1).getCinemas().get(userChosenCinema - 1).addShowTime(chosenShowTime);
-			DatabaseManager.saveCineplexes(cineplexes);
+			DatabaseManager.overwriteCineplexDatabaseWithNewCineplexes(cineplexes);
 		}
 
 		//get date

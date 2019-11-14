@@ -5,17 +5,36 @@ import java.util.Arrays;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 
+
+/**
+ * This View class is the main menu for the movie-goer
+ */
+
 public class MovieGoerView extends View {
-	
+
+	/**
+	 * This is the View options
+	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"List Movie",
 			"Check Booking History",
 			"Back to Previous Page"
-	)); 
-	
+	));
+
+	/**
+	 * This is the View title
+	 */
 	private String title = "Movie-Goer Menu";
+
+	/**
+	 * This is the View content
+	 */
 	private String viewContent = "What would you like to do?";
 
+
+	/**
+	 * This method helps to transform this View into active state
+	 */
 	public void activate() {
 		super.setOptions(this.options);
 		super.setTitle(this.title);
@@ -27,17 +46,21 @@ public class MovieGoerView extends View {
 		processUserInput(userInput);
 	}
 
+	/**
+	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * @param input the index of the options
+	 */
 
 	@Override
 	protected void processUserInput(int input) {
 		
 		switch (input) {
 			case 1:
-				ViewNavigator.pushView(new MovieBrowseOptionsView());
+				ViewNavigator.pushView(new MovieGoerMovieBrowseOptionsView());
 				break;
 			case 2:
 				String username = IOManager.getUserInputString("Please input your username: ");
-				ViewNavigator.pushView(new BookingHistoryView(username));
+				ViewNavigator.pushView(new MovieGoerBookingHistoryView(username));
 				break;
 			case 3:
 				ViewNavigator.popView();

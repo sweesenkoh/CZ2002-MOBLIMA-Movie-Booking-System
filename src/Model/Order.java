@@ -1,6 +1,6 @@
 package Model;
 
-import Controller.TicketPriceManager;
+import Controller.PriceManager;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -33,7 +33,7 @@ public class Order implements Serializable {
 		for (i = 0; i < tickets.size(); i++) {
 			total += tickets.get(i).getPrice();
 		}
-		total = TicketPriceManager.applyGSTFactor(total);
+		total = PriceManager.applyGSTFactor(total);
 		return total;
 	}
 

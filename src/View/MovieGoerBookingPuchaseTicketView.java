@@ -2,15 +2,14 @@ package View;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.TicketPriceManager;
+import Controller.PriceManager;
 import Controller.ViewNavigator;
 import Model.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class BookingPuchaseTicketView extends View {
+public class MovieGoerBookingPuchaseTicketView extends View {
 
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Confirm",
@@ -24,7 +23,7 @@ public class BookingPuchaseTicketView extends View {
     private ArrayList<Seat> selectedSeats;
     private Showtime selectedShowtime;
 
-    public BookingPuchaseTicketView(ArrayList<Seat> selectedSeats, Showtime selectedShowtime){
+    public MovieGoerBookingPuchaseTicketView(ArrayList<Seat> selectedSeats, Showtime selectedShowtime){
         this.selectedSeats = selectedSeats;
         this.selectedShowtime = selectedShowtime;
     }
@@ -126,7 +125,7 @@ public class BookingPuchaseTicketView extends View {
         }
 
         returnString += String.format("Total Price Before GST : $%.2f\n",totalPrice);
-        double priceAfterGST = TicketPriceManager.applyGSTFactor(totalPrice);
+        double priceAfterGST = PriceManager.applyGSTFactor(totalPrice);
         returnString += String.format("GST : $%.2f\n",priceAfterGST - totalPrice);
         returnString += String.format("Total Price: $%.2f",priceAfterGST);
 
@@ -140,6 +139,10 @@ public class BookingPuchaseTicketView extends View {
         processUserInput(userInput);
     }
 
+    /**
+     * This method helps to manage execution of code based on the user put choice on the View options.
+     * @param input the index of the options
+     */
     @Override
     protected void processUserInput(int input) {
 

@@ -1,21 +1,42 @@
 package View;
 
 import java.util.ArrayList;
-
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.Movie;
 import Model.MovieStatus;
 
-import javax.sound.midi.SysexMessage;
+
+/**
+ * This View class presents the various options for users for a given selected movies, such as booking of tickets or leaving reviews.
+ */
 
 public class MovieViewingView extends View {
-	
+
+	/**
+	 * This is the View options
+	 */
 	private ArrayList<String> options = new ArrayList<>();
+
+	/**
+	 * This is the View title
+	 */
 	private String title;
+
+	/**
+	 * This is View content
+	 */
 	private String viewContent = "You have chosen this movie, please choose one of the following options: ";
+
+	/**
+	 * This is the selected movie
+	 */
 	private Movie movie;
-	
+
+	/**
+	 * This creates a new MovieViewingView with a given Movie object
+	 * @param movie The selected movie for viewing the options available
+	 */
 	public MovieViewingView(Movie movie) {
 		this.movie = movie;
 		options.add("View Movie Detail");
@@ -32,7 +53,10 @@ public class MovieViewingView extends View {
 		options.add("Back to Previous Page");
 		this.title = "Movie: " + movie.getTitle() + " [ " + movie.getStatus().displayName() + " ] ";
 	}
-	
+
+	/**
+	 * This method helps to transform this View into active state
+	 */
 	public void activate() {
 		super.setOptions(this.options);
 		super.setTitle(this.title);
@@ -43,6 +67,10 @@ public class MovieViewingView extends View {
 		processUserInput(userInput);
 	}
 
+	/**
+	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * @param input the index of the options
+	 */
 	@Override
 	protected void processUserInput(int input) {
 		
@@ -56,18 +84,18 @@ public class MovieViewingView extends View {
 //			}
 		}else if (movie.getStatus() == MovieStatus.ENDED) {
 			if (input == 2) {
-				ViewNavigator.pushView(new LeaveReviewsView(this.movie));
+				ViewNavigator.pushView(new MovieGoerLeaveReviewsView(this.movie));
 			}else if (input == 3) {
-				ViewNavigator.pushView(new ListReviewsView(this.movie));
+				ViewNavigator.pushView(new MovieGoerListReviewsView(this.movie));
 			}
 		}else {
 			if (input == 2){
-				ViewNavigator.pushView(new BookingBrowseOptionsView(this.movie));
+				ViewNavigator.pushView(new MovieGoerBookingBrowseOptionsView(this.movie));
 			}
 			else if (input == 3) {
-				ViewNavigator.pushView(new LeaveReviewsView(this.movie));
+				ViewNavigator.pushView(new MovieGoerLeaveReviewsView(this.movie));
 			}else if (input == 4) {
-				ViewNavigator.pushView(new ListReviewsView(this.movie));
+				ViewNavigator.pushView(new MovieGoerListReviewsView(this.movie));
 			}
 		}
 

@@ -11,13 +11,11 @@ import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.*;
 
-import javax.xml.crypto.Data;
-
-public class AdminMainMenu extends View {
+public class AdminMainMenuView extends View {
 	
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Create New Movie",
-			"Update Movie Information or Add Show Time",
+			"Update Movie Information or modify showtime",
 			"Configure System Settings",
 			"List Current Top 5 Movies",
 			"Add Another Admin User to the System",
@@ -57,15 +55,19 @@ public class AdminMainMenu extends View {
 
 
 	}
-	
+
+	/**
+	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * @param input the index of the options
+	 */
 	@Override
 	protected void processUserInput(int input) {
 		if (input == options.size()) {
 			ViewNavigator.popView();
 		}else if (input == 1) {
-			ViewNavigator.pushView(new CreateNewMovieView());
+			ViewNavigator.pushView(new AdminCreateNewMovieView());
 		}else if (input == 2) {
-			ViewNavigator.pushView(new AdminMovieBrowseOptions());
+			ViewNavigator.pushView(new AdminMovieBrowseOptionsView());
 		}
 
 		else if (input == 6){
