@@ -1,4 +1,4 @@
-
+package Model;
 public class SCTicket extends Ticket{
 	
 	public SCTicket(Seat seat, Showtime showtime) {

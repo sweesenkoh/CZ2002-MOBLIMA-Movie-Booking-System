@@ -1,4 +1,4 @@
-
+package Model;
 public class ChildTicket extends Ticket {
 	public ChildTicket(Seat seat, Showtime showtime) {
 		super(seat, showtime);

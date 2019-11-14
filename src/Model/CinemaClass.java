@@ -1,11 +1,13 @@
+package Model;
+
 public enum CinemaClass {
 	NORMAL("Normal"),
 	PLATINUM("Platinum");
 	
-	private String status;
+	private String cinClass;
 	
-	private CinemaClass(String status) {
-		this.status = status;
+	private CinemaClass(String cClass) {
+		this.cinClass = cClass;
 	}
 	
 }

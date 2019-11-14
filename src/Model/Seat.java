@@ -1,7 +1,10 @@
+package Model;
 
+import java.util.ArrayList;
 public class Seat {
 	private int row;
 	private int col;
+	private boolean booked;
 	
 	public Seat(int r, int c) {
 		row = r;
@@ -15,5 +18,14 @@ public class Seat {
 	public int getCol(){
 		return col;
 	}
+	
+	public boolean isBooked() {
+		return booked;
+	}
+	
+	public void bookSeat() {
+		booked = true;
+	}
+	
 
 }

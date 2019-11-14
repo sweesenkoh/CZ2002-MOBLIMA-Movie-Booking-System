@@ -1,4 +1,6 @@
+package Model;
 
+import java.util.ArrayList;
 public class Cineplex {
 	private String cineplex;
 	private ArrayList<Cinema> cinemas;

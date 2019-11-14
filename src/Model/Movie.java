@@ -1,38 +1,69 @@
 package Model;
-
+import java.util.ArrayList;
 
 public class Movie {
-	
-	public enum MovieStatus{
-		
-		COMINGSOON("Coming Soon"),
-		ENDED("Ended"),
-		NOWSHOWING("Now Showing");
-
-	    private String displayName;
-
-	    MovieStatus(String displayName) {
-	        this.displayName = displayName;
-	    }
-
-	    public String displayName() { return displayName; }
-	}
 
 	private String title;
+	private String director;
+	private String synopsis;
+	private ArrayList<String> cast;
 	private MovieStatus status;
+	private double rating;
+	private ArrayList<Review> reviews;
 
 	
-	public Movie(String title,MovieStatus status) {
+	public Movie(String title, String director, String synopsis, ArrayList<String> cast, MovieStatus status) {
 		this.title = title;
+		this.director = director;
+		this.synopsis = synopsis;
+		this.cast = cast;
 		this.status = status;
+		rating = 0;
+		reviews = new ArrayList<Review>();
 	}
 	
 	public String getTitle() {
 		return this.title;
 	}
 	
-	public MovieStatus getStatus() { 
-		return this.status;
+	public void setTitle(String t) {
+		title  = t;
+	}
+	
+	public String getDirector() {
+		return this.director;
+	}
+	
+	public void setDirector(String d) {
+		director = d;
+	}
+	
+	public String getSynopsis() {
+		return this.synopsis;
+	}
+	
+	public void setSynopsis(String s) {
+		synopsis = s;
+	}
+	
+	public MovieStatus getStatus() {
+		return status;
+	}
+	public void setStatus(MovieStatus m) { 
+		status = m;
+	}
+	
+	public double getRating() {
+		int i;
+		double total = 0;
+		for (i=0; i<reviews.size(); i++) {
+			total += reviews.get(i).getRating();
+		}
+		return total/reviews.size();
+	}
+	
+	public void addReview(Review r) {
+		reviews.add(r);
 	}
 	
 	public String toString() {

@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 
 public class Order {
@@ -11,7 +13,7 @@ public class Order {
 	
 	public double calculatePrice() {
 		int i;
-		double total;
+		double total =0;
 		for (i = 0; i < tickets.size(); i++) {
 			total += tickets.get(i).getPrice();
 		}

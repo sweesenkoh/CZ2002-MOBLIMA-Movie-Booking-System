@@ -1,3 +1,4 @@
+package Model;
 
 public class Cinema {
 	private Cineplex cineplex;
@@ -15,7 +16,7 @@ public class Cinema {
 		this.seatLayout = seatLayout;
 	}
 	
-	public CinemaClass getClass() {
+	public CinemaClass getCinClass() {
 		return cinemaClass;
 	}
 	
@@ -39,11 +40,11 @@ public class Cinema {
 		price = p;
 	}
 	
-	public Seatlayout getLayout() {
+	public SeatLayout getLayout() {
 		return seatLayout;
 	}
 	
-	public void setLayout(Seatlayout s) {
+	public void setLayout(SeatLayout s) {
 		seatLayout = s;
 	}
 }

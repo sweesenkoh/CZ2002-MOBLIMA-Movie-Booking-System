@@ -1,3 +1,4 @@
+package Model;
 
 public class SeatLayout {
 	private int numOfRows;
@@ -14,7 +15,8 @@ public class SeatLayout {
 	}
 	
 	public void initialiseSeats() {
-		//
+		// TBC
 	}
+	
 
 }

@@ -1,5 +1,7 @@
+package Model;
 
-public class Ticket {
+import java.util.ArrayList;
+class Ticket {
 	private double price;
 	private Seat seat;
 	private Showtime showtime;
@@ -24,6 +26,10 @@ public class Ticket {
 	
 	public double getPrice() {
 		return price;
+	}
+	
+	public void setPrice(double p) {
+		price = p;
 	}
 	
 	

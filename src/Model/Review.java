@@ -1,3 +1,4 @@
+package Model;
 
 public class Review {
 	private String reviewer;
