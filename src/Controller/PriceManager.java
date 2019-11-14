@@ -37,10 +37,21 @@ public class PriceManager {
     }
 
 
+    /**
+     * This method returns the price based on the class of the cinema
+     * @param cinemaClass The cinema class of the cinema in which the movie ticket belongs to
+     * @return The base price based on each cinema class
+     */
     private static double applyCinemaClassFactor(CinemaClass cinemaClass){
         return cinemaClass.getBasePrice();
     }
 
+    /**
+     * This method modifies the price by applying increment to the ticket price based on the day of week or whether is a public holiday
+     * @param price The price
+     * @param date The date of the showtime that is linked with the ticket bought
+     * @return The new price of the ticket after the increment
+     */
     private static double applyDayOfWeekOrPHFactor(double price, LocalDate date){
 
         //first check whether is in public holiday
@@ -58,11 +69,24 @@ public class PriceManager {
         return price;
     }
 
+    /**
+     * This method modifies the price by applying increment to the ticket price based on the movie type, such as 3D movie or blockbuster movie
+     * @param price The price
+     * @param movieType The type of the movie that is linked to the ticket bought
+     * @return The new price of the ticket after the increment
+     */
+
     private static double applyMovieTypeFactor(double price, MovieType movieType){
         return price + movieType.getPriceIncrement();
     }
 
 
+    /**
+     * This method modifies the price by applying percentage discounts to the price based on the age group
+     * @param price The price
+     * @param ticket The ticket type, such as an adult ticket or a senior citizen ticket
+     * @return The new price of the ticket after the increment
+     */
 
     private static double applyAgeFactor(double price,Ticket ticket){
         return price*ticket.getFractionalCostOutOfOriginal();

@@ -9,9 +9,18 @@ import View.View;
  */
 
 public class ViewNavigator {
-	
+
+	/**
+	 * This is the ArrayList of views, which is imagined to be our views stack
+	 * It contains all the views that are currently in the view stack
+	 */
 	private static ArrayList<View> views = new ArrayList<View>();
 
+
+	/**
+	 * Constructor is made private because this class is only used for the purpose of managing the Views via the static methods and the static variable.
+	 * Hence it is not supposed to be instantiated.
+	 */
 	private ViewNavigator() {}
 
 
