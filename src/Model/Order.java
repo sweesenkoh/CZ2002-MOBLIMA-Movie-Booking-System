@@ -7,14 +7,42 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-
+/**
+ * Represents an order made by a moviegoer.
+ * An order can be made up of more than one ticket.
+ */
 public class Order implements Serializable {
+	/**
+	 * The tickets that make up this order.
+	 */
     private ArrayList<Ticket> tickets;
+    
+    /**
+     * This order's price
+     */
 	private double price; //this price should be inclusive of gst
+	
+	/**
+	 * The buyer name of this order.
+	 */
 	private String buyerName;
+	
+	/**
+	 * The buyer email address of this order.
+	 */
 	private String buyerEmailAddress;
+	
+	/**
+	 * The transaction ID of this order.
+	 */
 	private String TID;
 	
+	/**
+	 * Creates a new order with the selected tickets, the buyer name and the buyer's email address.
+	 * @param t The tickets of this order.
+	 * @param buyerName The name of the buyer.
+	 * @param buyerEmailAddress The email address of the buyer.
+	 */
 	public Order(ArrayList<Ticket> t,String buyerName,String buyerEmailAddress) {
 		tickets = t;
 		price = calculatePrice();
@@ -23,10 +51,18 @@ public class Order implements Serializable {
 		TID = this.calculateTID();
 	}
 
+	/**
+	 * Gets the name of the buyer of this order.
+	 * @return This order's buyer name.
+	 */
 	public String getBuyerName() {
 		return buyerName;
 	}
 
+	/**
+	 * Calculates the total price of this order.
+	 * @return This order's price.
+	 */
 	public double calculatePrice() {
 		int i;
 		double total =0;
@@ -37,10 +73,18 @@ public class Order implements Serializable {
 		return total;
 	}
 
+	/**
+	 * Gets the tickets that make up the order.
+	 * @return This order's tickets
+	 */
 	public ArrayList<Ticket> getTickets() {
 		return tickets;
 	}
 
+	/**
+	 * Finds the transaction ID of this order.
+	 * @return This order's transaction ID.
+	 */
 	public String calculateTID(){
 		String tidString = "";
 		tidString += String.format("%03d", this.tickets.get(0).getShowtime().getCinema().getCode());
@@ -49,10 +93,17 @@ public class Order implements Serializable {
 		return tidString;
 	}
 
+	/**
+	 * Gets the price of this order.
+	 * @return this order's price.
+	 */
 	public double getPrice() {
 		return price;
 	}
 
+	/**
+	 * Converts this order's attributes to string format for displaying to buyer.
+	 */
 	@Override
 	public String toString() {
 
@@ -79,6 +130,10 @@ public class Order implements Serializable {
 		return returnString;
 	}
 
+	/**
+	 * Summarises this order in string format for buyer when they view booking history.
+	 * @return This order's summary in a string.
+	 */
 	public String toSummarisedString(){
 		String returnString = "";
 

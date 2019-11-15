@@ -5,62 +5,119 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ArrayList;
 
-
+/**
+ * Represents a showtime for a movie screening in a cinema.
+ */
 public class Showtime implements Serializable {
-	private LocalDateTime showDatetime;
-	private Movie movie;
-	private Cinema cinema;
-	private MovieType movieType;
-//	private ArrayList<Ticket> tickets;
-	private SeatLayout seatLayout; //showtime needs a reference of seat layout to keep track of booked seats
-	//should the price attribute be here instead of cinema?
-//	private double price;
 	
+	/**
+	 * The date and time of this showtime.
+	 */
+	private LocalDateTime showDatetime;
+	
+	/**
+	 * The movie being screened at this showtime.
+	 */
+	private Movie movie;
+	
+	/**
+	 * The cinema that this showtime belongs to.
+	 */
+	private Cinema cinema;
+	
+	/**
+	 * The type of movie being screened at this showtime.
+	 */
+	private MovieType movieType;
+	
+	/**
+	 * The seat layout of the cinema where this showtime is at.
+	 */
+	private SeatLayout seatLayout; //showtime needs a reference of seat layout to keep track of booked seats
+
+	/**
+	 * Creates a new showtime with the given date and time, movie, cinema and movie type.
+	 * @param showDatetime This showtime's date and time.
+	 * @param movie This showtime's movie.
+	 * @param cinema This showtime's cinema.
+	 * @param movieType This showtime's movie type.
+	 */
 	public Showtime(LocalDateTime showDatetime, Movie movie, Cinema cinema,MovieType movieType) {
 		this.showDatetime = showDatetime;
 		this.movie = movie;
 		this.cinema = cinema;
 		this.movieType = movieType;
 		this.seatLayout = this.cinema.getLayout().getCopy(); //get a copy of the seat layout, not reference!
-//		this.tickets = tickets;
-//		if (cinema.getCinemaClass() == CinemaClass.NORMAL)
-//			price = 5;
-//		else
-//			price = 10;
 	}
 	
+	/**
+	 * Gets the date and time of this showtime.
+	 * @return This showtime's date and time.
+	 */
 	public LocalDateTime getShowDatetime() {
 		return showDatetime;
 	}
 	
+	/**
+	 * Changes the date and time of this showtime.
+	 * @param showDatetime New date and time of this showtime.
+	 */
 	public void setShowDatetime(LocalDateTime showDatetime) {
 		this.showDatetime = showDatetime;
 	}
 	
+	/**
+	 * Gets movie that is screened at this showtime.
+	 * @return This showtime's movie.
+	 */
 	public Movie getMovie() {
 		return movie;
 	}
 	
+	/**
+	 * Changes the movie being screened at this showtime.
+	 * @param movie New movie at this showtime.
+	 */
 	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
 	
+	/**
+	 * Gets the cinema where this showtime is at.
+	 * @return this showtime's cinema
+	 */
 	public Cinema getCinema() {
 		return cinema;
 	}
 
+	/**
+	 * Gets the type of movie at this showtime.
+	 * @return This showtime's movie type.
+	 */
 	public MovieType getMovieType() {
 		return movieType;
 	}
 	
+	/**
+	 * Changes the cinema of this showtime.
+	 * @param c New cinema of this showtime.
+	 */
 	public void setCinema(Cinema c) {
 		cinema = c;
 	}
 
+	/**
+	 * Gets the seat layout of this showtime.
+	 * @return This showtime's seat layout.
+	 */
 	public SeatLayout getSeatLayout() {
 		return seatLayout;
 	}
 
+	/**
+	 * Changes this showtime's attributes to string format for storage in database.
+	 */
+	@Override
 	public String toString(){
 		String returnString = "";
 		returnString += this.cinema.getCineplex().getName();
@@ -83,19 +140,5 @@ public class Showtime implements Serializable {
 		return returnString;
 	}
 
-	//
-//	public ArrayList<Ticket> getTickets() {
-//		return tickets;
-//	}
-//
-//	public void setTickets(ArrayList<Ticket> t) {
-//		tickets = t;
-//	}
-//
-//	public double getPrice() {
-//		return price;
-//	}
-	
-	
 
 }
