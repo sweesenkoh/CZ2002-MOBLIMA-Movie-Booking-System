@@ -4,11 +4,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
-import Controller.IOManager;
+import Controller.ViewsManager;
 import Model.*;
 
 import Controller.DatabaseManager;
-import Controller.ViewNavigator;
 import Model.MovieStatus;
 import View.MainMenuView;
 
@@ -23,7 +22,7 @@ public class Moblima {
 
 	//	generateAdminUsersToDatabase();
 		//generateDatabase();
-		ViewNavigator.pushView(new MainMenuView());
+		ViewsManager.pushView(new MainMenuView());
 
 
 

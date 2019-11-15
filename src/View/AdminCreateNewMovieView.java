@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Movie;
 import Model.MovieCensorshipRating;
 import Model.MovieStatus;
 
 
 /**
- * This View class is responsible for facilitating the process of admin creating new movie into the movie database
+ * This BaseView class is responsible for facilitating the process of admin creating new movie into the movie database
  */
 
-public class AdminCreateNewMovieView extends View {
+public class AdminCreateNewMovieView extends BaseView {
 
 	/**
-	 * This is the title for the View
+	 * This is the title for the BaseView
 	 */
 	private String title = "Create New Movie";
 
 
 	/**
-	 * This method transforms the View into active state.
+	 * This method transforms the BaseView into active state.
 	 */
 	@Override
 	public void activate() {
@@ -104,11 +104,11 @@ public class AdminCreateNewMovieView extends View {
 			
 		}
 		
-		ViewNavigator.popView();
+		ViewsManager.popView();
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	@Override

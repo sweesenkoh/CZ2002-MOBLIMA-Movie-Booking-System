@@ -1,11 +1,11 @@
 package View;
 import java.util.ArrayList;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Movie;
 
 
 /**
- * This View class is responsible for printing the list of movies in the movie-goer module
+ * This BaseView class is responsible for printing the list of movies in the movie-goer module
  */
 public class MovieGoerListMoviesView extends BaseListMoviesView {
 
@@ -19,16 +19,16 @@ public class MovieGoerListMoviesView extends BaseListMoviesView {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	@Override
 	protected void processUserInput(int input) {
 		
 		if (input == -1) {
-			ViewNavigator.popView();
+			ViewsManager.popView();
 		}else {
-			ViewNavigator.pushView(new MovieViewingView(this.movies.get(input - 1)));
+			ViewsManager.pushView(new MovieViewingView(this.movies.get(input - 1)));
 		}
 	}
 

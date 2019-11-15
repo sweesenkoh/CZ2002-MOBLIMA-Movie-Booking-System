@@ -2,7 +2,7 @@ package View;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.PriceConfiguration;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,14 +11,14 @@ import java.util.Arrays;
 
 
 /**
- * This View class is responsible for handling the configuration of system settings by the admin/
+ * This BaseView class is responsible for handling the configuration of system settings by the admin/
  */
 
-public class AdminSystemSettingsView extends View {
+public class AdminSystemSettingsView extends BaseView {
 
 
     /**
-     * This is the options for the View
+     * This is the options for the BaseView
      */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Set Public Holidays",
@@ -37,18 +37,18 @@ public class AdminSystemSettingsView extends View {
 
 
     /**
-     * This is the title for the View
+     * This is the title for the BaseView
      */
     private String title = "Admin Configuring System Settings";
 
     /**
-     * This is the content for the View
+     * This is the content for the BaseView
      */
     private String viewContent = "Here are the options for you to configure: ";
 
 
     /**
-     * This method transforms the View into active state
+     * This method transforms the BaseView into active state
      */
     @Override
     public void activate() {
@@ -63,7 +63,7 @@ public class AdminSystemSettingsView extends View {
     }
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the View options.
+     * This method helps to manage execution of code based on the user put choice on the BaseView options.
      * @param input the index of the options
      */
     @Override
@@ -93,7 +93,7 @@ public class AdminSystemSettingsView extends View {
             case 11:
                 this.handleSetGSTPercentageIncrease();
             default:
-                ViewNavigator.popView();
+                ViewsManager.popView();
         }
     }
 
@@ -101,7 +101,7 @@ public class AdminSystemSettingsView extends View {
      * This method handles the action when admin choose to set public holidays into the system settings
      */
     private void handleSetPublicHoliday(){
-        ViewNavigator.pushView(new AdminConfigurePublicHolidayView());
+        ViewsManager.pushView(new AdminConfigurePublicHolidayView());
     }
 
     /**

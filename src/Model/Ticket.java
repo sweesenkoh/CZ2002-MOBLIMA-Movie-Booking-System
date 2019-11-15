@@ -10,14 +10,6 @@ public abstract class Ticket implements Serializable {
 	private double price;
 	private Seat seat;
 	private Showtime showtime;
-//	private TicketType ticketType;
-	
-//	public Ticket(Seat seat, Showtime showtime,TicketType ticketType) {
-//		this.seat = seat;
-//		this.showtime = showtime;
-//		this.ticketType = ticketType;
-//		price = this.calculateTicketPrice();
-//	}
 
 	public Ticket(Seat seat, Showtime showtime) {
 		this.seat = seat;

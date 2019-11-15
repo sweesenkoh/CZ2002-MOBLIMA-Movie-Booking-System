@@ -1,12 +1,12 @@
 package View;
 
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Movie;
 import java.util.ArrayList;
 
 
 /**
- * This View class is responsible for listing the top 5 movies in the admin module
+ * This BaseView class is responsible for listing the top 5 movies in the admin module
  */
 public class AdminListTop5MoviesView extends BaseListTop5MoviesView {
 
@@ -20,16 +20,16 @@ public class AdminListTop5MoviesView extends BaseListTop5MoviesView {
     }
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the View options.
+     * This method helps to manage execution of code based on the user put choice on the BaseView options.
      * @param input the index of the options
      */
     @Override
     protected void processUserInput(int input) {
 
         if (input == -1) {
-            ViewNavigator.popView();
+            ViewsManager.popView();
         }else {
-            ViewNavigator.pushView(new AdminChangeMovieInfoView(this.movies.get(input - 1)));
+            ViewsManager.pushView(new AdminChangeMovieInfoView(this.movies.get(input - 1)));
         }
 
     }

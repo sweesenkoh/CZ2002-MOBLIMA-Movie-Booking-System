@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 
 /**
- * This is an abstract View class which provides the implementation of presenting top 5 movies.
+ * This is an abstract BaseView class which provides the implementation of presenting top 5 movies.
  *  * This is created because there are various parts of the applications that needs to list Top 5 movies.
  *  * For example, both the admin module and the movie goer module needs to make use of listing Top 5 movies in certain parts within their modules.
- *  * Therefore, this View class act as an abstraction and manage the listing of the top 5 movies, while leaving the low level implementation to the subclasses of this class, such as processing of user options input.
+ *  * Therefore, this BaseView class act as an abstraction and manage the listing of the top 5 movies, while leaving the low level implementation to the subclasses of this class, such as processing of user options input.
  */
 public abstract class BaseListTop5MoviesView extends BaseListMoviesView {
 
@@ -40,7 +40,7 @@ public abstract class BaseListTop5MoviesView extends BaseListMoviesView {
 
     /**
      * This method helps to format the String to be printed for each movie object
-     * @param movies The movies to be printed in the View
+     * @param movies The movies to be printed in the BaseView
      * @return
      */
     @Override

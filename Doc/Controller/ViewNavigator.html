@@ -100,7 +100,7 @@ var activeTableTab = "activeTableTab";
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>Controller.ViewNavigator</li>
+<li>Controller.ViewsManager</li>
 </ul>
 </li>
 </ul>
@@ -135,7 +135,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>private static java.util.ArrayList&lt;<a href="../View/View.html" title="class in View">View</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../Controller/ViewNavigator.html#views">views</a></span></code>
 <div class="block">This is the ArrayList of views, which is imagined to be our views stack
- It contains all the views that are currently in the view stack</div>
+ It contains all the views that are currently in the baseView stack</div>
 </td>
 </tr>
 </table>
@@ -201,7 +201,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../Controller/ViewNavigator.html#pushView-View.View-">pushView</a></span>(<a href="../View/View.html" title="class in View">View</a>&nbsp;view)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../Controller/ViewNavigator.html#pushView-View.BaseView-">pushView</a></span>(<a href="../View/View.html" title="class in View">View</a>&nbsp;baseView)</code>
 <div class="block">This method helps to push new View onto the existing View stack.</div>
 </td>
 </tr>
@@ -235,7 +235,7 @@ extends java.lang.Object</pre>
 <h4>views</h4>
 <pre>private static&nbsp;java.util.ArrayList&lt;<a href="../View/View.html" title="class in View">View</a>&gt; views</pre>
 <div class="block">This is the ArrayList of views, which is imagined to be our views stack
- It contains all the views that are currently in the view stack</div>
+ It contains all the views that are currently in the baseView stack</div>
 </li>
 </ul>
 </li>
@@ -271,12 +271,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>pushView</h4>
-<pre>public static&nbsp;void&nbsp;pushView(<a href="../View/View.html" title="class in View">View</a>&nbsp;view)</pre>
+<pre>public static&nbsp;void&nbsp;pushView(<a href="../View/View.html" title="class in View">View</a>&nbsp;baseView)</pre>
 <div class="block">This method helps to push new View onto the existing View stack.
  Upon doing so, this new View on top of the stack is then activated to display its content</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The View object to be pushed onto the views stack</dd>
+<dd><code>baseView</code> - The View object to be pushed onto the views stack</dd>
 </dl>
 </li>
 </ul>

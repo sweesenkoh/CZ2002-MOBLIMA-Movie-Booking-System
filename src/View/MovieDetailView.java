@@ -4,29 +4,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Movie;
 
 /**
- * This View class presents the details of a particular Movie object
+ * This BaseView class presents the details of a particular Movie object
  */
 
-public class MovieDetailView extends View {
+public class MovieDetailView extends BaseView {
 
 	/**
-	 * This is the View options
+	 * This is the BaseView options
 	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Back to Previous Page"
 	));
 
 	/**
-	 * This is the View title
+	 * This is the BaseView title
 	 */
 	private String title;
 
 	/**
-	 * This is the View content
+	 * This is the BaseView content
 	 */
 	private String viewContent;
 
@@ -40,7 +40,7 @@ public class MovieDetailView extends View {
 	}
 
 	/**
-	 * This method transforms the View into active state
+	 * This method transforms the BaseView into active state
 	 */
 	public void activate() {
 		super.setOptions(this.options);
@@ -53,13 +53,13 @@ public class MovieDetailView extends View {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	@Override
 	protected void processUserInput(int input) {
 		if (input == options.size()) {
-			ViewNavigator.popView();
+			ViewsManager.popView();
 		}
 	}
 

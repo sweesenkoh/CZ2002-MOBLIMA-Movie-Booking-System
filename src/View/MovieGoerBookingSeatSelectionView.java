@@ -1,7 +1,7 @@
 package View;
 
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Seat;
 import Model.Showtime;
 
@@ -9,22 +9,22 @@ import java.util.ArrayList;
 
 
 /**
- * This View class is primarily responsible for facilitating the process of choosing of seats by the movie-goer before proceeding for booking.
+ * This BaseView class is primarily responsible for facilitating the process of choosing of seats by the movie-goer before proceeding for booking.
  */
-public class MovieGoerBookingSeatSelectionView extends View {
+public class MovieGoerBookingSeatSelectionView extends BaseView {
 
     /**
-     * This is the options for the View
+     * This is the options for the BaseView
      */
     private ArrayList<String> options = new ArrayList<>();
 
     /**
-     * This is the title for the View
+     * This is the title for the BaseView
      */
     private String title = "Seat Selection";
 
     /**
-     * This is the content for the View
+     * This is the content for the BaseView
      */
     private String viewContent = "       ";
 
@@ -49,7 +49,7 @@ public class MovieGoerBookingSeatSelectionView extends View {
     }
 
     /**
-     * This method transforms the state of this View to be active.
+     * This method transforms the state of this BaseView to be active.
      */
     @Override
     public void activate() {
@@ -69,13 +69,13 @@ public class MovieGoerBookingSeatSelectionView extends View {
 
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the View options.
+     * This method helps to manage execution of code based on the user put choice on the BaseView options.
      * @param input the index of the options
      */
     @Override
     protected void processUserInput(int input) {
         if (input == options.size()){
-            ViewNavigator.popView();
+            ViewsManager.popView();
         }else{
             this.handleBookSeat();
         }
@@ -156,13 +156,13 @@ public class MovieGoerBookingSeatSelectionView extends View {
                 showtime.getSeatLayout().getSeat(seat.getRow(),seat.getCol()).unbookSeat();
             }
             this.chosenSeats.clear();
-            ViewNavigator.popView();
+            ViewsManager.popView();
 
         }else if (userProceedChoice == 3){
             for (Seat seat:this.chosenSeats){
                 showtime.getSeatLayout().getSeat(seat.getRow(),seat.getCol()).unbookSeat();
             }
-            ViewNavigator.pushView(new MovieGoerBookingPurchaseTicketView(this.chosenSeats,this.showtime));
+            ViewsManager.pushView(new MovieGoerBookingPurchaseTicketView(this.chosenSeats,this.showtime));
         }
 
     }

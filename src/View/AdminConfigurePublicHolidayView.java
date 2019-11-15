@@ -1,7 +1,7 @@
 package View;
 
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.PriceConfiguration;
 import Model.PublicHoliday;
 import java.time.LocalDate;
@@ -14,10 +14,10 @@ import java.util.Arrays;
  * This class is responsible for handling the setting of public holidays as part of the system settings.
  * For example, the admin can add new public holiday into the system, or remove existing public holidays from the system
  */
-public class AdminConfigurePublicHolidayView extends View {
+public class AdminConfigurePublicHolidayView extends BaseView {
 
     /**
-     * This is the options for the View
+     * This is the options for the BaseView
      */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Add New Public Holiday",
@@ -26,12 +26,12 @@ public class AdminConfigurePublicHolidayView extends View {
     ));
 
     /**
-     * This is the title for the View
+     * This is the title for the BaseView
      */
     private String title = "Configure Public Holiday";
 
     /**
-     * This is the content for the View
+     * This is the content for the BaseView
      */
     private String viewContent = "";
 
@@ -42,7 +42,7 @@ public class AdminConfigurePublicHolidayView extends View {
 
 
     /**
-     * This method transforms the state of this View to be in active state
+     * This method transforms the state of this BaseView to be in active state
      */
     @Override
     public void activate() {
@@ -71,14 +71,14 @@ public class AdminConfigurePublicHolidayView extends View {
 
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the View options.
+     * This method helps to manage execution of code based on the user put choice on the BaseView options.
      * @param input the index of the options
      */
 
     @Override
     protected void processUserInput(int input) {
         if (input == options.size()){
-            ViewNavigator.popView();
+            ViewsManager.popView();
         }
 
         else if (input == 1){

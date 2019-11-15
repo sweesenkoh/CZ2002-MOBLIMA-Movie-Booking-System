@@ -5,13 +5,13 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.*;
 
 /**
- * This View class is responsible for admin to change the information of a movie in the database
+ * This BaseView class is responsible for admin to change the information of a movie in the database
  */
-public class AdminChangeMovieInfoView extends View {
+public class AdminChangeMovieInfoView extends BaseView {
 
 	/**
 	 * This is the selected movie to be modified
@@ -19,7 +19,7 @@ public class AdminChangeMovieInfoView extends View {
 	private Movie selectedMovie;
 
 	/**
-	 * This is the options for the View
+	 * This is the options for the BaseView
 	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Status",
@@ -33,12 +33,12 @@ public class AdminChangeMovieInfoView extends View {
 	));
 
 	/**
-	 * This is the title for the View
+	 * This is the title for the BaseView
 	 */
 	private String title = "Movie Info Modification: ";
 
 	/**
-	 * This is the content for the View
+	 * This is the content for the BaseView
 	 */
 	private String viewContent = "Choose the following options to change the information of the movie";
 
@@ -53,7 +53,7 @@ public class AdminChangeMovieInfoView extends View {
 	}
 
 	/**
-	 * This method transforms the View into active state
+	 * This method transforms the BaseView into active state
 	 */
 	public void activate() {
 		super.setOptions(this.options);
@@ -66,7 +66,7 @@ public class AdminChangeMovieInfoView extends View {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	
@@ -74,7 +74,7 @@ public class AdminChangeMovieInfoView extends View {
 	protected void processUserInput(int input) {
 		
 		if (input == options.size()) {
-			ViewNavigator.popTillView(AdminMainMenuView.class);
+			ViewsManager.popTillView(AdminMainMenuView.class);
 		
 		}else if (input == 1) {
 			System.out.println("Current Status: " + this.selectedMovie.getStatus().displayName());
@@ -134,7 +134,7 @@ public class AdminChangeMovieInfoView extends View {
 		}
 
 		else if (input == 7){
-			ViewNavigator.pushView(new AdminAddShowTimeView(this.selectedMovie));
+			ViewsManager.pushView(new AdminAddShowTimeView(this.selectedMovie));
 			//this.handleAddShowTime();
 		}
 		
@@ -147,7 +147,7 @@ public class AdminChangeMovieInfoView extends View {
 		if (userChoice == 1) {
 			this.activate();
 		}else {
-			ViewNavigator.popViews(3);
+			ViewsManager.popViews(3);
 		}
 		
 	}

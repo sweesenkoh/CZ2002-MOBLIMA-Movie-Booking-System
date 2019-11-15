@@ -2,29 +2,29 @@ package View;
 
 import java.util.ArrayList;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Movie;
 import Model.MovieStatus;
 
 
 /**
- * This View class presents the various options for users for a given selected movies, such as booking of tickets or leaving reviews.
+ * This BaseView class presents the various options for users for a given selected movies, such as booking of tickets or leaving reviews.
  */
 
-public class MovieViewingView extends View {
+public class MovieViewingView extends BaseView {
 
 	/**
-	 * This is the View options
+	 * This is the BaseView options
 	 */
 	private ArrayList<String> options = new ArrayList<>();
 
 	/**
-	 * This is the View title
+	 * This is the BaseView title
 	 */
 	private String title;
 
 	/**
-	 * This is View content
+	 * This is BaseView content
 	 */
 	private String viewContent = "You have chosen this movie, please choose one of the following options: ";
 
@@ -39,7 +39,7 @@ public class MovieViewingView extends View {
 	 */
 	public MovieViewingView(Movie movie) {
 		this.movie = movie;
-		options.add("View Movie Detail");
+		options.add("BaseView Movie Detail");
 		if (movie.getStatus() == MovieStatus.COMINGSOON){
 //			options.add("Book");  //logically coming soon movies should not be able to be booked
 		}else if (movie.getStatus() == MovieStatus.ENDED){
@@ -55,7 +55,7 @@ public class MovieViewingView extends View {
 	}
 
 	/**
-	 * This method helps to transform this View into active state
+	 * This method helps to transform this BaseView into active state
 	 */
 	public void activate() {
 		super.setOptions(this.options);
@@ -68,34 +68,34 @@ public class MovieViewingView extends View {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	@Override
 	protected void processUserInput(int input) {
 		
 		if (input == options.size()) {
-			ViewNavigator.popView();
+			ViewsManager.popView();
 		}else if (input == 1) {
-			ViewNavigator.pushView(new MovieDetailView(this.movie));
+			ViewsManager.pushView(new MovieDetailView(this.movie));
 		}else if (movie.getStatus() == MovieStatus.COMINGSOON) {
 //			if (input == 2){
-//				ViewNavigator.pushView(new BookingBrowseOptionsView(this.movie));
+//				ViewsManager.pushView(new BookingBrowseOptionsView(this.movie));
 //			}
 		}else if (movie.getStatus() == MovieStatus.ENDED) {
 			if (input == 2) {
-				ViewNavigator.pushView(new MovieGoerLeaveReviewView(this.movie));
+				ViewsManager.pushView(new MovieGoerLeaveReviewView(this.movie));
 			}else if (input == 3) {
-				ViewNavigator.pushView(new MovieGoerListReviewsView(this.movie));
+				ViewsManager.pushView(new MovieGoerListReviewsView(this.movie));
 			}
 		}else {
 			if (input == 2){
-				ViewNavigator.pushView(new MovieGoerBookingFilterShowtimesView(this.movie));
+				ViewsManager.pushView(new MovieGoerBookingFilterShowtimesView(this.movie));
 			}
 			else if (input == 3) {
-				ViewNavigator.pushView(new MovieGoerLeaveReviewView(this.movie));
+				ViewsManager.pushView(new MovieGoerLeaveReviewView(this.movie));
 			}else if (input == 4) {
-				ViewNavigator.pushView(new MovieGoerListReviewsView(this.movie));
+				ViewsManager.pushView(new MovieGoerListReviewsView(this.movie));
 			}
 		}
 

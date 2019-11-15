@@ -2,7 +2,7 @@ package View;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,13 +12,13 @@ import java.util.Arrays;
 import java.util.EnumSet;
 
 /**
- * This View class is responsible for facilitating with admin adding new showtime to database or removing existing showtime from the database
+ * This BaseView class is responsible for facilitating with admin adding new showtime to database or removing existing showtime from the database
  */
 
-public class AdminAddShowTimeView extends View {
+public class AdminAddShowTimeView extends BaseView {
 
     /**
-     * This is the options for the View
+     * This is the options for the BaseView
      */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Add Showtime",
@@ -26,7 +26,7 @@ public class AdminAddShowTimeView extends View {
     ));
 
     /**
-     * This is the title for the View
+     * This is the title for the BaseView
      */
     private String title = "Admin: Add or Remove Showtime for: ";
 
@@ -84,14 +84,14 @@ public class AdminAddShowTimeView extends View {
 
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the View options.
+     * This method helps to manage execution of code based on the user put choice on the BaseView options.
      * @param input the index of the options
      */
     @Override
     protected void processUserInput(int input) {
 
         if (input == this.options.size()){
-            ViewNavigator.popView();
+            ViewsManager.popView();
         }
 
         else if (this.options.size() == 2){

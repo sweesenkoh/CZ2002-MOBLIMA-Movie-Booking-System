@@ -4,26 +4,26 @@ import java.util.ArrayList;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Order;
 
 /**
  * This class is responsible for showing the booking history that has been made by a movie-goer
  */
-public class MovieGoerBookingHistoryView extends View {
+public class MovieGoerBookingHistoryView extends BaseView {
 
 	/**
-	 * This is the View options
+	 * This is the BaseView options
 	 */
 	private ArrayList<String> options = new ArrayList<>();
 
 	/**
-	 * This is the View title
+	 * This is the BaseView title
 	 */
 	private String title = "Booking History";
 
 	/**
-	 * This is the View content
+	 * This is the BaseView content
 	 */
 	private String viewContent = "Here is the list of your past bookings: Choose any one of the order to show the detailed order information";
 
@@ -56,7 +56,7 @@ public class MovieGoerBookingHistoryView extends View {
 	}
 
 	/**
-	 * This method helps to transform the View into active state
+	 * This method helps to transform the BaseView into active state
 	 */
 	public void activate() {
 		super.setOptions(this.options);
@@ -69,13 +69,13 @@ public class MovieGoerBookingHistoryView extends View {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	@Override
 	protected void processUserInput(int input) {
 		if (input == options.size()) {
-			ViewNavigator.popView();
+			ViewsManager.popView();
 		}else{
 			String orderString = this.orders.get(input - 1).toString();
 			System.out.println(orderString);

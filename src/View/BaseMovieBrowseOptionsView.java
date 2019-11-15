@@ -7,16 +7,16 @@ import java.util.Arrays;
 
 
 /**
- * This is the base View class for listing options by which movies can be filtered or search.
+ * This is the base BaseView class for listing options by which movies can be filtered or search.
  * This is created because there are various parts of the applications that needs this functionality.
  * For example, both the admin module and the movie goer module needs to make use of listing movies, which requires the searching and filtering of movies, in certain parts within their modules.
- * Therefore, this View class act as an abstraction and manage the filtering of movies, while leaving the low level implementation to the subclasses of this class, such as processing of user options input.
+ * Therefore, this BaseView class act as an abstraction and manage the filtering of movies, while leaving the low level implementation to the subclasses of this class, such as processing of user options input.
  */
 
-public abstract class BaseMovieBrowseOptionsView extends View{
+public abstract class BaseMovieBrowseOptionsView extends BaseView {
 
     /**
-     * This is the View options
+     * This is the BaseView options
      */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Search movie",
@@ -30,12 +30,12 @@ public abstract class BaseMovieBrowseOptionsView extends View{
     ));
 
     /**
-     * This is the View title
+     * This is the BaseView title
      */
     private String title = "Browse Movie by Options";
 
     /**
-     * This is the View content
+     * This is the BaseView content
      */
     private String viewContent = "Please choose the mode by which you want to search for movies";
 

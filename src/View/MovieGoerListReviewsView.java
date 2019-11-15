@@ -2,22 +2,22 @@ package View;
 
 
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Movie;
 
 
 /**
- * This View class helps to list reviews for a particular movie
+ * This BaseView class helps to list reviews for a particular movie
  */
-public class MovieGoerListReviewsView extends View {
+public class MovieGoerListReviewsView extends BaseView {
 
 	/**
-	 * This is the View title
+	 * This is the BaseView title
 	 */
 	private String title = "Reviews for: ";
 
 	/**
-	 * This is the View content
+	 * This is the BaseView content
 	 */
 	private String viewContent = " ";
 
@@ -36,7 +36,7 @@ public class MovieGoerListReviewsView extends View {
 	}
 
 	/**
-	 * This transforms the View state to be in active state
+	 * This transforms the BaseView state to be in active state
 	 */
 	public void activate() {
 		super.setTitle(this.title);
@@ -44,12 +44,12 @@ public class MovieGoerListReviewsView extends View {
 		super.activate();
 		
 		IOManager.printMultipageOptions(this.selectedMovie.getReviews(),3,"Close this Page");
-		ViewNavigator.popView();
+		ViewsManager.popView();
 	
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	@Override

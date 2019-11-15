@@ -3,16 +3,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 
 /**
  * This is the MainMenuView class, which is the entry point of the application and is always the first view that the user of this system will see.
  */
 
-public class MainMenuView extends View {
+public class MainMenuView extends BaseView {
 
 	/**
-	 * This is the View options
+	 * This is the BaseView options
 	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Admin",
@@ -20,18 +20,18 @@ public class MainMenuView extends View {
 	));
 
 	/**
-	 * This is the View title
+	 * This is the BaseView title
 	 */
 	private String title = "Moblima Movie Booking System";
 
 	/**
-	 * This is the View content
+	 * This is the BaseView content
 	 */
 	private String viewContent = "Welcome To Moblima Movie Booking System! Are you a staff or a movie-goer?";
 
 
 	/**
-	 * This method transforms the View into active state
+	 * This method transforms the BaseView into active state
 	 */
 	@Override
 	public void activate() {
@@ -47,16 +47,16 @@ public class MainMenuView extends View {
 
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	@Override
 	protected void processUserInput(int input) {
 		switch (input) {
 		case 1:
-			ViewNavigator.pushView(new AdminMainMenuView());
+			ViewsManager.pushView(new AdminMainMenuView());
 		case 2:
-			ViewNavigator.pushView(new MovieGoerView());
+			ViewsManager.pushView(new MovieGoerView());
 		}
 
 	}

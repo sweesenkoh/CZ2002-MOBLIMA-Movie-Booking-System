@@ -2,7 +2,7 @@ package View;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Cinema;
 import Model.Cineplex;
 import Model.Movie;
@@ -16,13 +16,13 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * This View class is responsible for getting the filter mode from the user and filter the showtimes accordingly
+ * This BaseView class is responsible for getting the filter mode from the user and filter the showtimes accordingly
  */
 
-public class MovieGoerBookingFilterShowtimesView extends View {
+public class MovieGoerBookingFilterShowtimesView extends BaseView {
 
     /**
-     * This is the View options
+     * This is the BaseView options
      */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Filter by Cineplex",
@@ -33,12 +33,12 @@ public class MovieGoerBookingFilterShowtimesView extends View {
 
 
     /**
-     * This is the View title
+     * This is the BaseView title
      */
     private String title = "Booking Options: ";
 
     /**
-     * This is the View content
+     * This is the BaseView content
      */
     private String viewContent = "How do you want to filter the showtime results?";
 
@@ -57,7 +57,7 @@ public class MovieGoerBookingFilterShowtimesView extends View {
     }
 
     /**
-     * This method transforms the View into active state
+     * This method transforms the BaseView into active state
      */
     @Override
     public void activate() {
@@ -73,7 +73,7 @@ public class MovieGoerBookingFilterShowtimesView extends View {
 
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the View options.
+     * This method helps to manage execution of code based on the user put choice on the BaseView options.
      * @param input the index of the options
      */
     @Override
@@ -90,7 +90,7 @@ public class MovieGoerBookingFilterShowtimesView extends View {
             case 3:
                 this.handleDoNotFilter();
             default:
-                ViewNavigator.popView();
+                ViewsManager.popView();
                 break;
         }
     }
@@ -121,7 +121,7 @@ public class MovieGoerBookingFilterShowtimesView extends View {
         //have to think of some way of sorting the showtimes
         //this is sort by date
         Collections.sort(showtimes, Comparator.comparing(Showtime::getShowDatetime));
-        ViewNavigator.pushView(new MovieGoerBookingListShowTimesView(showtimes));
+        ViewsManager.pushView(new MovieGoerBookingListShowTimesView(showtimes));
     }
 
     /**
@@ -145,7 +145,7 @@ public class MovieGoerBookingFilterShowtimesView extends View {
             }
         }
         Collections.sort(showtimes, Comparator.comparing(Showtime::getShowDatetime));
-        ViewNavigator.pushView(new MovieGoerBookingListShowTimesView(showtimes));
+        ViewsManager.pushView(new MovieGoerBookingListShowTimesView(showtimes));
 
     }
 
@@ -166,7 +166,7 @@ public class MovieGoerBookingFilterShowtimesView extends View {
             }
         }
         Collections.sort(showtimes, Comparator.comparing(Showtime::getShowDatetime));
-        ViewNavigator.pushView(new MovieGoerBookingListShowTimesView(showtimes));
+        ViewsManager.pushView(new MovieGoerBookingListShowTimesView(showtimes));
     }
 
 

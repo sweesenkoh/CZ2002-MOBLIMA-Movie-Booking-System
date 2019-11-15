@@ -8,18 +8,18 @@ import java.util.stream.Collectors;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.*;
 
 
 /**
- * This View is the main menu for the admin module
+ * This BaseView is the main menu for the admin module
  */
 
-public class AdminMainMenuView extends View {
+public class AdminMainMenuView extends BaseView {
 
 	/**
-	 * This is the options for the View
+	 * This is the options for the BaseView
 	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Create New Movie",
@@ -32,19 +32,19 @@ public class AdminMainMenuView extends View {
 	));
 
 	/**
-	 * This is the title for the View
+	 * This is the title for the BaseView
 	 */
 	private String title = "Admin Main Menu";
 
 	/**
-	 * This is the content for the View
+	 * This is the content for the BaseView
 	 */
 	private String viewContent = "Welcome! Please select one of the options below: ";
 	private boolean isAuthorised = false;
 
 
 	/**
-	 * This method transforms the View into active state
+	 * This method transforms the BaseView into active state
 	 */
 	@Override
 	public void activate() {
@@ -68,24 +68,24 @@ public class AdminMainMenuView extends View {
 
 		else{
 			System.out.println("Credentials are not correct");
-			ViewNavigator.popView();
+			ViewsManager.popView();
 		}
 
 
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	@Override
 	protected void processUserInput(int input) {
 		if (input == options.size()) {
-			ViewNavigator.popView();
+			ViewsManager.popView();
 		}else if (input == 1) {
-			ViewNavigator.pushView(new AdminCreateNewMovieView());
+			ViewsManager.pushView(new AdminCreateNewMovieView());
 		}else if (input == 2) {
-			ViewNavigator.pushView(new AdminMovieBrowseOptionsView());
+			ViewsManager.pushView(new AdminMovieBrowseOptionsView());
 		}
 
 		else if (input == 6){
@@ -152,7 +152,7 @@ public class AdminMainMenuView extends View {
 					resultSales.set(index,-1);
 				}
 
-				ViewNavigator.pushView(new AdminListTop5MoviesView(resultMovies, AdminListTop5MoviesView.Top5MoviesOption.TICKETSALES));
+				ViewsManager.pushView(new AdminListTop5MoviesView(resultMovies, AdminListTop5MoviesView.Top5MoviesOption.TICKETSALES));
 
 
 
@@ -163,10 +163,10 @@ public class AdminMainMenuView extends View {
 				Collections.sort(movies, Comparator.comparing(Movie::getRating));
 				Collections.reverse(movies);
 				movies = new ArrayList<>(movies.subList((movies.size() > 5 ? movies.size() - 5 : 0),movies.size()));
-				ViewNavigator.pushView(new AdminListTop5MoviesView(movies, AdminListTop5MoviesView.Top5MoviesOption.RATINGS));
+				ViewsManager.pushView(new AdminListTop5MoviesView(movies, AdminListTop5MoviesView.Top5MoviesOption.RATINGS));
 			}
 		}else if (input == 3){
-			ViewNavigator.pushView(new AdminSystemSettingsView());
+			ViewsManager.pushView(new AdminSystemSettingsView());
 		}
 	}
 

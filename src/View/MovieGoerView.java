@@ -3,17 +3,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 
 
 /**
- * This View class is the main menu for the movie-goer
+ * This BaseView class is the main menu for the movie-goer
  */
 
-public class MovieGoerView extends View {
+public class MovieGoerView extends BaseView {
 
 	/**
-	 * This is the View options
+	 * This is the BaseView options
 	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"List Movie",
@@ -22,18 +22,18 @@ public class MovieGoerView extends View {
 	));
 
 	/**
-	 * This is the View title
+	 * This is the BaseView title
 	 */
 	private String title = "Movie-Goer Menu";
 
 	/**
-	 * This is the View content
+	 * This is the BaseView content
 	 */
 	private String viewContent = "What would you like to do?";
 
 
 	/**
-	 * This method helps to transform this View into active state
+	 * This method helps to transform this BaseView into active state
 	 */
 	public void activate() {
 		super.setOptions(this.options);
@@ -47,7 +47,7 @@ public class MovieGoerView extends View {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 
@@ -56,14 +56,14 @@ public class MovieGoerView extends View {
 		
 		switch (input) {
 			case 1:
-				ViewNavigator.pushView(new MovieGoerMovieBrowseOptionsView());
+				ViewsManager.pushView(new MovieGoerMovieBrowseOptionsView());
 				break;
 			case 2:
 				String username = IOManager.getUserInputString("Please input your username: ");
-				ViewNavigator.pushView(new MovieGoerBookingHistoryView(username));
+				ViewsManager.pushView(new MovieGoerBookingHistoryView(username));
 				break;
 			case 3:
-				ViewNavigator.popView();
+				ViewsManager.popView();
 			}
 	}
 

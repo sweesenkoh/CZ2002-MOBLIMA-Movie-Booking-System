@@ -89,7 +89,7 @@ public class PriceManager {
      */
 
     private static double applyAgeFactor(double price,Ticket ticket){
-        return price*ticket.getFractionalCostOutOfOriginal();
+        return price * ticket.getFractionalCostOutOfOriginal();
     }
 
 

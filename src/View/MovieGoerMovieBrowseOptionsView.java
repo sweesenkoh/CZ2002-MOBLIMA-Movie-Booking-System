@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Movie;
 import Model.MovieStatus;
 import Model.Order;
@@ -15,14 +15,14 @@ import Model.Ticket;
 
 
 /**
- * This View class presents for movie-goer the various options, each representing a method of listing ore searching movies
+ * This BaseView class presents for movie-goer the various options, each representing a method of listing ore searching movies
  */
 
 public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	@Override
@@ -55,10 +55,10 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 	}
 
 	/**
-	 * This method handles the case where the user wants to go back to the previous View
+	 * This method handles the case where the user wants to go back to the previous BaseView
 	 */
 	protected void handleBackToPreviousView(){
-		ViewNavigator.popView();
+		ViewsManager.popView();
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 		String userInput = IOManager.getUserInputString("Please write the name of the movie: ");
 		
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getTitle().matches("(?i).*" + userInput + ".*")).collect(Collectors.toList());
-		ViewNavigator.pushView(new MovieGoerListMoviesView(filteredMovieList));
+		ViewsManager.pushView(new MovieGoerListMoviesView(filteredMovieList));
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.PREVIEW)).collect(Collectors.toList());
-		ViewNavigator.pushView(new MovieGoerListMoviesView(filteredMovieList));
+		ViewsManager.pushView(new MovieGoerListMoviesView(filteredMovieList));
 	}
 
 
@@ -90,7 +90,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 	protected void handleListAllMoviesOption(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
-		ViewNavigator.pushView(new MovieGoerListMoviesView(movies));
+		ViewsManager.pushView(new MovieGoerListMoviesView(movies));
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.ENDED)).collect(Collectors.toList());
-		ViewNavigator.pushView(new MovieGoerListMoviesView(filteredMovieList));
+		ViewsManager.pushView(new MovieGoerListMoviesView(filteredMovieList));
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.COMINGSOON)).collect(Collectors.toList());
-		ViewNavigator.pushView(new MovieGoerListMoviesView(filteredMovieList));
+		ViewsManager.pushView(new MovieGoerListMoviesView(filteredMovieList));
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.NOWSHOWING)).collect(Collectors.toList());
-		ViewNavigator.pushView(new MovieGoerListMoviesView(filteredMovieList));
+		ViewsManager.pushView(new MovieGoerListMoviesView(filteredMovieList));
 	}
 
 	/**
@@ -162,7 +162,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 				resultSales.set(index,-1);
 			}
 
-			ViewNavigator.pushView(new MovieGoerListTop5MoviesView(resultMovies, MovieGoerListTop5MoviesView.Top5MoviesOption.TICKETSALES));
+			ViewsManager.pushView(new MovieGoerListTop5MoviesView(resultMovies, MovieGoerListTop5MoviesView.Top5MoviesOption.TICKETSALES));
 
 
 		}else{
@@ -172,7 +172,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 			Collections.sort(movies, Comparator.comparing(Movie::getRating));
 			Collections.reverse(movies);
 			movies = new ArrayList<>(movies.subList((movies.size() > 5 ? movies.size() - 5 : 0),movies.size()));
-			ViewNavigator.pushView(new MovieGoerListTop5MoviesView(movies, MovieGoerListTop5MoviesView.Top5MoviesOption.RATINGS));
+			ViewsManager.pushView(new MovieGoerListTop5MoviesView(movies, MovieGoerListTop5MoviesView.Top5MoviesOption.RATINGS));
 		}
 	}
 

@@ -3,7 +3,7 @@ package View;
 import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.PriceManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.*;
 
 import java.util.ArrayList;
@@ -11,12 +11,12 @@ import java.util.Arrays;
 
 
 /**
- * This View class is primarily responsible for facilitating the booking and purchasing of tickets from movie-goer
+ * This BaseView class is primarily responsible for facilitating the booking and purchasing of tickets from movie-goer
  */
-public class MovieGoerBookingPurchaseTicketView extends View {
+public class MovieGoerBookingPurchaseTicketView extends BaseView {
 
     /**
-     * This is the options for the View
+     * This is the options for the BaseView
      */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Confirm",
@@ -25,12 +25,12 @@ public class MovieGoerBookingPurchaseTicketView extends View {
     ));
 
     /**
-     * This is the title for the View
+     * This is the title for the BaseView
      */
     private String title = "Purchasing Ticket";
 
     /**
-     * This is the content for the View
+     * This is the content for the BaseView
      */
     private String viewContent = "";
 
@@ -101,7 +101,7 @@ public class MovieGoerBookingPurchaseTicketView extends View {
                 int optionChoice = IOManager.getUserInputInt("Please choose one option",1,optionChoices.size());
 
                 if (optionChoice == 2){
-                    ViewNavigator.popView();
+                    ViewsManager.popView();
                 }
             }
         }
@@ -164,18 +164,18 @@ public class MovieGoerBookingPurchaseTicketView extends View {
     }
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the View options.
+     * This method helps to manage execution of code based on the user put choice on the BaseView options.
      * @param input the index of the options
      */
     @Override
     protected void processUserInput(int input) {
 
         if (input == 2){
-            ViewNavigator.popView();
+            ViewsManager.popView();
         }
 
         else if (input == 3){
-            ViewNavigator.popViews(8);
+            ViewsManager.popViews(8);
         }
 
         else if (input == 1){
@@ -194,7 +194,7 @@ public class MovieGoerBookingPurchaseTicketView extends View {
             DatabaseManager.saveNewOrder(order);
             System.out.println(order.toString());
             IOManager.getUserInputString("Please take a photo of this order to be used for verification\nEnter any key to go back to main menu");
-            ViewNavigator.popToBaseView();
+            ViewsManager.popToBaseView();
         }
 
     }

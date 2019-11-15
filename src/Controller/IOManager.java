@@ -56,7 +56,7 @@ public class IOManager {
 
 
 	/**
-	 * This method helps to print String content in any View. This method ensures that the string will automatically go to the next line when it reaches the maximum width of the allowable screen width
+	 * This method helps to print String content in any BaseView. This method ensures that the string will automatically go to the next line when it reaches the maximum width of the allowable screen width
 	 * @param input The String content
 	 */
 
@@ -84,7 +84,7 @@ public class IOManager {
 	 * This method does not support the selection of the options.
 	 * @param array Array containing objects to be listed as options in this menu
 	 * @param numOfOptionsPerPage The maximum number of options allowed for each page
-	 * @param endOptionsChoosingSessionMessage The option String that tells user to navigate back to previous View.
+	 * @param endOptionsChoosingSessionMessage The option String that tells user to navigate back to previous BaseView.
 	 * @param <E> Any type as long as the toString() method is properly configured.
 	 */
 	public static <E> void printMultipageOptions(ArrayList<E> array,int numOfOptionsPerPage,String endOptionsChoosingSessionMessage) {

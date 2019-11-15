@@ -1,12 +1,12 @@
 package View;
 
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Movie;
 
 import java.util.ArrayList;
 
 /**
- * This View class is responsible for showing top 5 movies (by sales or rating) for the movie-goer module
+ * This BaseView class is responsible for showing top 5 movies (by sales or rating) for the movie-goer module
  */
 
 public class MovieGoerListTop5MoviesView extends BaseListTop5MoviesView {
@@ -22,15 +22,15 @@ public class MovieGoerListTop5MoviesView extends BaseListTop5MoviesView {
     }
 
     /**
-     * This method helps to manage execution of code based on the user input choice on the View options.
+     * This method helps to manage execution of code based on the user input choice on the BaseView options.
      * @param input the index of the options
      */
     @Override
     protected void processUserInput(int input) {
         if (input == -1) {
-            ViewNavigator.popView();
+            ViewsManager.popView();
         }else {
-            ViewNavigator.pushView(new MovieViewingView(this.movies.get(input - 1)));
+            ViewsManager.pushView(new MovieViewingView(this.movies.get(input - 1)));
         }
     }
 }

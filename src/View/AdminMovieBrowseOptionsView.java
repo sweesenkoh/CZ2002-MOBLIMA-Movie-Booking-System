@@ -7,20 +7,20 @@ import java.util.stream.Collectors;
 
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Movie;
 import Model.MovieStatus;
 import Model.Order;
 import Model.Ticket;
 
 /**
- * This View class presents for admin the various options, each representing a method of listing ore searching movies
+ * This BaseView class presents for admin the various options, each representing a method of listing ore searching movies
  */
 
 public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	protected void processUserInput(int input) {
@@ -53,10 +53,10 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 
 
 	/**
-	 * This method handles the case when the admin chooses to return to the previous View
+	 * This method handles the case when the admin chooses to return to the previous BaseView
 	 */
 	private void handleBackToPreviousView(){
-		ViewNavigator.popView();
+		ViewsManager.popView();
 	}
 
 
@@ -69,7 +69,7 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 		String userInput = IOManager.getUserInputString("Please write the name of the movie: ");
 		
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getTitle().matches("(?i).*" + userInput + ".*")).collect(Collectors.toList());
-		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
+		ViewsManager.pushView(new AdminListMoviesView(filteredMovieList));
 	}
 
 
@@ -80,7 +80,7 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.PREVIEW)).collect(Collectors.toList());
-		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
+		ViewsManager.pushView(new AdminListMoviesView(filteredMovieList));
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 	private void handleListAllMoviesOption(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
-		ViewNavigator.pushView(new AdminListMoviesView(movies));
+		ViewsManager.pushView(new AdminListMoviesView(movies));
 	}
 
 
@@ -100,7 +100,7 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.ENDED)).collect(Collectors.toList());
-		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
+		ViewsManager.pushView(new AdminListMoviesView(filteredMovieList));
 	}
 
 
@@ -111,7 +111,7 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.COMINGSOON)).collect(Collectors.toList());
-		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
+		ViewsManager.pushView(new AdminListMoviesView(filteredMovieList));
 	}
 
 
@@ -122,7 +122,7 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.NOWSHOWING)).collect(Collectors.toList());
-		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
+		ViewsManager.pushView(new AdminListMoviesView(filteredMovieList));
 	}
 
 
@@ -165,7 +165,7 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 				resultSales.set(index,-1);
 			}
 
-			ViewNavigator.pushView(new AdminListTop5MoviesView(resultMovies, AdminListTop5MoviesView.Top5MoviesOption.TICKETSALES));
+			ViewsManager.pushView(new AdminListTop5MoviesView(resultMovies, AdminListTop5MoviesView.Top5MoviesOption.TICKETSALES));
 
 
 
@@ -176,7 +176,7 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 			Collections.sort(movies, Comparator.comparing(Movie::getRating));
 			Collections.reverse(movies);
 			movies = new ArrayList<>(movies.subList((movies.size() > 5 ? movies.size() - 5 : 0),movies.size()));
-			ViewNavigator.pushView(new AdminListTop5MoviesView(movies, AdminListTop5MoviesView.Top5MoviesOption.RATINGS));
+			ViewsManager.pushView(new AdminListTop5MoviesView(movies, AdminListTop5MoviesView.Top5MoviesOption.RATINGS));
 		}
 	}
 

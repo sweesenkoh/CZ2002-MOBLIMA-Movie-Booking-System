@@ -3,28 +3,28 @@ package View;
 import java.util.ArrayList;
 import Controller.DatabaseManager;
 import Controller.IOManager;
-import Controller.ViewNavigator;
+import Controller.ViewsManager;
 import Model.Movie;
 import Model.Review;
 
 
 /**
- * This View class is responsible for getting review from the movie-goer
+ * This BaseView class is responsible for getting review from the movie-goer
  */
-public class MovieGoerLeaveReviewView extends View {
+public class MovieGoerLeaveReviewView extends BaseView {
 
 	/**
-	 * This is the options for the View
+	 * This is the options for the BaseView
 	 */
 	private ArrayList<String> options = new ArrayList<>();
 
 	/**
-	 * This is the title for the View
+	 * This is the title for the BaseView
 	 */
 	private String title = "Leave Review";
 
 	/**
-	 * This is the content for the View
+	 * This is the content for the BaseView
 	 */
 	private String viewContent = " ";
 
@@ -38,7 +38,7 @@ public class MovieGoerLeaveReviewView extends View {
 	}
 
 	/**
-	 * This method transforms the View state into active state
+	 * This method transforms the BaseView state into active state
 	 */
 	public void activate() {
 		super.setOptions(this.options);
@@ -73,13 +73,13 @@ public class MovieGoerLeaveReviewView extends View {
 			
 		}
 		
-		ViewNavigator.popView();
+		ViewsManager.popView();
 		
 		
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the View options.
+	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
 	 * @param input the index of the options
 	 */
 	@Override
