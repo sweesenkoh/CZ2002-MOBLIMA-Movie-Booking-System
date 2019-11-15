@@ -4,7 +4,6 @@ import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.*;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,24 +11,55 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
 
+/**
+ * This View class is responsible for facilitating with admin adding new showtime to database or removing existing showtime from the database
+ */
+
 public class AdminAddShowTimeView extends View {
 
-
+    /**
+     * This is the options for the View
+     */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Add Showtime",
             "Back to Previous Page"
     ));
 
+    /**
+     * This is the title for the View
+     */
     private String title = "Admin: Add or Remove Showtime for: ";
-    private String viewContent = "";
+
+    /**
+     * This is the selected movie that will be added as part of the new showtime
+     */
     private Movie selectedMovie;
 
+    /**
+     * This is the ArrayList of all the cineplexes exist in the database
+     */
     private ArrayList<Cineplex> cineplexes;
+
+    /**
+     * This is the chosen date by the admin to add showtime
+     */
     private LocalDate chosenDate;
+
+    /**
+     * This is the index of the cinema that is chosen by the admin to add showtime
+     */
     private Integer chosenCinemaIndex;
+
+    /**
+     * This is the index of the cineplex that is chosen by the admin to add showtime
+     */
     private Integer chosenCineplexIndex;
 
 
+    /**
+     * This is the constructor of this class, which takes in a Movie object as the argument
+     * @param selectedMovie The selected Movie object to add showtime
+     */
     public AdminAddShowTimeView(Movie selectedMovie){
         this.selectedMovie = selectedMovie;
         this.title += selectedMovie.getTitle();
@@ -38,6 +68,9 @@ public class AdminAddShowTimeView extends View {
     }
 
 
+    /**
+     * This method helps to transform this view into active state
+     */
     @Override
     public void activate() {
         super.setTitle(this.title);
@@ -75,6 +108,10 @@ public class AdminAddShowTimeView extends View {
 
     }
 
+    /**
+     * This method is responsible for handling getting information such as the date and which cineplex and cinema, from the admin.
+     * These information are necessary for the creation of new showtime
+     */
     private void handleGettingInfo(){
         cineplexes = DatabaseManager.retrieveAllCineplexes();
         ArrayList<String> cineplexesString = new ArrayList<>();
@@ -92,6 +129,9 @@ public class AdminAddShowTimeView extends View {
         chosenDate = IOManager.getUserInputDate("Please input the date that you want to insert the showtime to: ");
     }
 
+    /**
+     * This method is responsible for printing out the currently existing showtime that are present on the chosen date in the chosen cinema and cineplex
+     */
     private void printingCurrentAvailableShowTime(){
         int count = 1;
         for (Showtime showtime:cineplexes.get(chosenCineplexIndex - 1).getCinemas().get(chosenCinemaIndex - 1).getShowtimes()){
@@ -120,6 +160,9 @@ public class AdminAddShowTimeView extends View {
         }
     }
 
+    /**
+     * This method is responsible for handling the process of removing existing showtime
+     */
     private void handleRemoveShowTime(){
         int maxlength = cineplexes.get(chosenCineplexIndex - 1).getCinemas().get(chosenCinemaIndex - 1).getShowtimes().size();
         int removeChoice = IOManager.getUserInputInt("Please input the number of the showtime that you want to remove: ",1,maxlength);
@@ -147,6 +190,9 @@ public class AdminAddShowTimeView extends View {
 
     }
 
+    /**
+     * This method is responsible for handling process of adding new showtime
+     */
     private void handleAddShowTime(){
 
         System.out.println("What time do u want to insert it in: ");

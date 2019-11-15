@@ -1,7 +1,5 @@
 package View;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,6 +12,10 @@ import Model.Movie;
 import Model.MovieStatus;
 import Model.Order;
 import Model.Ticket;
+
+/**
+ * This View class presents for admin the various options, each representing a method of listing ore searching movies
+ */
 
 public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 
@@ -48,13 +50,19 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 				this.handleBackToPreviousView();
 		}
 	}
-	
 
+
+	/**
+	 * This method handles the case when the admin chooses to return to the previous View
+	 */
 	private void handleBackToPreviousView(){
 		ViewNavigator.popView();
 	}
 
 
+	/**
+	 * This method handles the case when the admin chooses to search for movies
+	 */
 	private void handleOptionSearchMovie(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
@@ -65,6 +73,9 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 	}
 
 
+	/**
+	 * This method handles the case when the admin chooses to list only the preview movies
+	 */
 	private void handleListPreviewMovies(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
@@ -72,6 +83,9 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 		ViewNavigator.pushView(new AdminListMoviesView(filteredMovieList));
 	}
 
+	/**
+	 * This method handles the case when the admin chooses to list all the movies in the system including the movies that have ended
+	 */
 	private void handleListAllMoviesOption(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
@@ -79,6 +93,9 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 	}
 
 
+	/**
+	 * This method handles the case when the admin chooses to list only movies that have ended
+	 */
 	private void handleListPastMoviesOption() {
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
@@ -87,6 +104,9 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 	}
 
 
+	/**
+	 * This method handles the case when the admin chooses to list only movies that are coming soon
+	 */
 	private void handleListUpcomingMoviesOption() {
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
@@ -95,6 +115,9 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 	}
 
 
+	/**
+	 * This method handles the case when the admin chooses to list only movies that are currently showing
+	 */
 	private void handleListCurrentShowingMovies() {
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
@@ -103,6 +126,9 @@ public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 	}
 
 
+	/**
+	 * This method handles the case when the admin chooses to list the currently top 5 movies
+	 */
 	private void handleListCurrentTop5Movies() {
 		ArrayList<String> userChoices = new ArrayList<>();
 		userChoices.add("Top 5 by ticket sales");

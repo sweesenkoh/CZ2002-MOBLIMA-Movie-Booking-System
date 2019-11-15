@@ -4,34 +4,22 @@ import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.PriceConfiguration;
-import Model.PublicHoliday;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+/**
+ * This View class is responsible for handling the configuration of system settings by the admin/
+ */
+
 public class AdminSystemSettingsView extends View {
 
-//
-//    private ArrayList<PublicHoliday> publicHolidays = new ArrayList<>();
-//
-//    private double basePrice = 9;
-//    private double platinumBasePrice = 15;
-//    private double goldBasePrice = 20;
-//
-//    private double weekendIncrement = 3;
-//    private double publicHolidayIncrement = 6;
-//
-//    private double threeDMovieIncrement = 3;
-//    private double blockbusterMovieIncrement = 5;
-//
-//
-//    private double childPercentageOff = 0.5;
-//    private double seniorCitizenPercentageOff = 0.6;
-//
-//    private double gstPercentageIncrease = 0.07;
 
+    /**
+     * This is the options for the View
+     */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Set Public Holidays",
             "Base Ticket Price",
@@ -48,10 +36,20 @@ public class AdminSystemSettingsView extends View {
     ));
 
 
+    /**
+     * This is the title for the View
+     */
     private String title = "Admin Configuring System Settings";
+
+    /**
+     * This is the content for the View
+     */
     private String viewContent = "Here are the options for you to configure: ";
 
 
+    /**
+     * This method transforms the View into active state
+     */
     @Override
     public void activate() {
 
@@ -99,12 +97,16 @@ public class AdminSystemSettingsView extends View {
         }
     }
 
+    /**
+     * This method handles the action when admin choose to set public holidays into the system settings
+     */
     private void handleSetPublicHoliday(){
-
         ViewNavigator.pushView(new AdminConfigurePublicHolidayView());
-
     }
 
+    /**
+     * This method handles the setting of base price by the admin
+     */
     private void handleSetBaseTicketPrice(){
 
         System.out.printf("Current Base Price: $");
@@ -123,6 +125,9 @@ public class AdminSystemSettingsView extends View {
 
     }
 
+    /**
+     * This method handles the setting of base platinum price by the admin
+     */
     private void handleSetBasePlatinumTicketPrice(){
 
         System.out.printf("Current Base Platinum Price: $");
@@ -139,6 +144,9 @@ public class AdminSystemSettingsView extends View {
         this.activate();
     }
 
+    /**
+     * This method handles the setting of base gold price by the admin
+     */
     private void handleSetBaseGoldTicketPrice(){
 
         System.out.printf("Current Gold Platinum Price: $");
@@ -155,6 +163,9 @@ public class AdminSystemSettingsView extends View {
         this.activate();
     }
 
+    /**
+     * This method handles the setting of weekend price increment by the admin
+     */
     private void handleSetWeekendPriceIncrement(){
         System.out.printf("Current Weekend Price Increment: $");
         IOManager.printDouble(PriceConfiguration.getInstance().getWeekendIncrement(),2);
@@ -170,6 +181,9 @@ public class AdminSystemSettingsView extends View {
         this.activate();
     }
 
+    /**
+     * This method handles the setting of price increment of public holiday by the admin
+     */
     private void handleSetPHPriceIncrement(){
         System.out.printf("Current Public Holiday Price Increment: $");
         IOManager.printDouble(PriceConfiguration.getInstance().getPublicHolidayIncrement(),2);
@@ -185,6 +199,9 @@ public class AdminSystemSettingsView extends View {
         this.activate();
     }
 
+    /**
+     * This method handles the setting of price increment of 3D movie by the admin
+     */
     private void handleSet3DPriceIncrement(){
         System.out.printf("Current 3D Price Increment: $");
         IOManager.printDouble(PriceConfiguration.getInstance().getThreeDMovieIncrement(),2);
@@ -201,6 +218,9 @@ public class AdminSystemSettingsView extends View {
 
     }
 
+    /**
+     * This method handles the setting of price increment of blockbuster movie by the admin
+     */
     private void handleSetBlockbusterPriceIncrement(){
         System.out.printf("Current Blockbuster Movie Price Increment: $");
         IOManager.printDouble(PriceConfiguration.getInstance().getBlockbusterMovieIncrement(),2);
@@ -216,6 +236,9 @@ public class AdminSystemSettingsView extends View {
         this.activate();
     }
 
+    /**
+     * This method handles the setting of percentage price discount for child ticket
+     */
     private void handleSetChildTicketPercentageDiscount(){
         System.out.printf("Current Child Ticket Percentage Off: ");
         IOManager.printDouble((1 - PriceConfiguration.getInstance().getChildPercentageOff()) * 100,2);
@@ -231,6 +254,9 @@ public class AdminSystemSettingsView extends View {
         this.activate();
     }
 
+    /**
+     * This method handles the setting of percentage price discount for senior citizen ticket
+     */
     private void handleSetSCTicketPercentageDiscount(){
         System.out.printf("Current Senior Citizen Ticket Percentage Off: ");
         IOManager.printDouble((1 - PriceConfiguration.getInstance().getSeniorCitizenPercentageOff()) * 100,2);
@@ -246,6 +272,9 @@ public class AdminSystemSettingsView extends View {
         this.activate();
     }
 
+    /**
+     * This method handles the setting of gst rate
+     */
     private void handleSetGSTPercentageIncrease(){
         System.out.printf("Current GST Percentage: ");
         IOManager.printDouble(PriceConfiguration.getInstance().getGstPercentageIncrease() * 100,2);

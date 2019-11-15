@@ -1,20 +1,26 @@
 package View;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
-
 import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.*;
 
+/**
+ * This View class is responsible for admin to change the information of a movie in the database
+ */
 public class AdminChangeMovieInfoView extends View {
-	
+
+	/**
+	 * This is the selected movie to be modified
+	 */
 	private Movie selectedMovie;
-	
+
+	/**
+	 * This is the options for the View
+	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Status",
 			"Director",
@@ -24,19 +30,31 @@ public class AdminChangeMovieInfoView extends View {
 			"Censorship Rating",
 			"Add or Remove Showtime for this movie",
 			"Go back to admin main menu"
-	)); 
-	
-	
+	));
+
+	/**
+	 * This is the title for the View
+	 */
 	private String title = "Movie Info Modification: ";
+
+	/**
+	 * This is the content for the View
+	 */
 	private String viewContent = "Choose the following options to change the information of the movie";
 
-	
-	
+
+	/**
+	 * This is the constructor of this class which takes in a Movie object as the argument
+	 * @param movie The selected Movie object
+	 */
 	public AdminChangeMovieInfoView(Movie movie) {
 		this.selectedMovie = movie;
 		this.title += movie.getTitle();
 	}
-	
+
+	/**
+	 * This method transforms the View into active state
+	 */
 	public void activate() {
 		super.setOptions(this.options);
 		super.setTitle(this.title);
@@ -46,7 +64,6 @@ public class AdminChangeMovieInfoView extends View {
 		int userInput = IOManager.getUserInputInt("Please input a choice",1,options.size());
 		processUserInput(userInput);
 	}
-	//director,synopsis,cast,status,title
 
 	/**
 	 * This method helps to manage execution of code based on the user put choice on the View options.
@@ -57,8 +74,6 @@ public class AdminChangeMovieInfoView extends View {
 	protected void processUserInput(int input) {
 		
 		if (input == options.size()) {
-//			ViewNavigator.popViews(3);
-//			ViewNavigator.popTillView(new AdminMainMenu());
 			ViewNavigator.popTillView(AdminMainMenuView.class);
 		
 		}else if (input == 1) {
@@ -138,6 +153,9 @@ public class AdminChangeMovieInfoView extends View {
 	}
 
 
+	/**
+	 * This method is responsible for handling the process of changing casts information of a movie
+	 */
 	private void handleChangeCastInformation(){
 
 		while (true) {
@@ -191,77 +209,8 @@ public class AdminChangeMovieInfoView extends View {
 				break;
 			}
 		}
-	}
 
 
-	private void handleAddShowTime(){
-		ArrayList<Cineplex> cineplexes = DatabaseManager.retrieveAllCineplexes();
-		ArrayList<String> cineplexesString = new ArrayList<>();
-		for (Cineplex cineplex : cineplexes){
-			cineplexesString.add(cineplex.getName());
-		}
-		IOManager.printMenuOptions(cineplexesString);
-		int userChosenCineplex = IOManager.getUserInputInt("Please choose one of the cineplexes",1,cineplexes.size());
-		ArrayList<String> cinemaStrings = new ArrayList<>();
-		for (Cinema cinema : cineplexes.get(userChosenCineplex - 1).getCinemas()){
-			cinemaStrings.add("Cinema Code: " + cinema.getCode());
-		}
-		IOManager.printMenuOptions(cinemaStrings);
-		int userChosenCinema = IOManager.getUserInputInt("Please choose one of the cinemas",1,cinemaStrings.size());
-		LocalDate chosenDate = IOManager.getUserInputDate("Please input the date that you want to insert the show time to: ");
-
-
-
-		int count = 1;
-		for (Showtime showtime:cineplexes.get(userChosenCineplex - 1).getCinemas().get(userChosenCinema - 1).getShowtimes()){
-			if (showtime.getShowDatetime().toLocalDate().equals(chosenDate)){
-				if (count == 1){
-					System.out.println("Here is the current showtime on this day:\n\n");
-				}
-				System.out.println("    " + count + ") " + showtime.getShowDatetime());
-				count++;
-			}
-		}
-
-		if (count != 1){
-
-		}
-
-		else{
-			System.out.println("There is currently no showtime inserted on this day");
-		}
-
-		System.out.println("What time do u want to insert it in: ");
-		System.out.println("Please input the hour component (24-hour format), range (0-23)");
-		int hourComponent = IOManager.getUserInputInt("",0,23);
-		System.out.println("Please input the minute component (24-hour format), range (0-59)");
-		int minuteComponent = IOManager.getUserInputInt("",0,59);
-
-
-		System.out.println("What would you like to movie type to be? ");
-		ArrayList<MovieType> movieTypeList = new ArrayList<MovieType>(EnumSet.allOf(MovieType.class));
-		ArrayList<String> movieTypeListStrings = new ArrayList<String>();
-		for (int x = 0 ; x < movieTypeList.size() ; x++) {
-			movieTypeListStrings.add(movieTypeList.get(x).typeName());
-		}
-		IOManager.printMenuOptions(movieTypeListStrings);
-		int typeChoice = IOManager.getUserInputInt("Input the choice: ",1,movieTypeListStrings.size());
-		MovieType typeChosen = movieTypeList.get(typeChoice - 1);
-
-		LocalDateTime chosenDateTime = chosenDate.atTime(hourComponent,minuteComponent);
-		Showtime chosenShowTime = new Showtime(chosenDateTime,this.selectedMovie,cineplexes.get(userChosenCineplex - 1).getCinemas().get(userChosenCinema - 1),typeChosen);
-		System.out.println(chosenDateTime.toString());
-		System.out.println("Here is the showtime that you have created, proceed to save?");
-		int userSaveChoice = IOManager.getUserInputInt("1 - Proceed to save, 0 - Cancel",0,1);
-
-		if (userSaveChoice == 1){
-			cineplexes.get(userChosenCineplex - 1).getCinemas().get(userChosenCinema - 1).addShowTime(chosenShowTime);
-			DatabaseManager.overwriteCineplexDatabaseWithNewCineplexes(cineplexes);
-		}
-
-		//get date
-		//display current showtime for that date
-		//add showtime
 	}
 
 }

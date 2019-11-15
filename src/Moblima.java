@@ -21,7 +21,6 @@ public class Moblima {
 	public static void main(String[] args) {
 		
 
-//		DatabaseManager.saveNewAdminUser(new AdminUser("admin","admin"));
 	//	generateAdminUsersToDatabase();
 		//generateDatabase();
 		ViewNavigator.pushView(new MainMenuView());

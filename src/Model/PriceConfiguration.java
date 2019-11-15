@@ -36,9 +36,9 @@ public class PriceConfiguration implements Serializable {
     {
         if (single_instance == null){
             if (DatabaseManager.retrievePriceConfiguration() == null){
-                return new PriceConfiguration();
+                single_instance = new PriceConfiguration();
             }else{
-                return DatabaseManager.retrievePriceConfiguration(); //loading price configuration stored in text file
+                single_instance = DatabaseManager.retrievePriceConfiguration(); //loading price configuration stored in text file
             }
         }
         return single_instance;

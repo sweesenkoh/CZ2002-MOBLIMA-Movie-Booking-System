@@ -15,16 +15,38 @@ import java.util.Arrays;
  */
 public class MovieGoerBookingPurchaseTicketView extends View {
 
+    /**
+     * This is the options for the View
+     */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Confirm",
             "Back to Previous Seat Selection Page to reselect seat",
             "Cancel and back to main menu"
     ));
+
+    /**
+     * This is the title for the View
+     */
     private String title = "Purchasing Ticket";
+
+    /**
+     * This is the content for the View
+     */
     private String viewContent = "";
+
+    /**
+     * This is the array of tickets to be used for purchase by the movie goer
+     */
     ArrayList<Ticket> createdTickets;
 
+    /**
+     * This is the array of selected seats by the user to be used for booking
+     */
     private ArrayList<Seat> selectedSeats;
+
+    /**
+     * This is the selected showtime for booking of the movie
+     */
     private Showtime selectedShowtime;
 
     public MovieGoerBookingPurchaseTicketView(ArrayList<Seat> selectedSeats, Showtime selectedShowtime){
@@ -103,11 +125,6 @@ public class MovieGoerBookingPurchaseTicketView extends View {
         }
 
         System.out.println("\nHere is your order: \n");
-
-//        for (Ticket ticket : createdTickets){
-//            System.out.println(ticket.toString());
-//        }
-
 
         String returnString = "";
 

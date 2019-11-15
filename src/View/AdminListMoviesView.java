@@ -5,8 +5,16 @@ import java.util.ArrayList;
 import Controller.ViewNavigator;
 import Model.Movie;
 
+
+/**
+ * This View class is responsible for listing movies in the admin module
+ */
 public class AdminListMoviesView extends BaseListMoviesView {
 
+	/**
+	 * This is the constructor, which requires an ArrayList of Movie as the argument
+	 * @param movies The list of movies to be listed
+	 */
 	public AdminListMoviesView(ArrayList<Movie> movies) {
 		super(movies);
 	}

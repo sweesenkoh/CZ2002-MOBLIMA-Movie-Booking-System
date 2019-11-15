@@ -2,7 +2,6 @@ package View;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
-
 import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
@@ -10,10 +9,22 @@ import Model.Movie;
 import Model.MovieCensorshipRating;
 import Model.MovieStatus;
 
+
+/**
+ * This View class is responsible for facilitating the process of admin creating new movie into the movie database
+ */
+
 public class AdminCreateNewMovieView extends View {
-	
+
+	/**
+	 * This is the title for the View
+	 */
 	private String title = "Create New Movie";
 
+
+	/**
+	 * This method transforms the View into active state.
+	 */
 	@Override
 	public void activate() {
 		
@@ -94,9 +105,6 @@ public class AdminCreateNewMovieView extends View {
 		}
 		
 		ViewNavigator.popView();
-//		
-//		int userInput = IOManager.getUserInputInt("Please input a choice",1,options.size());
-//		processUserInput(userInput);
 	}
 
 	/**

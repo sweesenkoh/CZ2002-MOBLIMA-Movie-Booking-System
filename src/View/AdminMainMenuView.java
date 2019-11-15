@@ -11,8 +11,16 @@ import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.*;
 
+
+/**
+ * This View is the main menu for the admin module
+ */
+
 public class AdminMainMenuView extends View {
-	
+
+	/**
+	 * This is the options for the View
+	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Create New Movie",
 			"Update Movie Information or modify showtime",
@@ -21,13 +29,23 @@ public class AdminMainMenuView extends View {
 			"Add Another Admin User to the System",
 			"List all Admin Users exist on this System",
 			"Back to Previous Page"
-	)); 
-	
+	));
+
+	/**
+	 * This is the title for the View
+	 */
 	private String title = "Admin Main Menu";
+
+	/**
+	 * This is the content for the View
+	 */
 	private String viewContent = "Welcome! Please select one of the options below: ";
 	private boolean isAuthorised = false;
 
 
+	/**
+	 * This method transforms the View into active state
+	 */
 	@Override
 	public void activate() {
 		
@@ -152,6 +170,10 @@ public class AdminMainMenuView extends View {
 		}
 	}
 
+	/**
+	 * This method is responsible for getting username and password input, and return true if the user is authorised
+	 * @return Returns true if the user is authorised, else returns false
+	 */
 	private boolean authorisedUser(){
 		String username = IOManager.getUserInputString("Please input your username: ");
 		String password = IOManager.getUserInputString("Please input your password: ");

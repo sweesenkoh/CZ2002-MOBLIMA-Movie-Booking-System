@@ -1,6 +1,5 @@
 package View;
 
-import Controller.DatabaseManager;
 import Controller.IOManager;
 import Controller.ViewNavigator;
 import Model.PriceConfiguration;
@@ -10,22 +9,41 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+/**
+ * This class is responsible for handling the setting of public holidays as part of the system settings.
+ * For example, the admin can add new public holiday into the system, or remove existing public holidays from the system
+ */
 public class AdminConfigurePublicHolidayView extends View {
 
+    /**
+     * This is the options for the View
+     */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Add New Public Holiday",
             "Delete Existing Public Holiday",
             "Go back to previous menu"
     ));
 
+    /**
+     * This is the title for the View
+     */
     private String title = "Configure Public Holiday";
+
+    /**
+     * This is the content for the View
+     */
     private String viewContent = "";
+
+    /**
+     * This is an array consisting of the existing public holidays in the system
+     */
     private ArrayList<PublicHoliday> publicHolidays = PriceConfiguration.getInstance().getPublicHolidays();
 
-    public AdminConfigurePublicHolidayView(){
-    }
 
-
+    /**
+     * This method transforms the state of this View to be in active state
+     */
     @Override
     public void activate() {
         viewContent = "\n\n";
@@ -72,6 +90,9 @@ public class AdminConfigurePublicHolidayView extends View {
         }
     }
 
+    /**
+     * This method helps to handle the process of adding new public holiday into the system
+     */
     private void handleAddNewPublicHoliday(){
         String name = IOManager.getUserInputString("Please input the name of the public holiday");
         LocalDate date = IOManager.getUserInputDate("Please input the date of the public holiday");
@@ -82,6 +103,9 @@ public class AdminConfigurePublicHolidayView extends View {
         this.activate();
     }
 
+    /**
+     * This method helps handle the process of deleting existing public holidays from the system
+     */
     private void handleDeletePublicHoliday(){
         if (this.publicHolidays.size() == 0){
             System.out.println("There is currently no items available for deletion");
