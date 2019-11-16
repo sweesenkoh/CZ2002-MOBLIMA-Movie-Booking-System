@@ -20,12 +20,9 @@ public class Moblima {
 	public static void main(String[] args) {
 		
 
-	//	generateAdminUsersToDatabase();
-		//generateDatabase();
+//		generateAdminUsersToDatabase();
+//		generateDatabase();
 		ViewsManager.pushView(new MainMenuView());
-
-
-
 
 
 	}
