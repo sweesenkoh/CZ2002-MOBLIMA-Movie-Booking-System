@@ -48,7 +48,6 @@ public abstract class Ticket implements Serializable {
 	public String toString(){
 		String returnString = "";
 		returnString += "Seat ID: "+this.getSeat().toString() + "\n";
-//		returnString += "Ticket Type: " + this.getTicketType().displayName() + "\n";
 		returnString += "Price: $" + String.format("%.2f",this.getPrice()) + "\n";
 		returnString += "Showtime: \n       " + this.getShowtime().toString();
 		return  returnString;

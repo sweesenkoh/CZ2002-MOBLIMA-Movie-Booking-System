@@ -82,7 +82,6 @@ public class Showtime implements Serializable {
 		returnString += this.showDatetime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm - EEEE ")) + "\n  ";
 		return returnString;
 	}
-
 	//
 //	public ArrayList<Ticket> getTickets() {
 //		return tickets;
@@ -95,7 +94,8 @@ public class Showtime implements Serializable {
 //	public double getPrice() {
 //		return price;
 //	}
-	
-	
+
+
+
 
 }

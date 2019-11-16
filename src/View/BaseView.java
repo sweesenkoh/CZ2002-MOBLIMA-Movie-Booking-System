@@ -32,7 +32,7 @@ public abstract class BaseView {
 	 * This method allows subclasses to set the view content of the BaseView
 	 * @param content The string content to be printed as the BaseView content
 	 */
-	public void setViewContent(String content) {
+	protected void setViewContent(String content) {
 		this.viewContent = content;
 	}
 
@@ -41,7 +41,7 @@ public abstract class BaseView {
 	 * This method allows subclasses to set the title of the BaseView
 	 * @param title The title to be printed on top of the BaseView
 	 */
-	public void setTitle(String title) {
+	protected void setTitle(String title) {
 		this.title = title;
 	}
 
@@ -49,7 +49,7 @@ public abstract class BaseView {
 	 * This method allows subclasses to set the BaseView options that are available for users to interact with
 	 * @param options The options to be printed for users to choose
 	 */
-	public void setOptions(ArrayList<String> options) {
+	protected void setOptions(ArrayList<String> options) {
 		this.options = options;
 	}
 

@@ -19,7 +19,7 @@ import java.util.Comparator;
  * This BaseView class is responsible for getting the filter mode from the user and filter the showtimes accordingly
  */
 
-public class MovieGoerBookingFilterShowtimesView extends BaseView {
+public class MovieGoerBookingFilterShowTimesView extends BaseView {
 
     /**
      * This is the BaseView options
@@ -51,7 +51,7 @@ public class MovieGoerBookingFilterShowtimesView extends BaseView {
      * This is constructor which requires a movie object as an argument
      * @param movie The selected Movie object
      */
-    public MovieGoerBookingFilterShowtimesView(Movie movie){
+    public MovieGoerBookingFilterShowTimesView(Movie movie){
         this.selectedMovie = movie;
         this.title += this.selectedMovie.getTitle();
     }
@@ -85,8 +85,6 @@ public class MovieGoerBookingFilterShowtimesView extends BaseView {
             case 2:
                 this.handleChooseByDate();
                 break;
-//            case 3:
-//                this.handleChooseByBoth();
             case 3:
                 this.handleDoNotFilter();
             default:

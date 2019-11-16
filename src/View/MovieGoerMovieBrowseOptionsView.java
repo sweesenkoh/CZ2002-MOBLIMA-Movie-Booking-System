@@ -57,14 +57,14 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 	/**
 	 * This method handles the case where the user wants to go back to the previous BaseView
 	 */
-	protected void handleBackToPreviousView(){
+	private void handleBackToPreviousView(){
 		ViewsManager.popView();
 	}
 
 	/**
 	 * This method handles the case where the user wants to search for movie by typing the movie name
 	 */
-	protected void handleOptionSearchMovie(){
+	private void handleOptionSearchMovie(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		String userInput = IOManager.getUserInputString("Please write the name of the movie: ");
@@ -76,7 +76,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 	/**
 	 * This method handles the case where the user wants to list only the movies that are in preview
 	 */
-	protected void handleListPreviewMovies(){
+	private void handleListPreviewMovies(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.PREVIEW)).collect(Collectors.toList());
@@ -87,7 +87,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 	/**
 	 * This method handles the case where the user wants to list all movies
 	 */
-	protected void handleListAllMoviesOption(){
+	private void handleListAllMoviesOption(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ViewsManager.pushView(new MovieGoerListMoviesView(movies));
@@ -96,7 +96,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 	/**
 	 * This method handles the case where the user wants to list only movies that have already ended
 	 */
-	protected void handleListPastMoviesOption() {
+	private void handleListPastMoviesOption() {
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.ENDED)).collect(Collectors.toList());
@@ -106,7 +106,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 	/**
 	 * This method handles the case where the user wants to list only movies which are coming soon
 	 */
-	protected void handleListUpcomingMoviesOption() {
+	private void handleListUpcomingMoviesOption() {
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.COMINGSOON)).collect(Collectors.toList());
@@ -116,7 +116,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 	/**
 	 * This method handles the case where the user wants to list only movies which are currently showing
 	 */
-	protected  void handleListCurrentShowingMovies(){
+	private  void handleListCurrentShowingMovies(){
 		ArrayList<Movie> movies = new ArrayList<>();
 		movies = DatabaseManager.retrieveAllMovies();
 		ArrayList<Movie> filteredMovieList= (ArrayList<Movie>) movies.stream().filter(movie -> movie.getStatus().equals(MovieStatus.NOWSHOWING)).collect(Collectors.toList());
@@ -126,7 +126,7 @@ public class MovieGoerMovieBrowseOptionsView extends BaseMovieBrowseOptionsView 
 	/**
 	 * This method handles the case where the user wants to list currently top 5 movies, either by ticket sales or ratings
 	 */
-	protected void handleListCurrentTop5Movies(){
+	private void handleListCurrentTop5Movies(){
 		ArrayList<String> userChoices = new ArrayList<>();
 		userChoices.add("Top 5 by ticket sales");
 		userChoices.add("Top 5 by reviewers' ratings");

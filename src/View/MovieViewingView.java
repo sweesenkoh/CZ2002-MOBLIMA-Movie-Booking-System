@@ -90,7 +90,7 @@ public class MovieViewingView extends BaseView {
 			}
 		}else {
 			if (input == 2){
-				ViewsManager.pushView(new MovieGoerBookingFilterShowtimesView(this.movie));
+				ViewsManager.pushView(new MovieGoerBookingFilterShowTimesView(this.movie));
 			}
 			else if (input == 3) {
 				ViewsManager.pushView(new MovieGoerLeaveReviewView(this.movie));

@@ -49,7 +49,8 @@ public class SeatLayout implements Serializable {
 
 	}
 
-//	//outsiders count the row and column from 1 onwards
+
+//	outsiders count the row and column from 1 onwards
 //	public void bookSeat(int row,int col){
 //		if (this.seats[row-1][col-1] == null){
 //			System.out.println("This seat is not among the choices");
