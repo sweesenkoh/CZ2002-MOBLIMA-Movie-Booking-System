@@ -2,21 +2,38 @@ package Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Represents the seat layout within a cinema.
+ */
 public class SeatLayout implements Serializable {
-    private int numOfRows;
-	private int numOfColumns;
-	private Seat[] nonExistentSeats;
-	private Seat[][] seats;
-//	private Showtime showtime;
-	//maybe should link to Showtime instead of Cinema, since booked seats will differ across showtimes?
 	
-//	SeatLayout(int rows, int cols, Showtime showtime){
-//		numOfRows = rows;
-//		numOfColumns = cols;
-//		this.showtime = showtime;
-//		seats = new Seat[rows][cols];
-//	}
+	/**
+	 * The number of rows of seats in this seat layout.
+	 */
+    private int numOfRows;
+    
+    /**
+     * The number of columns of seats in this seat layout.
+     */
+	private int numOfColumns;
+	
+	/**
+	 * The seats in an existing row and column that do not exist in the layout. 
+	 */
+	private Seat[] nonExistentSeats;
+	
+	/**
+	 * The seats that exist in the layout.
+	 */
+	private Seat[][] seats;
 
+	/**
+	 * Creates a new seat layout with the given number of rows and columns, 
+	 * removing any non existent seats from the layout.
+	 * @param rows Number of rows in this seat layout.
+	 * @param cols NUmber of columns in this seat layout.
+	 * @param nonExistentSeats Seats that do not exist in this seat layout.
+	 */
 	public SeatLayout(int rows, int cols,Seat[] nonExistentSeats){
 		numOfRows = rows;
 		numOfColumns = cols;
@@ -25,16 +42,26 @@ public class SeatLayout implements Serializable {
 		initialiseSeats();
 	}
 
+	/**
+	 * Gets the number of columns in this seat layout.
+	 * @return Number of columns in this seat layout.
+	 */
 	public int getNumOfColumns() {
 		return numOfColumns;
 	}
 
+	/**
+	 * Gets the number of rows in this seat layout.
+	 * @return Number of rows in this seat layout.
+	 */
 	public int getNumOfRows() {
 		return numOfRows;
 	}
 
+	/**
+	 * Creates the seats within the seat layout.
+	 */
 	public void initialiseSeats() {
-		// TBC
 		for (int row = 0 ; row < numOfRows ; row++){
 			for (int col = 0 ; col < numOfColumns ; col++){
 				if (seats[row][col] == null) {
@@ -59,6 +86,12 @@ public class SeatLayout implements Serializable {
 //		this.seats[row-1][col-1].bookSeat();
 //	}
 
+	/**
+	 * Gets a seat at the given row and column.
+	 * @param row Row of seat in this seat layout.
+	 * @param col Column of seat in this seat layout.
+	 * @return The specified seat in this layout.
+	 */
 	public Seat getSeat(int row,int col){
 		if (this.seats[row][col] == null){
 			return null;
@@ -66,10 +99,17 @@ public class SeatLayout implements Serializable {
 		return this.seats[row][col];
 	}
 
+	/**
+	 * Gets a copy of this seat layout.
+	 * @return This seat layout
+	 */
 	public SeatLayout getCopy(){
 		return new SeatLayout(this.numOfRows,this.numOfColumns,this.nonExistentSeats);
 	}
 
+	/**
+	 * Prints the seat layout for moviegoers to visualise.
+	 */
 	public void printSeatLayout(){
 
 		int screenWidth = numOfColumns * 5 + "a a                  ".length();
