@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import Controller.IOManager;
 
 /**
- * This is the base BaseView class. All the subsequent views class will be the subclasses of this class.
- * This class helps to define the basic structure of BaseView in our application.
+ * This is the base View class. All the subsequent views class will be the subclasses of this class.
+ * This class helps to define the basic structure of View in our application.
  * A BaseView has 3 basic components: the title, the view content as well as the options for user to choose and interact with.
  */
 
 public abstract class BaseView {
 
 	/**
-	 * This is the BaseView String content
+	 * This is the View String content
 	 */
 	private String viewContent = " ";
 
 	/**
-	 * This is the BaseView title
+	 * This is the View title
 	 */
 	private String title = " ";
 
@@ -30,7 +30,7 @@ public abstract class BaseView {
 
 	/**
 	 * This method allows subclasses to set the view content of the BaseView
-	 * @param content The string content to be printed as the BaseView content
+	 * @param content The string content to be printed as the View content
 	 */
 	protected void setViewContent(String content) {
 		this.viewContent = content;
@@ -46,7 +46,7 @@ public abstract class BaseView {
 	}
 
 	/**
-	 * This method allows subclasses to set the BaseView options that are available for users to interact with
+	 * This method allows subclasses to set the View options that are available for users to interact with
 	 * @param options The options to be printed for users to choose
 	 */
 	protected void setOptions(ArrayList<String> options) {
@@ -55,7 +55,7 @@ public abstract class BaseView {
 
 
 	/**
-	 * This activate method makes the BaseView state to be active, in which the BaseView will print out its title, menu and options in the console.
+	 * This activate method makes the View state to be active, in which the View will print out its title, menu and options in the console.
 	 */
 	public void activate() {
     	printViewTitle();
@@ -70,14 +70,14 @@ public abstract class BaseView {
 	protected abstract void processUserInput(int input);
 
 	/**
-	 * This method helps to print the BaseView title
+	 * This method helps to print the View title
 	 */
     protected void printViewTitle() {
     	IOManager.printMenuTitle(title);
     }
 
 	/**
-	 * This method helps to print the BaseView options
+	 * This method helps to print the View options
 	 */
 	protected void printOptions() {
     	if (options.size() != 0) {
@@ -86,7 +86,7 @@ public abstract class BaseView {
     }
 
 	/**
-	 * This method helps to print the BaseView content
+	 * This method helps to print the View content
 	 */
 	protected void printViewContent() {
     	IOManager.printMenuContent(viewContent);

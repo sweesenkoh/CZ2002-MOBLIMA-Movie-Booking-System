@@ -11,7 +11,7 @@ import Model.MovieStatus;
 
 
 /**
- * This BaseView class is responsible for facilitating the process of admin creating new movie into the movie database
+ * This View class is responsible for facilitating the process of admin creating new movie into the movie database
  */
 
 public class AdminCreateNewMovieView extends BaseView {
@@ -23,7 +23,7 @@ public class AdminCreateNewMovieView extends BaseView {
 
 
 	/**
-	 * This method transforms the BaseView into active state.
+	 * This method transforms the View into active state.
 	 */
 	@Override
 	public void activate() {
@@ -108,7 +108,7 @@ public class AdminCreateNewMovieView extends BaseView {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
+	 * This method helps to manage execution of code based on the user put choice on the View options.
 	 * @param input the index of the options
 	 */
 	@Override

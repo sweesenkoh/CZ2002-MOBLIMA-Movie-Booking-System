@@ -7,7 +7,7 @@ import Model.Movie;
 
 
 /**
- * This BaseView class is responsible for listing movies in the admin module
+ * This View class is responsible for listing movies in the admin module
  */
 public class AdminListMoviesView extends BaseListMoviesView {
 
@@ -20,7 +20,7 @@ public class AdminListMoviesView extends BaseListMoviesView {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
+	 * This method helps to manage execution of code based on the user put choice on the View options.
 	 * @param input the index of the options
 	 */
 	@Override

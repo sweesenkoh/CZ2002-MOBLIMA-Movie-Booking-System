@@ -13,17 +13,17 @@ import Model.Order;
 public class MovieGoerBookingHistoryView extends BaseView {
 
 	/**
-	 * This is the BaseView options
+	 * This is the View options
 	 */
 	private ArrayList<String> options = new ArrayList<>();
 
 	/**
-	 * This is the BaseView title
+	 * This is the View title
 	 */
 	private String title = "Booking History";
 
 	/**
-	 * This is the BaseView content
+	 * This is the View content
 	 */
 	private String viewContent = "Here is the list of your past bookings: Choose any one of the order to show the detailed order information";
 
@@ -56,7 +56,7 @@ public class MovieGoerBookingHistoryView extends BaseView {
 	}
 
 	/**
-	 * This method helps to transform the BaseView into active state
+	 * This method helps to transform the View into active state
 	 */
 	public void activate() {
 		super.setOptions(this.options);
@@ -69,7 +69,7 @@ public class MovieGoerBookingHistoryView extends BaseView {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
+	 * This method helps to manage execution of code based on the user put choice on the View options.
 	 * @param input the index of the options
 	 */
 	@Override

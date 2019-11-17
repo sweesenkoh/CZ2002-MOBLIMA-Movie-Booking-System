@@ -16,13 +16,13 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * This BaseView class is responsible for getting the filter mode from the user and filter the showtimes accordingly
+ * This View class is responsible for getting the filter mode from the user and filter the showtimes accordingly
  */
 
 public class MovieGoerBookingFilterShowTimesView extends BaseView {
 
     /**
-     * This is the BaseView options
+     * This is the View options
      */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Filter by Cineplex",
@@ -33,12 +33,12 @@ public class MovieGoerBookingFilterShowTimesView extends BaseView {
 
 
     /**
-     * This is the BaseView title
+     * This is the View title
      */
     private String title = "Booking Options: ";
 
     /**
-     * This is the BaseView content
+     * This is the View content
      */
     private String viewContent = "How do you want to filter the showtime results?";
 
@@ -57,7 +57,7 @@ public class MovieGoerBookingFilterShowTimesView extends BaseView {
     }
 
     /**
-     * This method transforms the BaseView into active state
+     * This method transforms the View into active state
      */
     @Override
     public void activate() {
@@ -73,7 +73,7 @@ public class MovieGoerBookingFilterShowTimesView extends BaseView {
 
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the BaseView options.
+     * This method helps to manage execution of code based on the user put choice on the View options.
      * @param input the index of the options
      */
     @Override

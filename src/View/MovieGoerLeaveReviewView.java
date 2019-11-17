@@ -9,7 +9,7 @@ import Model.Review;
 
 
 /**
- * This BaseView class is responsible for getting review from the movie-goer
+ * This View class is responsible for getting review from the movie-goer
  */
 public class MovieGoerLeaveReviewView extends BaseView {
 
@@ -38,7 +38,7 @@ public class MovieGoerLeaveReviewView extends BaseView {
 	}
 
 	/**
-	 * This method transforms the BaseView state into active state
+	 * This method transforms the View state into active state
 	 */
 	public void activate() {
 		super.setOptions(this.options);
@@ -79,7 +79,7 @@ public class MovieGoerLeaveReviewView extends BaseView {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
+	 * This method helps to manage execution of code based on the user put choice on the View options.
 	 * @param input the index of the options
 	 */
 	@Override

@@ -7,13 +7,13 @@ import Controller.ViewsManager;
 
 
 /**
- * This BaseView class is the main menu for the movie-goer
+ * This View class is the main menu for the movie-goer
  */
 
 public class MovieGoerView extends BaseView {
 
 	/**
-	 * This is the BaseView options
+	 * This is the View options
 	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"List Movie",
@@ -22,18 +22,18 @@ public class MovieGoerView extends BaseView {
 	));
 
 	/**
-	 * This is the BaseView title
+	 * This is the View title
 	 */
 	private String title = "Movie-Goer Menu";
 
 	/**
-	 * This is the BaseView content
+	 * This is the View content
 	 */
 	private String viewContent = "What would you like to do?";
 
 
 	/**
-	 * This method helps to transform this BaseView into active state
+	 * This method helps to transform this View into active state
 	 */
 	public void activate() {
 		super.setOptions(this.options);
@@ -47,7 +47,7 @@ public class MovieGoerView extends BaseView {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
+	 * This method helps to manage execution of code based on the user put choice on the view options.
 	 * @param input the index of the options
 	 */
 

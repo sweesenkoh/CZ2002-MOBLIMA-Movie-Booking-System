@@ -9,7 +9,7 @@ import Controller.ViewsManager;
 import Model.*;
 
 /**
- * This BaseView class is responsible for admin to change the information of a movie in the database
+ * This View class is responsible for admin to change the information of a movie in the database
  */
 public class AdminChangeMovieInfoView extends BaseView {
 
@@ -53,7 +53,7 @@ public class AdminChangeMovieInfoView extends BaseView {
 	}
 
 	/**
-	 * This method transforms the BaseView into active state
+	 * This method transforms the View into active state
 	 */
 	public void activate() {
 		super.setOptions(this.options);
@@ -66,7 +66,7 @@ public class AdminChangeMovieInfoView extends BaseView {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
+	 * This method helps to manage execution of code based on the user put choice on the View options.
 	 * @param input the index of the options
 	 */
 	

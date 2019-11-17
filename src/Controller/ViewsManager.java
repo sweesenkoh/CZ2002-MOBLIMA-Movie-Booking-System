@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import View.BaseView;
 
 /**
- * This class helps to manage the flow of all the BaseView object in the application.
- * This class manages the transitioning of one BaseView to another BaseView, or transitioning from one BaseView to the previous BaseView
+ * This class helps to manage the flow of all the View object in the application.
+ * This class manages the transitioning of one View to another View, or transitioning from one BaseView to the previous BaseView
  */
 
 public class ViewsManager {
@@ -35,9 +35,9 @@ public class ViewsManager {
 	}
 
 	/**
-	 * This method helps to pop the current BaseView object that is on top of the stack
-	 * Upon doing so, the next BaseView object that is now at the top of the views stack will be activated to show its content.
-	 * If the views stack only contains one BaseView object, it will not be popped
+	 * This method helps to pop the current View object that is on top of the stack
+	 * Upon doing so, the next View object that is now at the top of the views stack will be activated to show its content.
+	 * If the views stack only contains one View object, it will not be popped
 	 */
 	public static void popView() {
 		if (views.size() > 1) {
@@ -50,9 +50,9 @@ public class ViewsManager {
 	}
 
 	/**
-	 * This method helps to pop multiple BaseView objects in the views stack at once.
-	 * The parameter count specifies the number of BaseView objects to be popped from the views stack
-	 * @param count The number of BaseView object to be popped from the stack at once
+	 * This method helps to pop multiple View objects in the views stack at once.
+	 * The parameter count specifies the number of View objects to be popped from the views stack
+	 * @param count The number of View object to be popped from the stack at once
 	 */
 	public static void popViews(int count) {
 		for (int i = 0 ; i < count ; i++) {
@@ -64,16 +64,11 @@ public class ViewsManager {
 	}
 
 
-	/**
-	 * This method will continuously pop BaseView objects from the views stack until it founds a BaseView object that is of the specified type at the top of the stack.
-	 *
-	 * @param view
-	 */
 
 	/**
-	 * This method will continuously pop BaseView objects from the views stack until it founds a BaseView object at the top of the stack that is of the specified class type.
+	 * This method will continuously pop View objects from the views stack until it founds a BaseView object at the top of the stack that is of the specified class type.
 	 *
-	 * @param viewClass The BaseView Class that will stop the popping of views
+	 * @param viewClass The View Class that will stop the popping of views
 	 */
 	public static void popTillView(Class<?> viewClass){
 		while (true) {
@@ -90,7 +85,7 @@ public class ViewsManager {
 	}
 
 	/**
-	 * This method will keep popping BaseView object from the views stack until the views stack only contains one BaseView object.
+	 * This method will keep popping View object from the views stack until the views stack only contains one BaseView object.
 	 */
 	public static void popToBaseView(){
 		for (int x = views.size() - 1 ; x > 0 ; x--){

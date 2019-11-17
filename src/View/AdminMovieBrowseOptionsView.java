@@ -14,13 +14,13 @@ import Model.Order;
 import Model.Ticket;
 
 /**
- * This BaseView class presents for admin the various options, each representing a method of listing ore searching movies
+ * This View class presents for admin the various options, each representing a method of listing ore searching movies
  */
 
 public class AdminMovieBrowseOptionsView extends BaseMovieBrowseOptionsView {
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
+	 * This method helps to manage execution of code based on the user put choice on the View options.
 	 * @param input the index of the options
 	 */
 	protected void processUserInput(int input) {

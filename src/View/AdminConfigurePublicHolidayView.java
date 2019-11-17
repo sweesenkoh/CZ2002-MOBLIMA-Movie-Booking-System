@@ -42,7 +42,7 @@ public class AdminConfigurePublicHolidayView extends BaseView {
 
 
     /**
-     * This method transforms the state of this BaseView to be in active state
+     * This method transforms the state of this View to be in active state
      */
     @Override
     public void activate() {
@@ -71,7 +71,7 @@ public class AdminConfigurePublicHolidayView extends BaseView {
 
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the BaseView options.
+     * This method helps to manage execution of code based on the user put choice on the View options.
      * @param input the index of the options
      */
 

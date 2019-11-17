@@ -6,7 +6,7 @@ import Model.Movie;
 import java.util.ArrayList;
 
 /**
- * This BaseView class is responsible for showing top 5 movies (by sales or rating) for the movie-goer module
+ * This View class is responsible for showing top 5 movies (by sales or rating) for the movie-goer module
  */
 
 public class MovieGoerListTop5MoviesView extends BaseListTop5MoviesView {

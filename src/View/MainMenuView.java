@@ -12,7 +12,7 @@ import Controller.ViewsManager;
 public class MainMenuView extends BaseView {
 
 	/**
-	 * This is the BaseView options
+	 * This is the View options
 	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Admin",
@@ -20,18 +20,18 @@ public class MainMenuView extends BaseView {
 	));
 
 	/**
-	 * This is the BaseView title
+	 * This is the View title
 	 */
 	private String title = "Moblima Movie Booking System";
 
 	/**
-	 * This is the BaseView content
+	 * This is the View content
 	 */
 	private String viewContent = "Welcome To Moblima Movie Booking System! Are you a staff or a movie-goer?";
 
 
 	/**
-	 * This method transforms the BaseView into active state
+	 * This method transforms the View into active state
 	 */
 	@Override
 	public void activate() {
@@ -47,7 +47,7 @@ public class MainMenuView extends BaseView {
 
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
+	 * This method helps to manage execution of code based on the user put choice on the View options.
 	 * @param input the index of the options
 	 */
 	@Override

@@ -12,13 +12,13 @@ import java.util.Arrays;
 import java.util.EnumSet;
 
 /**
- * This BaseView class is responsible for facilitating with admin adding new showtime to database or removing existing showtime from the database
+ * This View class is responsible for facilitating with admin adding new showtime to database or removing existing showtime from the database
  */
 
 public class AdminAddShowTimeView extends BaseView {
 
     /**
-     * This is the options for the BaseView
+     * This is the options for the View
      */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Add Showtime",
@@ -26,7 +26,7 @@ public class AdminAddShowTimeView extends BaseView {
     ));
 
     /**
-     * This is the title for the BaseView
+     * This is the title for the View
      */
     private String title = "Admin: Add or Remove Showtime for: ";
 
@@ -84,7 +84,7 @@ public class AdminAddShowTimeView extends BaseView {
 
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the BaseView options.
+     * This method helps to manage execution of code based on the user put choice on the View options.
      * @param input the index of the options
      */
     @Override

@@ -11,14 +11,14 @@ import java.util.Arrays;
 
 
 /**
- * This BaseView class is responsible for handling the configuration of system settings by the admin/
+ * This View class is responsible for handling the configuration of system settings by the admin/
  */
 
 public class AdminSystemSettingsView extends BaseView {
 
 
     /**
-     * This is the options for the BaseView
+     * This is the options for the View
      */
     private ArrayList<String> options = new ArrayList<>(Arrays.asList(
             "Set Public Holidays",
@@ -37,18 +37,18 @@ public class AdminSystemSettingsView extends BaseView {
 
 
     /**
-     * This is the title for the BaseView
+     * This is the title for the View
      */
     private String title = "Admin Configuring System Settings";
 
     /**
-     * This is the content for the BaseView
+     * This is the content for the View
      */
     private String viewContent = "Here are the options for you to configure: ";
 
 
     /**
-     * This method transforms the BaseView into active state
+     * This method transforms the View into active state
      */
     @Override
     public void activate() {

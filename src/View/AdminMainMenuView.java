@@ -13,13 +13,13 @@ import Model.*;
 
 
 /**
- * This BaseView is the main menu for the admin module
+ * This View is the main menu for the admin module
  */
 
 public class AdminMainMenuView extends BaseView {
 
 	/**
-	 * This is the options for the BaseView
+	 * This is the options for the View
 	 */
 	private ArrayList<String> options = new ArrayList<>(Arrays.asList(
 			"Create New Movie",
@@ -32,19 +32,19 @@ public class AdminMainMenuView extends BaseView {
 	));
 
 	/**
-	 * This is the title for the BaseView
+	 * This is the title for the View
 	 */
 	private String title = "Admin Main Menu";
 
 	/**
-	 * This is the content for the BaseView
+	 * This is the content for the View
 	 */
 	private String viewContent = "Welcome! Please select one of the options below: ";
 	private boolean isAuthorised = false;
 
 
 	/**
-	 * This method transforms the BaseView into active state
+	 * This method transforms the View into active state
 	 */
 	@Override
 	public void activate() {
@@ -75,7 +75,7 @@ public class AdminMainMenuView extends BaseView {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
+	 * This method helps to manage execution of code based on the user put choice on the View options.
 	 * @param input the index of the options
 	 */
 	@Override

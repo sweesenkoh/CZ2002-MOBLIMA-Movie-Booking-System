@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 
 /**
- * This BaseView class is primarily responsible for facilitating the process of choosing of seats by the movie-goer before proceeding for booking.
+ * This View class is primarily responsible for facilitating the process of choosing of seats by the movie-goer before proceeding for booking.
  */
 public class MovieGoerBookingSeatSelectionView extends BaseView {
 

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 /**
- * This BaseView class is responsible for listing the top 5 movies in the admin module
+ * This View class is responsible for listing the top 5 movies in the admin module
  */
 public class AdminListTop5MoviesView extends BaseListTop5MoviesView {
 
@@ -20,7 +20,7 @@ public class AdminListTop5MoviesView extends BaseListTop5MoviesView {
     }
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the BaseView options.
+     * This method helps to manage execution of code based on the user put choice on the View options.
      * @param input the index of the options
      */
     @Override

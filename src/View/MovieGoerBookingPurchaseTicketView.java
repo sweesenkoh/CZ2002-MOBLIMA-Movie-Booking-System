@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 
 /**
- * This BaseView class is primarily responsible for facilitating the booking and purchasing of tickets from movie-goer
+ * This View class is primarily responsible for facilitating the booking and purchasing of tickets from movie-goer
  */
 public class MovieGoerBookingPurchaseTicketView extends BaseView {
 
@@ -164,7 +164,7 @@ public class MovieGoerBookingPurchaseTicketView extends BaseView {
     }
 
     /**
-     * This method helps to manage execution of code based on the user put choice on the BaseView options.
+     * This method helps to manage execution of code based on the user put choice on the View options.
      * @param input the index of the options
      */
     @Override

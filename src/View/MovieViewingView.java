@@ -14,17 +14,17 @@ import Model.MovieStatus;
 public class MovieViewingView extends BaseView {
 
 	/**
-	 * This is the BaseView options
+	 * This is the view options
 	 */
 	private ArrayList<String> options = new ArrayList<>();
 
 	/**
-	 * This is the BaseView title
+	 * This is the view title
 	 */
 	private String title;
 
 	/**
-	 * This is BaseView content
+	 * This is view content
 	 */
 	private String viewContent = "You have chosen this movie, please choose one of the following options: ";
 
@@ -39,7 +39,7 @@ public class MovieViewingView extends BaseView {
 	 */
 	public MovieViewingView(Movie movie) {
 		this.movie = movie;
-		options.add("BaseView Movie Detail");
+		options.add("View Movie Detail");
 		if (movie.getStatus() == MovieStatus.COMINGSOON){
 //			options.add("Book");  //logically coming soon movies should not be able to be booked
 		}else if (movie.getStatus() == MovieStatus.ENDED){
@@ -68,7 +68,7 @@ public class MovieViewingView extends BaseView {
 	}
 
 	/**
-	 * This method helps to manage execution of code based on the user put choice on the BaseView options.
+	 * This method helps to manage execution of code based on the user put choice on the view options.
 	 * @param input the index of the options
 	 */
 	@Override
