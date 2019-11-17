@@ -18,7 +18,7 @@ public class DatabaseManager {
 
 
 	/**
-	 * This method saves a new movie into the existing database (Movies.txt). If the text file is not found, it will create a new text fil containing this movie
+	 * This method saves a new movie into the existing database (Movies.txt). If the text file is not found, it will create a new text file containing this movie
 	 * @param movie The movie object to be saved to database
 	 */
 
@@ -26,7 +26,7 @@ public class DatabaseManager {
 		try {
 			ArrayList<Movie> movies = retrieveAllMovies();
 			movies.add(movie);
-			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Movies.txt"));
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("database/Movies.txt"));
 			output.writeObject(movies);
 		} catch (Exception e) {
 			System.out.println("Error occured while trying to save to database, try again later");
@@ -40,7 +40,7 @@ public class DatabaseManager {
 
 	public static void overwriteMoviesDatabaseWithMovies(ArrayList<Movie> movies){
 		try {
-			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Movies.txt"));
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("database/Movies.txt"));
 			output.writeObject(movies);
 		} catch (Exception e) {
 			System.out.println("Error occured while trying to save to database, try again later");
@@ -55,7 +55,7 @@ public class DatabaseManager {
 	
 	public static ArrayList<Movie> retrieveAllMovies(){
 		try {
-			ObjectInputStream input = new ObjectInputStream(new FileInputStream("Movies.txt"));
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("database/Movies.txt"));
 			ArrayList<Movie> movies = new ArrayList<Movie>();
 		    movies = (ArrayList<Movie>) input.readObject();
 			return movies;
@@ -134,7 +134,7 @@ public class DatabaseManager {
 			}
 			if (!userIsAlreadyIn) {
 				adminUsers.add(adminUser);
-				ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("AdminUsers.txt"));
+				ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("database/AdminUsers.txt"));
 				output.writeObject(adminUsers);
 			}
 		} catch (Exception e) {
@@ -150,7 +150,7 @@ public class DatabaseManager {
 
 	public static ArrayList<AdminUser> retrieveAllAdminUsers(){
 		try {
-			ObjectInputStream input = new ObjectInputStream(new FileInputStream("AdminUsers.txt"));
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("database/AdminUsers.txt"));
 			ArrayList<AdminUser> adminUsers = new ArrayList<AdminUser>();
 			adminUsers = (ArrayList<AdminUser>) input.readObject();
 			return adminUsers;
@@ -175,7 +175,7 @@ public class DatabaseManager {
 
 	public static void overwriteCineplexDatabaseWithNewCineplexes(ArrayList<Cineplex> cineplexes){
 		try {
-			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Cineplexes.txt"));
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("database/Cineplexes.txt"));
 			output.writeObject(cineplexes);
 
 		} catch (Exception e) {
@@ -189,7 +189,7 @@ public class DatabaseManager {
 	 */
 	public static ArrayList<Cineplex> retrieveAllCineplexes(){
 		try {
-			ObjectInputStream input = new ObjectInputStream(new FileInputStream("Cineplexes.txt"));
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("database/Cineplexes.txt"));
 			ArrayList<Cineplex> cineplexes = new ArrayList<Cineplex>();
 			cineplexes = (ArrayList<Cineplex>) input.readObject();
 			return cineplexes;
@@ -232,7 +232,7 @@ public class DatabaseManager {
 
 	public static void overwriteOrdersDatabaseWithNewOrders(ArrayList<Order> orders){
 		try {
-			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("Orders.txt"));
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("database/Orders.txt"));
 			output.writeObject(orders);
 
 		} catch (Exception e) {
@@ -247,7 +247,7 @@ public class DatabaseManager {
 	 */
 	public static ArrayList<Order> retrieveAllOrders(){
 		try {
-			ObjectInputStream input = new ObjectInputStream(new FileInputStream("Orders.txt"));
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("database/Orders.txt"));
 			ArrayList<Order> orders = new ArrayList<Order>();
 			orders = (ArrayList<Order>) input.readObject();
 			return orders;
@@ -283,7 +283,7 @@ public class DatabaseManager {
 
 	public static void savePriceConfiguration(PriceConfiguration priceConfiguration){
 		try {
-			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("PriceConfiguration.txt"));
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("database/PriceConfiguration.txt"));
 			output.writeObject(priceConfiguration);
 
 		} catch (Exception e) {
@@ -299,7 +299,7 @@ public class DatabaseManager {
 
 	public static PriceConfiguration retrievePriceConfiguration(){
 		try {
-			ObjectInputStream input = new ObjectInputStream(new FileInputStream("PriceConfiguration.txt"));
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("database/PriceConfiguration.txt"));
 			PriceConfiguration priceConfiguration = (PriceConfiguration) input.readObject();
 			return priceConfiguration;
 
