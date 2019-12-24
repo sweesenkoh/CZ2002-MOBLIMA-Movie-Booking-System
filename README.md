@@ -1,6 +1,10 @@
 # CZ2002-MOBLIMA-Movie-Booking-System
 
-this is group project
+Group Member: 
 
-new update
-hi
+* [Swee Sen](https://github.com/sweesenkoh)
+* [Randy](https://github.com/randynyl)
+* [Norman](https://github.com/normanfung)
+* [Sven](https://github.com/imistyfied)
+
+
